@@ -9,21 +9,22 @@
 $ git clone https://github.com/kritsana-chaikaew/human-for-hire.git
 $ cd human-for-hire/
 ```
+
 ### Checkout New Branch
 ```shell
 $ git checkout -b setup-heroku
 ```
 
 ### Setup Virtual Environment
-```bash
+```shell
 $ virtualenv venv
 $ source venv/bin/activate
 (venv) $
 ```
 
 ### Install Requirements Packages
-```bash
-(venv) $** vi requirements.txt
+```shell
+(venv) $ vi requirements.txt
 ```
 ```text
 dj-database-url==0.4.2
@@ -32,12 +33,12 @@ gunicorn==19.7.1
 psycopg2==2.7.3
 whitenoise==3.3.0
 ```
-```bash
-(venv) $** pip install -r requirements.txt
+```shell
+(venv) $ pip install -r requirements.txt
 ```
 
 ### Create Simple Hello App
-```bash
+```shell
 (venv) $ django-admin startapp hello
 (venv) $ vi humanforhire/setting.py
 ```
@@ -54,8 +55,8 @@ INSTALLED_APPS = [
     'hello',
 ]
 ```
-```bash
-(venv) $** vi humanforhire/urls.py
+```shell
+(venv) $ vi humanforhire/urls.py
 ```
 ```python
 from django.conf.urls import url, include
@@ -67,8 +68,8 @@ urlpatterns = [
     url(r'', include('hello.urls')),
 ]
 ```
-```bash
-(venv) $** vi hello/urls.py
+```shell
+(venv) $ vi hello/urls.py
 ```
 ```python
 from django.conf.urls import url
@@ -79,8 +80,8 @@ urlpatterns = [
     url(r'', views.hello),
 ]
 ```
-```bash
-(venv) $** vi hello/view.py
+```shell
+(venv) $ vi hello/view.py
 ```
 ```python
 # -*- coding: utf-8 -*-
@@ -92,7 +93,7 @@ from django.shortcuts import render
 def hello(request):
     return render(request,'hello.html',{})
 ```
-```bash
+```shell
 (venv) $ mkdir -p hello/templates
 (venv) $ vi hello/hello.html
 ```
@@ -101,6 +102,6 @@ def hello(request):
 ```
 
 ### Run Server
-```bash
+```shell
 (venv) $ python manage.py migrate
 (venv) $ python manage.py runserver
