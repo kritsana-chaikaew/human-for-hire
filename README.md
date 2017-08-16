@@ -105,3 +105,36 @@ def hello(request):
 ```shell
 (venv) $ python manage.py migrate
 (venv) $ python manage.py runserver
+
+### Setup Heroku
+```shell
+(venv) $ heroku login
+(venv) $ heroku apps:create humanforhire --buildpack heroku/python
+(venv) $ vi Procfile
+```
+```text
+web: gunicorn humanforhire.wsgi --log-file -
+```
+
+### Config setting.py
+view git diff
+
+```shell
+(venv) $ mkdir -p humanforhire/static
+(venv) $ touch humanforhire/static/human.txt
+```
+
+### Test Locally
+```shell
+(venv) $ heroku local
+```
+
+### Deploy
+```shell
+(venv) $ git push heroku setup-heroku:master
+```
+
+### Test Remotely 
+```shell
+(venv) $ heroku open
+```
