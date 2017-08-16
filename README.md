@@ -40,7 +40,7 @@ whitenoise==3.3.0
 ### Create Simple Hello App
 ```shell
 (venv) $ django-admin startapp hello
-(venv) $ vi humanforhire/setting.py
+(venv) $ vi humanforhire/settings.py
 ```
 ```python
 # Application definition
@@ -81,7 +81,7 @@ urlpatterns = [
 ]
 ```
 ```shell
-(venv) $ vi hello/view.py
+(venv) $ vi hello/views.py
 ```
 ```python
 # -*- coding: utf-8 -*-
@@ -95,7 +95,7 @@ def hello(request):
 ```
 ```shell
 (venv) $ mkdir -p hello/templates
-(venv) $ vi hello/hello.html
+(venv) $ vi hello/templates/hello.html
 ```
 ```html
 <h1>Hello</h1>
