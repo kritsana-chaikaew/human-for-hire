@@ -105,6 +105,7 @@ def hello(request):
 ```shell
 (venv) $ python manage.py migrate
 (venv) $ python manage.py runserver
+```
 
 ### Setup Heroku
 ```shell
