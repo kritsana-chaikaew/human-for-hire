@@ -4,4 +4,5 @@ import django.contrib.auth.views
 
 urlpatterns = [
     url(r'', views.hello),
+    url(r'^db', views.db),
 ]
