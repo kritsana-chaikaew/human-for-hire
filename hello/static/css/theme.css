@@ -1,3 +1,14 @@
 #navBarSearchForm {
     width:870px !important;
 }
+
+a.navsize { color: white; }
+h5 { color: black; }
+h4 { color: red; }
+p { color: blue; }
+.card-columns {
+    column-count: 4;
+    @include media-breakpoint-only(lg) {
+        column-count: 5;
+    }
+}
