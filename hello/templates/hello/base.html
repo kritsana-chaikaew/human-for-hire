@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- For responsive web-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static "hello/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "hello/css/bootstrap-responsive.min.css" %}" rel="stylesheet">
+    <link href="{% static "hello/css/theme.css" %}" rel="stylesheet">
+</head>
+
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</html>
