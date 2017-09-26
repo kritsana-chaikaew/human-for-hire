@@ -11,7 +11,7 @@
         <link href="static/css/theme.css" rel="stylesheet">
     </head>
 
-  <!-- headerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr -->
+  <!-- header -->
     <form action="{% url 'post:action' %}" method="post">
       {% csrf_token %}
       <div class="form-group row">
@@ -49,13 +49,13 @@
         <div class="col-10">
           <input type="text" name="tag" value="c" />
         </div>
-        
+
       </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
 
-  <!-- footerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr -->
+  <!-- footer -->
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
