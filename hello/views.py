@@ -8,4 +8,4 @@ class IndexView(generic.ListView):
     context_object_name = 'product_list'
 
     def get_queryset(self):
-        return Product.objects.order_by('-date')[:20]
+        return Product.objects.order_by('product_no')
