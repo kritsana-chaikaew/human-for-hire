@@ -36,255 +36,37 @@
         <div class="container">
     		<div class="row">
     			<div class="card-columns ">
-    				<div class="card bg-light">
-    					<div class="card-header">
-    						<div class="card-name">โอฬาร สงวนประสิทธิ์</div>
-    						<ul class="nav nav-tabs card-header-tabs">
-    					      	<li class="nav-item">
-    					        	<a class="nav-link active" href="#">General</a>
-    					      	</li>
-    					      	<li class="nav-item">
-    					        	<a class="nav-link" href="#">Log</a>
-    					      	</li>
-    					    </ul>
-                        </div>
-    				  	<img class="card-img-top" src="static/img/j.jpg" alt="Card image cap">
-    				  	<div class="card-body">
-    				    	<div class="card-job">Enter main job</div>
-    				    	<p class="card-text ">Enter descriptions</p>
-                            <div class="text-right">
-                                <a href="#" class="btn btn-success card-btn">Detail</a>
-                            </div>
-                        </div>
-    					<div class="card-footer text-muted">
-    						Last update : 2 days ago
-    					</div>
-    				</div>
+            {% if product_list %}
+                {% for card in product_list %}
+                  <div class="card bg-light">
+                    <div class="card-header">
+                      <div class="card-name">{{ card.seller_username }}</div>
+                      <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#">General</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">History</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <img class="card-img-top" src="static/img/bank.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <div class="card-job">{{ card.product_name }}</div>
+                      <p class="card-text ">{{ card.product_details }}</</p>
+                      <div class="text-right">
+                        <a href="#" class="btn btn-success card-btn">Detail</a>
+                      </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                      {{ card.date }}
+                    </div>
+                  </div>
+                {% endfor %}
+            {% else %}
+                <p>No product available at this time.</p>
+            {% endif %}
 
-                    <div class="card bg-light">
-    					<div class="card-header">
-    						<div class="card-name">นิติ สันติกุล</div>
-    						<ul class="nav nav-tabs card-header-tabs">
-    					      	<li class="nav-item">
-    					        	<a class="nav-link active" href="#">General</a>
-    					      	</li>
-    					      	<li class="nav-item">
-    					        	<a class="nav-link" href="#">Log</a>
-    					      	</li>
-    					    </ul>
-                        </div>
-    				  	<img class="card-img-top" src="static/img/kanoon.jpg" alt="Card image cap">
-    				  	<div class="card-body">
-    				    	<div class="card-job">Enter main job</div>
-    				    	<p class="card-text ">Enter descriptions</p>
-                            <div class="text-right">
-                                <a href="#" class="btn btn-success card-btn">Detail</a>
-                            </div>
-                        </div>
-    					<div class="card-footer text-muted">
-    						Last update : 2 days ago
-    					</div>
-    				</div>
-
-                    <div class="card bg-light">
-    					<div class="card-header">
-    						<div class="card-name">กฤษณะ ฉายแก้ว</div>
-    						<ul class="nav nav-tabs card-header-tabs">
-    					      	<li class="nav-item">
-    					        	<a class="nav-link active" href="#">General</a>
-    					      	</li>
-    					      	<li class="nav-item">
-    					        	<a class="nav-link" href="#">Log</a>
-    					      	</li>
-    					    </ul>
-                        </div>
-    				  	<img class="card-img-top" src="static/img/bank.jpg" alt="Card image cap">
-    				  	<div class="card-body">
-    				    	<div class="card-job">Enter main job</div>
-    				    	<p class="card-text ">Enter descriptions</p>
-                            <div class="text-right">
-                                <a href="#" class="btn btn-success card-btn">Detail</a>
-                            </div>
-                        </div>
-    					<div class="card-footer text-muted">
-    						Last update : 2 days ago
-    					</div>
-    				</div>
-
-                    <div class="card bg-light">
-    					<div class="card-header">
-    						<div class="card-name">สารัช</div>
-    						<ul class="nav nav-tabs card-header-tabs">
-    					      	<li class="nav-item">
-    					        	<a class="nav-link active" href="#">General</a>
-    					      	</li>
-    					      	<li class="nav-item">
-    					        	<a class="nav-link" href="#">Log</a>
-    					      	</li>
-    					    </ul>
-                        </div>
-    				  	<img class="card-img-top" src="static/img/max.jpg" alt="Card image cap">
-    				  	<div class="card-body">
-    				    	<div class="card-job">Enter main job</div>
-    				    	<p class="card-text ">Enter descriptions</p>
-                            <div class="text-right">
-                                <a href="#" class="btn btn-success card-btn">Detail</a>
-                            </div>
-                        </div>
-    					<div class="card-footer text-muted">
-    						Last update : 2 days ago
-    					</div>
-    				</div>
-
-                    <div class="card bg-light">
-    					<div class="card-header">
-    						<div class="card-name">เชลโล่</div>
-    						<ul class="nav nav-tabs card-header-tabs">
-    					      	<li class="nav-item">
-    					        	<a class="nav-link active" href="#">General</a>
-    					      	</li>
-    					      	<li class="nav-item">
-    					        	<a class="nav-link" href="#">Log</a>
-    					      	</li>
-    					    </ul>
-                        </div>
-    				  	<img class="card-img-top" src="static/img/cello.jpg" alt="Card image cap">
-    				  	<div class="card-body">
-    				    	<div class="card-job">Enter main job</div>
-    				    	<p class="card-text ">Enter descriptions</p>
-                            <div class="text-right">
-                                <a href="#" class="btn btn-success card-btn">Detail</a>
-                            </div>
-                        </div>
-    					<div class="card-footer text-muted">
-    						Last update : 2 days ago
-    					</div>
-    				</div>
-
-                    <div class="card bg-light">
-    					<div class="card-header">
-    						<div class="card-name">อาย</div>
-    						<ul class="nav nav-tabs card-header-tabs">
-    					      	<li class="nav-item">
-    					        	<a class="nav-link active" href="#">General</a>
-    					      	</li>
-    					      	<li class="nav-item">
-    					        	<a class="nav-link" href="#">Log</a>
-    					      	</li>
-    					    </ul>
-                        </div>
-    				  	<img class="card-img-top" src="static/img/eye.jpg" alt="Card image cap">
-    				  	<div class="card-body">
-    				    	<div class="card-job">Enter main job</div>
-    				    	<p class="card-text ">Enter descriptions</p>
-                            <div class="text-right">
-                                <a href="#" class="btn btn-success card-btn">Detail</a>
-                            </div>
-                        </div>
-    					<div class="card-footer text-muted">
-    						Last update : 2 days ago
-    					</div>
-    				</div>
-
-                    <div class="card bg-light">
-    					<div class="card-header">
-    						<div class="card-name">กราฟ</div>
-    						<ul class="nav nav-tabs card-header-tabs">
-    					      	<li class="nav-item">
-    					        	<a class="nav-link active" href="#">General</a>
-    					      	</li>
-    					      	<li class="nav-item">
-    					        	<a class="nav-link" href="#">Log</a>
-    					      	</li>
-    					    </ul>
-                        </div>
-    				  	<img class="card-img-top" src="static/img/graph.jpg" alt="Card image cap">
-    				  	<div class="card-body">
-    				    	<div class="card-job">Enter main job</div>
-    				    	<p class="card-text ">Enter descriptions</p>
-                            <div class="text-right">
-                                <a href="#" class="btn btn-success card-btn">Detail</a>
-                            </div>
-                        </div>
-    					<div class="card-footer text-muted">
-    						Last update : 2 days ago
-    					</div>
-    				</div>
-
-                    <div class="card bg-light">
-    					<div class="card-header">
-    						<div class="card-name">J</div>
-    						<ul class="nav nav-tabs card-header-tabs">
-    					      	<li class="nav-item">
-    					        	<a class="nav-link active" href="#">General</a>
-    					      	</li>
-    					      	<li class="nav-item">
-    					        	<a class="nav-link" href="#">Log</a>
-    					      	</li>
-    					    </ul>
-                        </div>
-    				  	<img class="card-img-top" src="static/img/jhead.jpg" alt="Card image cap">
-    				  	<div class="card-body">
-    				    	<div class="card-job">Enter main job</div>
-    				    	<p class="card-text ">Enter descriptions</p>
-                            <div class="text-right">
-                                <a href="#" class="btn btn-success card-btn">Detail</a>
-                            </div>
-                        </div>
-    					<div class="card-footer text-muted">
-    						Last update : 2 days ago
-    					</div>
-    				</div>
-
-                    <div class="card bg-light">
-    					<div class="card-header">
-    						<div class="card-name">ภิญญาพร เอี่ยมมงคล</div>
-    						<ul class="nav nav-tabs card-header-tabs">
-    					      	<li class="nav-item">
-    					        	<a class="nav-link active" href="#">General</a>
-    					      	</li>
-    					      	<li class="nav-item">
-    					        	<a class="nav-link" href="#">Log</a>
-    					      	</li>
-    					    </ul>
-                        </div>
-    				  	<img class="card-img-top" src="static/img/mameaw.jpg" alt="Card image cap">
-    				  	<div class="card-body">
-    				    	<div class="card-job">Enter main job</div>
-    				    	<p class="card-text ">Enter descriptions</p>
-                            <div class="text-right">
-                                <a href="#" class="btn btn-success card-btn">Detail</a>
-                            </div>
-                        </div>
-    					<div class="card-footer text-muted">
-    						Last update : 2 days ago
-    					</div>
-    				</div>
-
-                    <div class="card bg-light">
-    					<div class="card-header">
-    						<div class="card-name">ตะวัน</div>
-    						<ul class="nav nav-tabs card-header-tabs">
-    					      	<li class="nav-item">
-    					        	<a class="nav-link active" href="#">General</a>
-    					      	</li>
-    					      	<li class="nav-item">
-    					        	<a class="nav-link" href="#">Log</a>
-    					      	</li>
-    					    </ul>
-                        </div>
-    				  	<img class="card-img-top" src="static/img/tawan.jpg" alt="Card image cap">
-    				  	<div class="card-body">
-    				    	<div class="card-job">Enter main job</div>
-    				    	<p class="card-text ">Enter descriptions</p>
-                            <div class="text-right">
-                                <a href="#" class="btn btn-success card-btn">Detail</a>
-                            </div>
-                        </div>
-    					<div class="card-footer text-muted">
-    						Last update : 2 days ago
-    					</div>
-    				</div>
     			</div>
     		</div>
     	</div>
