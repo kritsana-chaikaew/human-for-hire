@@ -1,8 +1,11 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+from django.shortcuts import render, get_object_or_404
+from django.views import generic
 
-from django.shortcuts import render
+from .models import Product
 
-# Create your views here.
-def index(request):
-    return render(request,'index.html',{})
+class IndexView(generic.ListView):
+    template_name = 'index.html'
+    context_object_name = 'product_list'
+
+    def get_queryset(self):
+        return Product.objects.order_by('-date')[:20]
