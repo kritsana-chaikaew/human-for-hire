@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+from .models import Profile
+
 @login_required(login_url='/login')
 def main(request):
     return render(request,'main.html',{})
@@ -18,7 +20,10 @@ def signup(request):
         email = request.POST['email']
         firstname = request.POST['firstname']
         lastname = request.POST['lastname']
-        print(username, password, email, firstname, lastname)
+        address = request.POST['address']
+        telephone = request.POST['telephone']
+        birthday = request.POST['birthday']
+        print(username, password, email, firstname, lastname, address,telephone, birthday)
         try:
             user = User.objects.create_user(username, email, password)
             user.first_name = firstname
@@ -29,6 +34,11 @@ def signup(request):
             if str(e) == "UNIQUE constraint failed: auth_user.username":
                 error = "this username has been taken."
             return render(request,'signup.html',{"error": error})
+        p = Profile()
+        p.address = address
+        p.telephone = telephone
+        p.birthday = birthday
+        p.save()
         return redirect('/main')
     return render(request,'signup.html',{})
 

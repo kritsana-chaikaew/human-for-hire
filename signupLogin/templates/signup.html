@@ -4,6 +4,26 @@
   <form method="post">
     {% csrf_token %}
     <div>
+      <label class="col-2 col-form-label" for="firstname">First Name</label>
+      <input id="firstname" type="text" name="firstname" required/>
+    </div>
+    <div>
+      <label class="col-2 col-form-label" for="lastname">Last Name</label>
+      <input id="lastname" type="text" name="lastname" required/>
+    </div>
+    <div>
+      <label class="col-2 col-form-label" for="address">Address</label>
+      <input id="address" type="text" name="address" required/>
+    </div>
+    <div>
+      <label class="col-2 col-form-label" for="telephone">Telephone</label>
+      <input id="telephone" type="text" name="telephone" required/>
+    </div>
+    <div>
+      <label class="col-2 col-form-label" for="birthday">Birthday</label>
+      <input id="birthday" type="text" name="birthday" required/>
+    </div>
+    <div>
       <label class="col-2 col-form-label" for="username">Username</label>
       <input id="username" type="text" name="username" required/>
     </div>
@@ -15,15 +35,8 @@
       <label class="col-2 col-form-label" for="email">E-Mail</label>
       <input id="email" type="text" name="email" required/>
     </div>
-    <div>
-      <label class="col-2 col-form-label" for="firstname">First Name</label>
-      <input id="firstname" type="text" name="firstname" required/>
-    </div>
-    <div>
-      <label class="col-2 col-form-label" for="lastname">Last Name</label>
-      <input id="lastname" type="text" name="lastname" required/>
-    </div>
-    <input type="submit" value="Submit">
+
+    <input type="submit" value="Register">
   <form>
   <p>{{ error }}</p>
 {% endblock %}
