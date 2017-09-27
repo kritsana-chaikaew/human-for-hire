@@ -17,6 +17,7 @@ class Product(models.Model):
     location = models.CharField(max_length=250, default='location')
     price = models.IntegerField(default=0)
     tag = models.CharField(max_length=250, default='tag')
+    product_image = models.ImageField(upload_to='post/upload/image')
 
     def __str__(self):
         return str(self.product_no) + "_" + self.product_name
