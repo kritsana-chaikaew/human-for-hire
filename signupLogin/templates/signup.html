@@ -1,1 +1,29 @@
-signup
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    <div>
+      <label class="col-2 col-form-label" for="username">Username</label>
+      <input id="username" type="text" name="username" required/>
+    </div>
+    <div>
+      <label class="col-2 col-form-label" for="password">Password</label>
+      <input id="password" type="password" name="password" required/>
+    </div>
+    <div>
+      <label class="col-2 col-form-label" for="email">E-Mail</label>
+      <input id="email" type="text" name="email" required/>
+    </div>
+    <div>
+      <label class="col-2 col-form-label" for="firstname">First Name</label>
+      <input id="firstname" type="text" name="firstname" required/>
+    </div>
+    <div>
+      <label class="col-2 col-form-label" for="lastname">Last Name</label>
+      <input id="lastname" type="text" name="lastname" required/>
+    </div>
+    <input type="submit" value="Submit">
+  <form>
+  <p>{{ error }}</p>
+{% endblock %}

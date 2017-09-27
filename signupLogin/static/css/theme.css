@@ -1,0 +1,35 @@
+body {
+    background: #f5f5f5;
+}
+
+#navbar {
+    border-bottom: 2px solid #d3d3d3;
+}
+
+#navBarSearchForm {
+    background-color: #d3d3d3;
+    width: 980px !important;
+}
+
+.card {
+    width: 13.2rem !important;
+}
+
+.card-name {
+    font-size: 20px;
+    color: black;
+}
+
+.card-job {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-btn {
+    background-color: #0f7173;
+    border: 2px solid #2c6969;
+}
+
+.card-columns {
+    column-count: 5;
+}
