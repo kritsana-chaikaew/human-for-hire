@@ -10,9 +10,8 @@ def post(request):
 
 def action(request):
     p = Product()
-    p.seller_username = request.POST['seller_name']
+    p.seller_username = "fetch from database"
     p.product_name = request.POST['product_name']
-    p.product_type = request.POST['product_type']
     p.start_date = request.POST['start_date']
     p.end_date = request.POST['end_date']
     p.product_details = request.POST['product_details']

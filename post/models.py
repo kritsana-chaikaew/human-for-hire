@@ -8,7 +8,7 @@ import datetime
 class Product(models.Model):
     product_no = models.IntegerField(primary_key=True)
 
-    seller_username = models.CharField(max_length=20, default='seller username')
+    seller_username = models.CharField(max_length=250, default='seller_username')
     product_name = models.CharField(max_length=250, default='product name')
     product_type = models.CharField(max_length=250, default='product type')
     start_date = models.DateField(default=datetime.date.today)

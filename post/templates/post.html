@@ -6,62 +6,57 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Bootstrap CSS -->
-        <link href="static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="static/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="static/css/theme.css" rel="stylesheet">
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../static/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="../static/css/theme.css" rel="stylesheet">
     </head>
 
   <!-- headerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr -->
-    <form action="{% url 'post:action' %}" method="post">
-      {% csrf_token %}
-      <div class="form-group row">
-        <label for="example-text-input" class="col-2 col-form-label">Seller name</label>
-        <div class="col-10">
-          <input type="text" name="seller_name" value="a" />
+
+    <div class="container">
+      <form action="{% url 'post:action' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="example-text-input" class="col-2 col-form-label">Product name</label>
+          <div class="col-10">
+            <input class="form-control" type="text" name="product_name" placeholder="Product Name"/>
+          </div>
+
+          <label for="example-text-input" class="col-2 col-form-label">Start date and time</label>
+          <div class="col-10">
+            <input class="form-control" type="date" name="start_date" placeholder="2011-08-19"/>
+          </div>
+
+          <label for="example-text-input" class="col-2 col-form-label">End date and time</label>
+          <div class="col-10">
+            <input class="form-control" type="date" name="end_date" placeholder="2011-08-19"/>
+          </div>
+
+          <label for="example-text-input" class="col-2 col-form-label">Product details</label>
+          <div class="col-10">
+            <input class="form-control" type="text" name="product_details" placeholder="Enter description"/>
+          </div>
+
+          <label for="example-text-input" class="col-2 col-form-label">Price</label>
+          <div class="col-10">
+            <input class="form-control" type="number" name="price"/>
+          </div>
+
+          <label for="example-text-input" class="col-2 col-form-label">Tag</label>
+          <div class="col-10">
+            <input class="form-control" type="text" name="tag"/>
+          </div>
+
         </div>
 
-        <label for="example-text-input" class="col-2 col-form-label">Product name</label>
-        <div class="col-10">
-          <input type="text" name="product_name" value="b" />
-        </div>
-
-        <label for="example-text-input" class="col-2 col-form-label">Product type</label>
-        <div class="col-10">
-          <input type="text" name="product_type" value="c" />
-        </div>
-
-        <label for="example-text-input" class="col-2 col-form-label">Start Date</label>
-        <div class="col-10">
-          <input type="date" name="start_date" value="c" />
-        </div>
-
-        <label for="example-text-input" class="col-2 col-form-label">End Date</label>
-        <div class="col-10">
-          <input type="date" name="end_date" value="c" />
+        <div class="form-group">
+          <div class="col-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
         </div>
 
 
-        <label for="example-text-input" class="col-2 col-form-label">Product details</label>
-        <div class="col-10">
-          <input type="text" name="product_details" value="c" />
-        </div>
-
-        <label for="example-text-input" class="col-2 col-form-label">Price</label>
-        <div class="col-10">
-          <input type="number" name="price" value="c" />
-        </div>
-
-        <label for="example-text-input" class="col-2 col-form-label">Tag</label>
-        <div class="col-10">
-          <input type="text" name="tag" value="c" />
-        </div>
-        
-      </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-
-  <!-- footerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr -->
+  <!-- footer -->
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
