@@ -17,12 +17,15 @@ def signup(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        password2 = request.POST['password2']
         email = request.POST['email']
         firstname = request.POST['firstname']
         lastname = request.POST['lastname']
         address = request.POST['address']
         telephone = request.POST['telephone']
         birthday = request.POST['birthday']
+        if password != password2:
+            return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, "error":"2 passwords is not the same"})
         print(username, password, email, firstname, lastname, address,telephone, birthday)
         try:
             user = User.objects.create_user(username, email, password)
