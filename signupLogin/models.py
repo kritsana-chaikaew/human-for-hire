@@ -9,7 +9,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     telephone = models.CharField(max_length=250)
     address = models.TextField(max_length=500, blank=True)
-    birth_date = models.DateField(default=datetime.date.today, null=True, blank=True)
+    birthday = models.DateField(default=datetime.date.today)
 
 # @receiver(post_save, sender=User)
 # def update_user_profile(sender, instance, created, **kwargs):
