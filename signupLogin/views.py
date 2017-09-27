@@ -35,6 +35,7 @@ def signup(request):
                 error = "this username has been taken."
             return render(request,'signup.html',{"error": error})
         p = Profile()
+        p.user = user
         p.address = address
         p.telephone = telephone
         p.birthday = birthday
