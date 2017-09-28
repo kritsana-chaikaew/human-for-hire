@@ -1,0 +1,17 @@
+{% extends 'hello/base.html' %}
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Profile</h1>
+    <p><b>Username:</b> {{ user }}</p>
+    <p><b>First name:</b> {{ user.first_name }}</p>
+    <p><b>Last name:</b> {{ user.last_name }}</p>
+    <p><b>Email address:</b> {{ user.email }}</p>
+    <button type="submit"><a href="/userprofile/profile/edit">Edit</a></button>    
+    <button type="submit"><a href="/userprofile/logout">Logout</a></button>
+</div>
+{% endblock %}

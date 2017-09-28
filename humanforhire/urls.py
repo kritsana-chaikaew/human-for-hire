@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'', include('hello.urls')),
     url(r'', include('post.urls')),
     url(r'', include('signupLogin.urls')),
+    url(r'^userprofile/', include('userprofile.urls')),
 ]
