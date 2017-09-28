@@ -1,0 +1,17 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    <div>
+      <label class="col-2 col-form-label" for="username">Username</label>
+      <input id="username" type="text" name="username"/>
+    </div>
+    <div>
+      <label class="col-2 col-form-label" for="password">Password</label>
+      <input id="password" type="password" name="password"/>
+    </div>
+    <input type="submit" value="Submit">
+  <form>
+  <p>{{ error }}</p>
+{% endblock %}
