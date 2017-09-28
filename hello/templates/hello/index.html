@@ -1,5 +1,29 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
-INDEX
+  <div class="container">
+  <div class="row">
+    <div class="card-columns ">
+      {% if product_list %}
+        {% for card in product_list %}
+          <div class="card bg-light">
+            <div class="card-header">
+              <div class="card-name">{{ card.product_name }}</div>
+            </div>
+            <img class="card-img-top" src="{{ card.product_image.url }}" alt="Card image cap">
+            <div class="card-body">
+              <div class="card-text ">{{ card.product_details }}</div>
+              <div class="card-job">{{ card.product_name }}</div>
+            </div>
+            <div class="card-footer text-muted">
+              {{ card.start_date }}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No product available at this time.</p>
+      {% endif %}
+    </div>
+  </div>
+  </div>
 {% endblock %}
