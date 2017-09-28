@@ -10,6 +10,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <p><a href="{% url 'userprofile:change_password' %}">Change password</a></p>
         <button type="submit">Submit</button>
     </form>
 </div>
