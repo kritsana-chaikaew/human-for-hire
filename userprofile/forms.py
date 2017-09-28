@@ -7,8 +7,8 @@ class EditProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = (
-            'last_name',
             'first_name',
+            'last_name',
             'email',
             'password'
         )
