@@ -26,9 +26,12 @@
                   {{user.username}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
+                    {% if user.is_authenticated %}
+                  <a class="dropdown-item" href="/userprofile">UserProfile</a>
+                    {% else %}
                   <a class="dropdown-item" href="#">Another action</a>
                   <a class="dropdown-item" href="#">Something else here</a>
+                    {% endif %}
                 </div>
           </li>
         </ul>
