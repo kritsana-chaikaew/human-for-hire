@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Kanit:400,700|Open+Sans:400,700');
+
 body {
     background: #eee;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", "Kanit", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
 }
 
 #navbar-hh {
@@ -8,6 +15,11 @@ body {
 
 #container-hh {
     margin-top: 50px;
+}
+
+#index-headline {
+    padding-top: 2.5em;
+    margin-bottom: 1.5em;
 }
 
 .card {
@@ -30,5 +42,5 @@ body {
 }
 
 .card-columns {
-    column-count: 5;
+    column-count: 4;
 }
