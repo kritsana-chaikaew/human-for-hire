@@ -3,12 +3,17 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from userprofile.forms import EditProfileForm
 from django.contrib.auth import update_session_auth_hash
 
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
 
+# Create your views here.
+# @login_required
+
+@login_required(login_url='/login')
 def home(request):
     return render(request, 'userprofile/home.html')
 
-
+@login_required(login_url='/login')
 def view_profile(request):
     args = {'user': request.user}
     return render(request, 'userprofile/profile.html', args)
