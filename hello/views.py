@@ -1,7 +1,4 @@
-from django.shortcuts import render, get_object_or_404
-from django.views import generic
 from django.shortcuts import render
-
 from django.views import generic
 from post.models import Product
 
@@ -10,4 +7,4 @@ class IndexView(generic.ListView):
     context_object_name = 'product_list'
 
     def get_queryset(self):
-        return Product.objects.order_by('product_no')
+        return Product.objects.order_by('-start_date')

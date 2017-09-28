@@ -33,3 +33,13 @@ body {
 .card-columns {
     column-count: 5;
 }
+
+.custom-file-control.selected:lang(en)::after {
+  content: "" !important;
+}
+.custom-file {
+  overflow: hidden;
+}
+.custom-file-control {
+  white-space: nowrap;
+}
