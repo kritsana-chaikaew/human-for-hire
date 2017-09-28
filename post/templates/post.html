@@ -1,71 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- For responsive web-->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends 'hello/base.html' %}
 
-        <!-- Bootstrap CSS -->
-        <link href="static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="static/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="static/css/theme.css" rel="stylesheet">
-    </head>
+{% block content %}
+    <div class="container">
+      <h3>Create Product</h3>
+      <form action="{% url 'post:action' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="col-5 col-form-label">Product name</label>
+          <div class="col-5">
+            <input class="form-control" type="text" name="product_name" placeholder="Product Name"/>
+          </div>
 
-  <!-- header -->
-    <form action="{% url 'post:action' %}" method="post">
-      {% csrf_token %}
-      <div class="form-group row">
-        <label for="example-text-input" class="col-2 col-form-label">Seller name</label>
-        <div class="col-10">
-          <input type="text" name="seller_name" value="a" />
+          <label class="custom-file col-5 col-form-label" id="customFile">
+            Picture
+            <div class="col-5 col-form-label">
+              <input type="file" class="custom-file-input" name="product_image" aria-describedby="fileHelp">
+              <span class="custom-file-control form-control-file"></span>
+            </div>
+          </label>
+
+          <label class="col-5 col-form-label">Start date and time</label>
+          <div class="col-5">
+            <input class="form-control" type="datetime-local" name="start_date" placeholder="2011-08-19"/>
+          </div>
+
+          <label class="col-5 col-form-label">End date and time</label>
+          <div class="col-5">
+            <input class="form-control" type="datetime-local" name="end_date" placeholder="2011-08-19"/>
+          </div>
+
+          <label class="col-5 col-form-label">Product details</label>
+          <div class="col-5">
+            <input class="form-control" type="text" name="product_details" placeholder="Enter description"/>
+          </div>
+
+          <label class="col-5 col-form-label">Price</label>
+          <div class="col-5">
+            <input class="form-control" type="number" name="price"/>
+          </div>
+
+          <label class="col-5 col-form-label">Tag</label>
+          <div class="col-5">
+            <input class="form-control" type="text" name="tag"/>
+          </div>
+
         </div>
 
-        <label for="example-text-input" class="col-2 col-form-label">Product name</label>
-        <div class="col-10">
-          <input type="text" name="product_name" value="b" />
+        <div class="form-group">
+          <div class="col-2">
+            <button type="submit" class="btn btn-primary">Create Post</button>
+          </div>
         </div>
 
-        <label for="example-text-input" class="col-2 col-form-label">Product type</label>
-        <div class="col-10">
-          <input type="text" name="product_type" value="c" />
-        </div>
-
-        <label for="example-text-input" class="col-2 col-form-label">Start Date</label>
-        <div class="col-10">
-          <input type="date" name="start_date" value="c" />
-        </div>
-
-        <label for="example-text-input" class="col-2 col-form-label">End Date</label>
-        <div class="col-10">
-          <input type="date" name="end_date" value="c" />
-        </div>
-
-
-        <label for="example-text-input" class="col-2 col-form-label">Product details</label>
-        <div class="col-10">
-          <input type="text" name="product_details" value="c" />
-        </div>
-
-        <label for="example-text-input" class="col-2 col-form-label">Price</label>
-        <div class="col-10">
-          <input type="number" name="price" value="c" />
-        </div>
-
-        <label for="example-text-input" class="col-2 col-form-label">Tag</label>
-        <div class="col-10">
-          <input type="text" name="tag" value="c" />
-        </div>
-
-      </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
 
   <!-- footer -->
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="static/js/bootstrap.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+
+        <script src="../static/js/post.js"></script>
     </body>
 
 </html>
+
+{% endblock %}
