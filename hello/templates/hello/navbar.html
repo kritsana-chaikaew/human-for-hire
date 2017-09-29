@@ -10,9 +10,18 @@
         <ul class="navbar-nav ml-auto">
 
             {% if user.is_authenticated %}
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'post:post' %}">Post</a>
-              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'post:post' %}">Post</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{user.username}}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/userprofile">Profile</a>
+                  <a class="dropdown-item" href="{% url 'signupLogin:logout' %}">Logout</a>
+                </div>
+          </li>
             {% else %}
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'signupLogin:signup' %}">Register</a>
@@ -21,21 +30,6 @@
                   <a class="nav-link" href="{% url 'signupLogin:login' %}">Login</a>
               </li>
             {% endif %}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{user.username}}
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    {% if user.is_authenticated %}
-                  <a class="dropdown-item" href="/userprofile">Profile</a>
-                  <a class="dropdown-item" href="{% url 'signupLogin:logout' %}">Logout</a>
-                    {% else %}
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  
-                    {% endif %}
-                </div>
-          </li>
         </ul>
     </div>
 </nav>
