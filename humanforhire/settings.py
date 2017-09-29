@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'hello',
     'post',
     'signupLogin',
-    'userprofile'
+    'userprofile',
 ]
 
 MIDDLEWARE = [

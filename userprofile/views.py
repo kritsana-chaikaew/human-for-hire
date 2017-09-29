@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from userprofile.forms import EditProfileForm
 from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -38,9 +39,12 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('/userprofile/profile')
+            return redirect('/userprofile/')
         else:
+            args = {'error': 'error'}
+            messages.warning(request, 'Please check your password again.')
             return redirect('/userprofile/change-password')
+            #return render(request, 'userprofile/change_password.html', args)
     
     else:
         form = PasswordChangeForm(user=request.user)
