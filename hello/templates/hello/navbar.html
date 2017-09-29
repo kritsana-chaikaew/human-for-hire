@@ -11,7 +11,7 @@
 
             {% if user.is_authenticated %}
               <li class="nav-item">
-                  <a class="nav-link" href="#">Post</a>
+                  <a class="nav-link" href="{% url 'post:post' %}">Post</a>
               </li>
             {% else %}
               <li class="nav-item">
