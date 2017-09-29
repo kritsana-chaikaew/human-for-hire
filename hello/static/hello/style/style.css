@@ -51,9 +51,15 @@ body {
 }
 
 .product-image {
+  border: 1px solid #b2b2b2;
   width: 300px;
   height: 100%;
-  border: 1px solid #b2b2b2;
+
+  display: block;
+  max-width:300px;
+  max-height:400px;
+  width: auto;
+  height: auto;
 }
 
 .product-detail {
