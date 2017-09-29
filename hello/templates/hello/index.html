@@ -14,7 +14,7 @@
 	{% if product_list %}
 	  {% for product in product_list %}
 			<!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product" style="background:url({{ product.product_image.url }});background-size: 130%;background-position:center no-repeat"> -->
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product">
+			<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 product">
 				<a href='/product/{{ product.product_no }}/'><img src="{{ product.product_image.url }}" class="product-image"></a>
 					<div class="product-detail"><a href='/product/{{ product.product_no }}/'>
 						<p class="product-detail-name">{{ product.product_name }}</p>
