@@ -1,0 +1,14 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+    product_no           {{ product.product_no }}<br>
+    seller_username      {{ product.seller_username }}<br>
+    product_name         {{ product.product_name }}<br>
+    start_date           {{ product.start_date }}<br>
+    end_date             {{ product.end_date }}<br>
+    product_detail       {{ product.product_detail }}<br>
+    location             {{ product.location }}<br>
+    tag                  {{ product.tag }}<br>
+    product_type         {{ product.product_type }} <br>
+    <img src="{{ product.product_image.url }}"\>
+{% endblock %}
