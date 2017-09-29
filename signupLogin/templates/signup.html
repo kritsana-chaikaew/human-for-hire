@@ -2,7 +2,8 @@
 
 {% block content %}
 <h3>Register</h3>
-
+  
+  <p>{{ error }}</p>
   <form method="post"  class="col col-lg-6">
     {% csrf_token %}
     <div class="form-row">
@@ -43,7 +44,6 @@
       <label class="form-control-label" for="password2">Confirm Password</label>
       <input class="form-control" id="password2" type="password" name="password2" required/>
     </div>
-    <p>{{ error }}</p>
     <button class="btn btn-outline-success" type="submit" value="Register">Register</button>
   <form>
 {% endblock %}

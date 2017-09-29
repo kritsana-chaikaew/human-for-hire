@@ -3,17 +3,17 @@
 {% block content %}
 <h3>Login</h3>
 
-  <form method="post">
+  <form method="post" class="col col-lg-7">
     {% csrf_token %}
-    <div class="container">
-      <label class="col-2 col-form-label" for="username">Username</label>
-      <input id="username" type="text" name="username"/>
+    <div class="form-group row">
+      <label class="col-3 col-form-label" for="username">Username</label>
+      <input class="col-9 form-control" id="username" type="text" name="username"/>
     </div>
-    <div class="container">
-      <label class="col-2 col-form-label" for="password">Password</label>
-      <input id="password" type="password" name="password"/>
-    <input type="submit" class="btn btn-outline-success" value="Submit">
+    <div class="form-group row">
+      <label class="col-3 col-form-label" for="password">Password</label>
+      <input class="col-9 form-control" id="password" type="password" name="password"/>
     </div>
+    <button type="submit" class="btn btn-outline-success" style="float: right;">Login</button>
   <form>
   <p>{{ error }}</p>
 {% endblock %}
