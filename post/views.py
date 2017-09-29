@@ -21,6 +21,7 @@ def action(request):
     product.end_date = request.POST['end_date']
     product.product_details = request.POST['product_details']
     product.price = request.POST['price']
+    product.location = request.POST['location']
     product.tag = request.POST['tag']
 
     product.save()

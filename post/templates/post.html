@@ -6,7 +6,7 @@
       <form action="{% url 'post:action' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
-          <label class="col-5 col-form-label">Product name</label>
+          <label class="col-5 col-form-label">Name</label>
           <div class="col-5">
             <input class="form-control" type="text" name="product_name" placeholder="Product Name"/>
           </div>
@@ -29,7 +29,12 @@
             <input class="form-control" type="datetime-local" name="end_date" placeholder="2011-08-19"/>
           </div>
 
-          <label class="col-5 col-form-label">Product details</label>
+          <label class="col-5 col-form-label">Location</label>
+          <div class="col-5">
+            <input class="form-control" type="text" name="location"/>
+          </div>
+
+          <label class="col-5 col-form-label">Details</label>
           <div class="col-5">
             <input class="form-control" type="text" name="product_details" placeholder="Enter description"/>
           </div>
