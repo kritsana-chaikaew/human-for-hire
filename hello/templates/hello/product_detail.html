@@ -6,15 +6,11 @@
         <img src="{{ product.product_image.url }}" width="100%" \>
     </div>
     <div class="col-12 col-md-8">
-        product_no           {{ product.product_no }}<br>
-        seller_username      {{ product.seller_username }}<br>
-        product_name         {{ product.product_name }}<br>
-        start_date           {{ product.start_date }}<br>
-        end_date             {{ product.end_date }}<br>
-        product_detail       {{ product.product_detail }}<br>
-        location             {{ product.location }}<br>
-        tag                  {{ product.tag }}<br>
-        product_type         {{ product.product_type }} <br>
+        <h2>{{ product.product_name }}</h2><br>
+        <h6>Avaliable Days</h6>           {{ product.start_date }} - {{ product.end_date }}<br>
+        <h6>Details</h6>       {{ product.product_detail }}<br>
+        <h6>Location</h6>             {{ product.location }}<br>
+        <h6>Tag</h6>                  {{ product.tag }}<br>
     </div>
 </div>
 {% endblock %}
