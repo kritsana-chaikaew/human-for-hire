@@ -3,47 +3,62 @@
 {% block content %}
 <h3>Register</h3>
 
-  <form method="post">
+  <form method="post"  class="col col-lg-6">
     {% csrf_token %}
-    <div class="container">
-    <div>
-      <label class="col-3 col-form-label" for="firstname">First Name</label>
-      <input id="firstname" type="text" name="firstname" value="{{firstname}}" required/>
+    <div class="form-row">
+      <div class="form-group col-lg-6">
+        <label class="col-form-label" for="firstname">First Name</label>
+        <input class="form-control" id="firstname" type="text" name="firstname" value="{{firstname}}" required/>
+      </div>
+      <div class="form-group col-lg-6">
+        <label class="col-form-label" for="lastname">Last Name</label>
+        <input class="form-control" id="lastname" type="text" name="lastname" value="{{lastname}}" required/>
+      </div>
     </div>
-    <div>
-      <label class="col-3 col-form-label" for="lastname">Last Name</label>
-      <input id="lastname" type="text" name="lastname" value="{{lastname}}" required/>
+    <br>
+    <div class="form-group row">
+      <label class="col-lg-3 col-form-label" for="address">Address</label>
+      <div class="col-lg-9">
+        <textarea class="form-control" id="address" rows="2" type="text" name="address" value="{{address}}" required></textarea> 
+      </div>
     </div>
-    <div>
-      <label class="col-3 col-form-label" for="address">Address</label>
-      <input id="address" type="text" name="address" value="{{address}}" required/>
+    <div class="form-group row">
+      <label class="col-lg-3 col-form-label" for="telephone">Telephone</label>
+      <div class="col-lg-9">
+        <input class="form-control" id="telephone" type="text" name="telephone" value="{{telephone}}" required/>
+      </div>
     </div>
-    <div>
-      <label class="col-3 col-form-label" for="telephone">Telephone</label>
-      <input id="telephone" type="text" name="telephone" value="{{telephone}}" required/>
+    <div class="form-group row">
+      <label class="col-lg-3 col-form-label" for="email">Email</label>
+      <div class="col-lg-9">
+        <input class="form-control" id="email" type="text" name="email" value="{{email}}" required/>
+      </div>
     </div>
-    <div>
-      <label class="col-3 col-form-label" for="email">E-Mail</label>
-      <input id="email" type="text" name="email" value="{{email}}" required/>
+    <div class="form-group row">
+      <label class="col-lg-3 col-form-label" for="birthday">Birthday</label>
+      <div class="col-lg-9">
+        <input class="form-control" id="birthday" type="date" name="birthday" value="{{birthday}}" required/>
+      </div>
     </div>
-    <div>
-      <label class="col-3 col-form-label" for="birthday">Birthday</label>
-      <input id="birthday" type="date" name="birthday" value="{{birthday}}" required/>
+    <div class="form-group row">
+      <label class="col-lg-3 col-form-label" for="username">Username</label>
+      <div class="col-lg-9">
+        <input class="form-control" id="username" type="text" name="username" value="{{username}}" required/>
+      </div>
     </div>
-    <div>
-      <label class="col-3 col-form-label" for="username">Username</label>
-      <input id="username" type="text" name="username" value="{{username}}" required/>
+    <div class="form-group row">
+      <label class="col-lg-3 col-form-label" for="password">Password</label>
+      <div class="col-lg-9">
+        <input class="form-control" id="password" type="password" name="password" required/>
+      </div>
     </div>
-    <div>
-      <label class="col-3 col-form-label" for="password">Password</label>
-      <input id="password" type="password" name="password" required/>
+    <div class="form-group row">
+      <label class="col-lg-3 col-form-label" for="password2">Confirm Password</label>
+      <div class="col-lg-9">
+        <input class="form-control" id="password2" type="password" name="password2" required/>
+      </div>
     </div>
-    <div>
-      <label class="col-3 col-form-label" for="password2">Confirm Password</label>
-      <input id="password2" type="password" name="password2" required/>
-    </div>
-    <input class="btn btn-outline-success" type="submit" style="position: absolute; left: 40%;" value="Register">
-    </div>
+    <p>{{ error }}</p>
+    <button class="btn btn-outline-success" type="submit" value="Register">Register</button>
   <form>
-  <p>{{ error }}</p>
 {% endblock %}
