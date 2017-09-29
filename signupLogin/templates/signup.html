@@ -3,6 +3,7 @@
 {% block content %}
   <form method="post">
     {% csrf_token %}
+    <div class="container">
     <div>
       <label class="col-3 col-form-label" for="firstname">First Name</label>
       <input id="firstname" type="text" name="firstname" value="{{firstname}}" required/>
@@ -39,7 +40,8 @@
       <label class="col-3 col-form-label" for="password2">Confirm Password</label>
       <input id="password2" type="password" name="password2" required/>
     </div>
-    <input type="submit" value="Register">
+    <input class="btn btn-outline-success" type="submit" style="position: absolute; left: 40%;" value="Register">
+    </div>
   <form>
   <p>{{ error }}</p>
 {% endblock %}

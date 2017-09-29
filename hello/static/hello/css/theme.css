@@ -1,14 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Kanit:400,700|Open+Sans:400,700,800');
+
 body {
-    background: #f5f5f5;
+    background: #eee;
 }
 
-#navbar {
-    border-bottom: 2px solid #d3d3d3;
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", "Kanit", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 800;
 }
 
-#navBarSearchForm {
-    background-color: #d3d3d3;
-    width: 980px !important;
+#navbar-hh {
+    background-color: #fcdc42 !important;
+}
+
+#container-hh {
+    margin-top: 50px;
+}
+
+#index-headline {
+    padding-top: 2.5em;
+    margin-bottom: 1.5em;
+}
+
+.nav-link {
+    color: #000 !important;
+    font-family: "Open Sans";
+    font-weight: 700;
 }
 
 .card {
@@ -31,5 +48,5 @@ body {
 }
 
 .card-columns {
-    column-count: 5;
+    column-count: 4;
 }
