@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Kanit:400,700|Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Kanit:400,700|Open+Sans:400,700,800');
 
 body {
     background: #eee;
@@ -6,7 +6,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Open Sans", "Kanit", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 #navbar-hh {
@@ -20,6 +20,12 @@ h1, h2, h3, h4, h5, h6 {
 #index-headline {
     padding-top: 2.5em;
     margin-bottom: 1.5em;
+}
+
+.nav-link {
+    color: #000 !important;
+    font-family: "Open Sans";
+    font-weight: 700;
 }
 
 .card {
