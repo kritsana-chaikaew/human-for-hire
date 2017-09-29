@@ -60,9 +60,15 @@ h1, h2, h3, h4, h5, h6 {
 .custom-file-control.selected:lang(en)::after {
   content: "" !important;
 }
+
 .custom-file {
   overflow: hidden;
 }
+
 .custom-file-control {
   white-space: nowrap;
+}
+
+.custom-file-input {
+    width: 100% !important;
 }
