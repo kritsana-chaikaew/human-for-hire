@@ -1,0 +1,25 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 col-md-4 product-img">
+        <img src="{{ product.product_image.url }}" width="100%" \>
+    </div>
+    <div class="col-12 col-md-8">
+        <h2>{{ product.product_name }}</h2><br>
+        <p>{{product.product_details }}</p>
+        <p>
+            <h6>Avaliable Days</h6>
+            {{ product.start_date }} - {{ product.end_date }}
+        </p>
+        <p>
+            <h6>Location</h6>
+            {{ product.location }}
+        </p>
+        <p>
+            <h6>Tag</h6>
+            {{ product.tag }}
+        </p>
+    </div>
+</div>
+{% endblock %}
