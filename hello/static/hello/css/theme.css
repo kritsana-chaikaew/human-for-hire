@@ -33,3 +33,7 @@ body {
 .card-columns {
     column-count: 5;
 }
+
+.error-message {
+    color: red;
+}
