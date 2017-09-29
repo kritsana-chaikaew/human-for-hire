@@ -68,8 +68,9 @@ body {
 }
 
 .product-detail p{
-  text-align: center;
+  /*text-align: center;*/
   margin: 0;
+  padding-left: 10%;
 }
 
 .product-detail-name {
@@ -81,7 +82,7 @@ body {
   margin-top: 14px;
 }
 
-.product-detail-end-date {
+/*.product-detail-end-date {
   position: relative;
-  left: .27em;
-}
+  left: .5em;
+}*/
