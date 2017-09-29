@@ -1,14 +1,25 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
-    product_no           {{ product.product_no }}<br>
-    seller_username      {{ product.seller_username }}<br>
-    product_name         {{ product.product_name }}<br>
-    start_date           {{ product.start_date }}<br>
-    end_date             {{ product.end_date }}<br>
-    product_detail       {{ product.product_detail }}<br>
-    location             {{ product.location }}<br>
-    tag                  {{ product.tag }}<br>
-    product_type         {{ product.product_type }} <br>
-    <img src="{{ product.product_image.url }}"\>
+<div class="row">
+    <div class="col-12 col-md-4 product-img">
+        <img src="{{ product.product_image.url }}" width="100%" \>
+    </div>
+    <div class="col-12 col-md-8">
+        <h2>{{ product.product_name }}</h2><br>
+        <p>{{product.product_details }}</p>
+        <p>
+            <h6>Avaliable Days</h6>
+            {{ product.start_date }} - {{ product.end_date }}
+        </p>
+        <p>
+            <h6>Location</h6>
+            {{ product.location }}
+        </p>
+        <p>
+            <h6>Tag</h6>
+            {{ product.tag }}
+        </p>
+    </div>
+</div>
 {% endblock %}
