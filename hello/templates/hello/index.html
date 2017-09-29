@@ -15,18 +15,19 @@
 	  {% for product in product_list %}
 			<!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product" style="background:url({{ product.product_image.url }});background-size: 130%;background-position:center no-repeat"> -->
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product">
-				<img src="{{ product.product_image.url }}" class="product-image">
-				<div class="product-detail">
-					<p class="product-detail-name">{{ product.product_name }}</p>
-					<p class="product-detail-detail">{{ product.product_details }}</p>
-					<p class="product-detail-start-date">{{ product.start_date}}</p>
-				</div>
+				<a href='/product/{{ product.product_no }}/'><img src="{{ product.product_image.url }}" class="product-image"></a>
+					<div class="product-detail"><a href='/product/{{ product.product_no }}/'>
+						<p class="product-detail-name">{{ product.product_name }}</p>
+						<p class="product-detail-detail">{{ product.product_details }}</p>
+						<p class="product-detail-start-date">Start: {{ product.start_date|date:'d M. o h:i a'}}</p>
+						<p class="product-detail-end-date">End: {{ product.end_date|date:'d M. o h:i a'}}</p></a>
+					</div>
 			</div>
 	  {% endfor %}
 	{% else %}
 	  <p>No product available at this time.</p>
 	{% endif %}
-</div>
+	</div>
 </div>
 
 {% endblock %}
