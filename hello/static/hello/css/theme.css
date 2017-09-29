@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Kanit:400,700|Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Kanit:400,700|Open+Sans:400,700,800');
 
 body {
     background: #eee;
@@ -6,7 +6,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Open Sans", "Kanit", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 #navbar-hh {
@@ -15,11 +15,18 @@ h1, h2, h3, h4, h5, h6 {
 
 #container-hh {
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #index-headline {
     padding-top: 2.5em;
     margin-bottom: 1.5em;
+}
+
+.nav-link {
+    color: #000 !important;
+    font-family: "Open Sans";
+    font-weight: 700;
 }
 
 .card {
@@ -43,4 +50,32 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-columns {
     column-count: 4;
+}
+
+.product-img > img {
+    border: solid #b2b2b2 1px;
+}
+
+
+.custom-file-control.selected:lang(en)::after {
+  content: "" !important;
+}
+
+.custom-file {
+  overflow: hidden;
+}
+
+.custom-file-control {
+  white-space: nowrap;
+}
+
+.custom-file-input {
+    width: 100% !important;
+}
+
+.error-message {
+    color: red;
+}
+.custom-file-control {
+  white-space: nowrap;
 }

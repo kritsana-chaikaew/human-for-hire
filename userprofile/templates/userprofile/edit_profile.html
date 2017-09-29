@@ -6,10 +6,11 @@
 
 {% block content %}
 <div class="container">
-    <h1>Edit Profile</h1>
+    <h3>Edit Profile</h3>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <p><a href="{% url 'userprofile:change_password' %}">Change password</a></p>
         <button class="btn btn-info" type="submit">Submit</button>
     </form>
 </div>

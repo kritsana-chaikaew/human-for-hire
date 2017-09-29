@@ -2,6 +2,7 @@ from django.conf.urls import url, include
 from . import views
 from django.contrib.auth.views import login, logout
 
+app_name = 'userprofile'
 urlpatterns = [
     # url(r'^$', login, {'template_name': 'login.html'}),
     # url(r'^login/', include('signupLogin.urls')),

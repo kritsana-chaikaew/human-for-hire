@@ -6,12 +6,11 @@
 
 {% block content %}
 <div class="container">
-    <h1>Profile</h1>
+    <h3>Profile</h3>
     <p><b>Username:</b> {{ user }}</p>
     <p><b>First name:</b> {{ user.first_name }}</p>
     <p><b>Last name:</b> {{ user.last_name }}</p>
     <p><b>Email address:</b> {{ user.email }}</p>
-    <button type="submit" class="btn btn-warning" ><a style="color:white" href="/userprofile/profile/edit">Edit</a></button>    
-    <button type="submit" class="btn btn-danger" ><a style="color:white" href="/userprofile/logout">Logout</a></button>
+    <a class="btn btn-info" role="button" href="/userprofile/profile/edit">Edit</a>  
 </div>
 {% endblock %}
