@@ -5,64 +5,55 @@
       <h3>Create Product</h3>
       <form action="{% url 'post:action' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form-group">
-          <label class="col-5 col-form-label">Name</label>
-          <div class="col-5">
-            <input class="form-control" type="text" name="product_name" placeholder="Product Name"/>
+        <div class="form-group col-lg-5">
+          <label>Name</label>
+          <div class="input-group">
+            <input class="form-control" type="text" name="product_name" placeholder="Firstname Lastname"/>
           </div>
 
-          <label class="custom-file col-5 col-form-label" id="customFile">
-            Picture
-            <div class="col-5 col-form-label">
+          <label>Picture</label>
+            <div class="input-group">
               <input type="file" class="custom-file-input" name="product_image" aria-describedby="fileHelp">
               <span class="custom-file-control form-control-file"></span>
             </div>
-          </label>
 
-          <label class="col-5 col-form-label">Start date and time</label>
-          <div class="col-5">
+          <label>Start date and time</label>
+          <div class="input-group">
             <input class="form-control" type="datetime-local" name="start_date" placeholder="2011-08-19"/>
           </div>
 
-          <label class="col-5 col-form-label">End date and time</label>
-          <div class="col-5">
+          <label>End date and time</label>
+          <div class="input-group">
             <input class="form-control" type="datetime-local" name="end_date" placeholder="2011-08-19"/>
           </div>
 
-          <label class="col-5 col-form-label">Location</label>
-          <div class="col-5">
+          <label>Location</label>
+          <div class="input-group">
             <input class="form-control" type="text" name="location"/>
           </div>
 
-          <label class="col-5 col-form-label">Details</label>
-          <div class="col-5">
-            <input class="form-control" type="text" name="product_details" placeholder="Enter description"/>
+          <label>Description</label>
+          <div class="input-group">
+            <textarea class="form-control" rows="3" name="product_details" placeholder="Enter description"></textarea>
           </div>
 
-          <label class="col-5 col-form-label">Price</label>
-          <div class="col-5">
+          <label>Price</label>
+          <div class="input-group">
             <input class="form-control" type="number" name="price"/>
           </div>
 
-          <label class="col-5 col-form-label">Tag</label>
-          <div class="col-5">
+          <label>Tag</label>
+          <div class="input-group">
             <input class="form-control" type="text" name="tag"/>
           </div>
 
         </div>
 
         <div class="form-group">
-          <div class="col-2">
+          <div>
             <button type="submit" class="btn btn-primary">Create Post</button>
           </div>
         </div>
-
-
-  <!-- footer -->
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="../static/js/bootstrap.min.js"></script>
 
         <script src="../static/js/post.js"></script>
     </body>

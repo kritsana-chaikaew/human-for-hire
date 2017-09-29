@@ -51,3 +51,18 @@ h1, h2, h3, h4, h5, h6 {
 .card-columns {
     column-count: 4;
 }
+
+.product-img > img {
+    border: solid #b2b2b2 1px;
+}
+
+
+.custom-file-control.selected:lang(en)::after {
+  content: "" !important;
+}
+.custom-file {
+  overflow: hidden;
+}
+.custom-file-control {
+  white-space: nowrap;
+}
