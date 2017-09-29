@@ -25,11 +25,7 @@ def edit_profile(request):
 
         if form.is_valid():
             form.save()
-<<<<<<< HEAD
-            return redirect('/userprofile')
-=======
             return redirect('/userprofile/')
->>>>>>> develop
         
     else:
         form = EditProfileForm(instance=request.user)

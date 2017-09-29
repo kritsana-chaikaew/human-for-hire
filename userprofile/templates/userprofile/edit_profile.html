@@ -10,12 +10,8 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-<<<<<<< HEAD
         <p><a href="{% url 'userprofile:change_password' %}">Change password</a></p>
-        <button type="submit">Submit</button>
-=======
         <button class="btn btn-info" type="submit">Submit</button>
->>>>>>> develop
     </form>
 </div>
 {% endblock %}
