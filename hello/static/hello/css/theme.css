@@ -1,14 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Kanit:400,700|Open+Sans:400,700,800');
+
 body {
-    background: #f5f5f5;
+    background: #eee;
 }
 
-#navbar {
-    border-bottom: 2px solid #d3d3d3;
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", "Kanit", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 800;
 }
 
-#navBarSearchForm {
-    background-color: #d3d3d3;
-    width: 980px !important;
+#navbar-hh {
+    background-color: #fcdc42 !important;
+}
+
+#container-hh {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#index-headline {
+    padding-top: 2.5em;
+    margin-bottom: 1.5em;
+}
+
+.nav-link {
+    color: #000 !important;
+    font-family: "Open Sans";
+    font-weight: 700;
 }
 
 .card {
@@ -25,11 +43,56 @@ body {
     font-weight: bold;
 }
 
-.card-btn {
-    background-color: #0f7173;
-    border: 2px solid #2c6969;
+.card-columns {
+    column-count: 4;
 }
 
-.card-columns {
-    column-count: 5;
+.product-img > img {
+    border: solid #b2b2b2 1px;
+}
+
+
+.custom-file-control.selected:lang(en)::after {
+  content: "" !important;
+}
+
+.custom-file {
+  overflow: hidden;
+}
+
+.custom-file-control {
+  white-space: nowrap;
+}
+
+.custom-file-input {
+    width: 100% !important;
+}
+
+.error-message {
+    color: red;
+}
+
+.custom-file-control {
+  white-space: nowrap;
+}
+
+.hh-btn {
+    background-color: #eee;
+    border: 2px solid #D6B937;
+    color: #000;
+}
+
+.hh-btn:hover {
+    background-color: #fcdc42;
+    border: 2px solid #D6B937;
+}
+
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #fcdc42;
+}
+
+.form-center > h3, button{
+    text-align: center;
 }

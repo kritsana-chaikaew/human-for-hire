@@ -1,0 +1,10 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+<h3>Profile</h3>
+<p><b>Username:</b> {{ user }}</p>
+<p><b>First Name:</b> {{ user.first_name }}</p>
+<p><b>Last Name:</b> {{ user.last_name }}</p>
+<p><b>Email:</b> {{ user.email }}</p>
+<a class="btn btn-info hh-btn" role="button" href="/userprofile/profile/edit">Edit</a>  
+{% endblock %}

@@ -1,18 +1,25 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.shortcuts import render
-from hello.models import Person
 from django.views import generic
+from post.models import Product
+from django.views.generic import DetailView
+from django.utils import timezone
 
-# Create your views here.
 class IndexView(generic.ListView):
-	model = Person
-	template_name = 'hello/index.html'
+    template_name = 'hello/index.html'
+    context_object_name = 'product_list'
 
+    def get_queryset(self):
+        return Product.objects.order_by('-start_date')
 
-def db(request):
-    person = Person()
-    person_info = Person.objects.all()
+class ProductDetailView(generic.DetailView):
+    template_name = 'hello/product_detail.html'
+    context_object_name = 'product'
+    queryset = Product.objects.all()
 
-    return render(request, 'db.html', {'person_info': person_info})
+    def get_object(self):
+        object = super(ProductDetailView, self).get_object()
+        
+        object.last_accessed = timezone.now()
+        object.save()
+
+        return object

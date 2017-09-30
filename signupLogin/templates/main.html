@@ -1,0 +1,10 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+  <p>success login</p>
+  <p>Hello, {{ user.get_full_name }}</p>
+  <p>address {{ user.profile.address }}</p>
+  <p>telephone {{ user.profile.telephone }}</p>
+  <p>birthday {{ user.profile.birthday }}</p>
+  <a href="{% url 'signupLogin:logout' %}">logout</a>
+{% endblock %}

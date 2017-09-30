@@ -1,0 +1,14 @@
+{% comment %} {% extends 'hello/base.html' %}
+
+{% block content %}
+    <h1>Welcome</h1>
+    <p>
+    You can login here
+    </p>
+    <h2>Login</h2>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-outline-success hh-btn" type="submit">Login</button>
+    </form>
+{% endblock %} {% endcomment %}
