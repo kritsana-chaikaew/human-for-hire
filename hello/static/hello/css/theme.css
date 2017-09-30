@@ -43,11 +43,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
-.card-btn {
-    background-color: #0f7173;
-    border: 2px solid #2c6969;
-}
-
 .card-columns {
     column-count: 4;
 }
@@ -76,6 +71,28 @@ h1, h2, h3, h4, h5, h6 {
 .error-message {
     color: red;
 }
+
 .custom-file-control {
   white-space: nowrap;
+}
+
+.hh-btn {
+    background-color: #eee;
+    border: 2px solid #D6B937;
+    color: #000;
+}
+
+.hh-btn:hover {
+    background-color: #fcdc42;
+    border: 2px solid #D6B937;
+}
+
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #fcdc42;
+}
+
+.form-center > h3, button{
+    text-align: center;
 }

@@ -48,7 +48,7 @@ def signup(request):
         p.bankaccount = bankaccount
         p.image = profile_image
         p.save()
-        return redirect('/main')
+        return redirect('/signup_success')
     return render(request,'signup.html',{})
 
 # def login(request):
@@ -66,3 +66,6 @@ def signup(request):
 def logout(request):
     auth_logout(request)
     return redirect('/login')
+
+def signup_success(request):
+    return render(request,'signup_success.html',{})
