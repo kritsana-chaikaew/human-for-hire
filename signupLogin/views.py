@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from .models import Profile
+from django.core.files.images import ImageFile
 
 @login_required(login_url='/login')
 def main(request):
@@ -24,6 +25,8 @@ def signup(request):
         address = request.POST['address']
         telephone = request.POST['telephone']
         birthday = request.POST['birthday']
+        bankaccount = request.POST['bankaccount']
+        profile_image = ImageFile(request.FILES['profile_image'])
         if password != password2:
             return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, "error":"2 passwords is not the same"})
         print(username, password, email, firstname, lastname, address,telephone, birthday)
@@ -42,6 +45,8 @@ def signup(request):
         p.address = address
         p.telephone = telephone
         p.birthday = birthday
+        p.bankaccount = bankaccount
+        p.image = profile_image
         p.save()
         return redirect('/signup_success')
     return render(request,'signup.html',{})
