@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.core.files.images import ImageFile
 
+from django.contrib.auth.models import User
 from .models import Product
 
 def post(request):
@@ -11,7 +12,8 @@ def post(request):
 
 def action(request):
     product = Product()
-    product.seller_username = "fetch from database"
+    user = User.objects.get(id=request.user.id)
+    product.seller_username = user
 
     image_content = ImageFile(request.FILES['product_image'])
     product.product_image = image_content

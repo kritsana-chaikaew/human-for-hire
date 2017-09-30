@@ -1,10 +1,12 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
-  <h3>Register</h3>
-
-  <p>{{ error }}</p>
+<div class="row justify-content-md-center">
   <form method="post" action="{% url 'signupLogin:signup' %}" enctype="multipart/form-data" class="col col-lg-6">
+    <h3>Register</h3>
+    <br>
+    <p>{{ error }}</p>
+
     {% csrf_token %}
     <div class="form-row">
       <div class="form-group col-lg-6">
@@ -55,7 +57,8 @@
       <label class="form-control-label" for="password2">Confirm Password</label>
       <input class="form-control" id="password2" type="password" name="password2" required/>
     </div>
-    <button class="btn btn-outline-success" type="submit" value="Register">Register</button>
-  <form>
-  <script src="../static/js/form-validation.js"></script>
+    <center><button class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Register">Register</button></center>
+  </form>
+  </div>
+<script src="../static/js/form-validation.js"></script>
 {% endblock %}

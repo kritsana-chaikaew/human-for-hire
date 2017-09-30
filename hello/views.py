@@ -9,7 +9,7 @@ class IndexView(generic.ListView):
     context_object_name = 'product_list'
 
     def get_queryset(self):
-        return Product.objects.order_by('-start_date')
+        return Product.objects.order_by('-init_date')
 
 class ProductDetailView(generic.DetailView):
     template_name = 'hello/product_detail.html'
@@ -18,7 +18,7 @@ class ProductDetailView(generic.DetailView):
 
     def get_object(self):
         object = super(ProductDetailView, self).get_object()
-        
+
         object.last_accessed = timezone.now()
         object.save()
 
