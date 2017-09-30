@@ -18,7 +18,7 @@ class Product(models.Model):
     location = models.CharField(max_length=250, default='location')
     price = models.IntegerField(default=0)
     tag = models.CharField(max_length=250, default='tag')
-    init_date = models.DateField(default=datetime.date.today())
+    init_date = models.DateTimeField(default=datetime.datetime.now())
 
     def __str__(self):
         return str(self.product_no) + "_" + self.product_name
