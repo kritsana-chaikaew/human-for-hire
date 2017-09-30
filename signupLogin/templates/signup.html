@@ -1,10 +1,11 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
-<h3>Register</h3>
-  
-  <p>{{ error }}</p>
-  <form method="post"  class="col col-lg-6">
+<div class="row justify-content-md-center">
+  <form method="post" class="col col-lg-6 form-center">
+    <h3>Register</h3>
+    <br>
+    <p>{{ error }}</p>
     {% csrf_token %}
     <div class="form-row">
       <div class="form-group col-lg-6">
@@ -44,6 +45,12 @@
       <label class="form-control-label" for="password2">Confirm Password</label>
       <input class="form-control" id="password2" type="password" name="password2" required/>
     </div>
+<<<<<<< HEAD
     <button class="btn btn-outline-success hh-btn" type="submit" value="Register">Register</button>
   <form>
+=======
+    <center><button class="btn btn-lg btn-outline-success" type="submit" value="Register">Register</button></center>
+  </form>
+  </div>
+>>>>>>> 6151c46df49df5a4b03149df049f4cd99df4663d
 {% endblock %}

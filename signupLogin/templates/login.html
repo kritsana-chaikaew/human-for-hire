@@ -1,19 +1,25 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
-<h3>Login</h3>
 
-  <form method="post" class="col col-lg-7">
+<div class="row justify-content-md-center">
+  <form method="post" class="col col-lg-5 form-center">
+    <h3>Login</h3>
+    <p>{{ error }}</p>
     {% csrf_token %}
-    <div class="form-group row">
-      <label class="col-3 col-form-label" for="username">Username</label>
-      <input class="col-9 form-control" id="username" type="text" name="username"/>
+    <div class="form-group">
+      <label class="form-control-label" for="username">Username</label>
+      <input class="form-control form-control-lg" id="username" type="text" name="username"/>
     </div>
-    <div class="form-group row">
-      <label class="col-3 col-form-label" for="password">Password</label>
-      <input class="col-9 form-control" id="password" type="password" name="password"/>
+    <div class="form-group">
+      <label class="form-control-label" for="password">Password</label>
+      <input class="form-control form-control-lg" id="password" type="password" name="password"/>
     </div>
+<<<<<<< HEAD
     <button type="submit" class="btn btn-outline-success hh-btn" style="float: right;">Login</button>
+=======
+    <center><button type="submit" class="btn btn-lg btn-outline-success">Login</button></center>
+>>>>>>> 6151c46df49df5a4b03149df049f4cd99df4663d
   <form>
-  <p>{{ error }}</p>
+</form>
 {% endblock %}
