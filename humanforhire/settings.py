@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'signupLogin',
     'userprofile',
     'mathfilters',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
