@@ -76,6 +76,11 @@ h1, h2, h3, h4, h5, h6 {
 .error-message {
     color: red;
 }
+
 .custom-file-control {
   white-space: nowrap;
+}
+
+.form-center > h3, button{
+    text-align: center;
 }
