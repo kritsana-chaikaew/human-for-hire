@@ -13,8 +13,8 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 800;
 }
 
-#navbar-hh {
-    background-color: #fcdc42 !important;
+#container-navbar-hh {
+    background-color: #fcdc42;
 }
 
 #container-hh {
@@ -99,4 +99,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-center > h3, button{
     text-align: center;
+}
+
+#navbar-hh {
+    padding-left: 0;
+    padding-right: 0;
 }
