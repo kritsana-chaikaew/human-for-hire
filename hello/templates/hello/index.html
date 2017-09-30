@@ -4,43 +4,42 @@
 {% block content %}
 
 
-<div class="mycontainer" id="container-hh">
-	<div id="index-headline" class="head-shift">
-		<h1>Find a worker.</h1>
-	</div>
 
-	<dt class="head-shift recent"><strong>recent posts</strong></dt>
+<div id="index-headline" class="head-shift">
+	<h1>Find a worker.</h1>
+</div>
 
-	<div class="row">
-	{% if product_list %}
-	  {% for product in product_list %}
-			<!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product" style="background:url({{ product.product_image.url }});background-size: 130%;background-position:center no-repeat"> -->
-			<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 product">
-				<a href='/product/{{ product.product_no }}/'>
-					<div class="product-img-block">
-						{% if product.product_image.width|div:product.product_image.height > 0.75  %}
-							<img src="{{ product.product_image.url }}" style="width:{{product.product_image.width|div:product.product_image.height|mul:400}}px;margin-left:-{{product.product_image.width|div:product.product_image.height|mul:400|div:2|sub:150}}px">
-						{% else %}
-							<img src="{{ product.product_image.url }}" style="width:300px;margin-top:-{{product.product_image.height|div:product.product_image.width|mul:300|div:2|sub:200}}px">
-						{% endif %}
-					</div>
-					<!-- <img src="{{ product.product_image.url }}" class="product"> -->
-				</a>
-				<div class="product-detail">
-					<a href='/product/{{ product.product_no }}/'>
-						<!-- {{product.product_image.width}} {{product.product_image.height}} -->
-						<p class="product-detail-name">{{ product.product_name }}</p>
-						<p class="product-detail-detail">{{ product.product_details }}</p>
-						<!-- <p class="product-detail-start-date">Start: {{ product.start_date|date:'d M. o h:i a'}}</p> -->
-						<!-- <p class="product-detail-end-date">End: {{ product.end_date|date:'d M. o h:i a'}}</p> -->
-					</a>
+<dt class="head-shift recent"><strong>recent posts</strong></dt>
+
+<div class="row">
+{% if product_list %}
+  {% for product in product_list %}
+		<!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product" style="background:url({{ product.product_image.url }});background-size: 130%;background-position:center no-repeat"> -->
+		<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 product">
+			<a href='/product/{{ product.product_no }}/'>
+				<div class="product-img-block">
+					{% if product.product_image.width|div:product.product_image.height > 0.75  %}
+						<img src="{{ product.product_image.url }}" style="width:{{product.product_image.width|div:product.product_image.height|mul:400}}px;margin-left:-{{product.product_image.width|div:product.product_image.height|mul:400|div:2|sub:150}}px">
+					{% else %}
+						<img src="{{ product.product_image.url }}" style="width:300px;margin-top:-{{product.product_image.height|div:product.product_image.width|mul:300|div:2|sub:200}}px">
+					{% endif %}
 				</div>
+				<!-- <img src="{{ product.product_image.url }}" class="product"> -->
+			</a>
+			<div class="product-detail">
+				<a href='/product/{{ product.product_no }}/'>
+					<!-- {{product.product_image.width}} {{product.product_image.height}} -->
+					<p class="product-detail-name">{{ product.product_name }}</p>
+					<p class="product-detail-detail">{{ product.product_details }}</p>
+					<!-- <p class="product-detail-start-date">Start: {{ product.start_date|date:'d M. o h:i a'}}</p> -->
+					<!-- <p class="product-detail-end-date">End: {{ product.end_date|date:'d M. o h:i a'}}</p> -->
+				</a>
 			</div>
-	  {% endfor %}
-	{% else %}
-	  <p>No product available at this time.</p>
-	{% endif %}
-	</div>
+		</div>
+  {% endfor %}
+{% else %}
+  <p>No product available at this time.</p>
+{% endif %}
 </div>
 
 {% endblock %}
