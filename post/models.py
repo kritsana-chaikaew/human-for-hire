@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
+from django.utils import timezone
 from django.db import models
 import datetime
 
@@ -18,7 +19,7 @@ class Product(models.Model):
     location = models.CharField(max_length=250, default='location')
     price = models.IntegerField(default=0)
     tag = models.CharField(max_length=250, default='tag')
-    init_date = models.DateTimeField(default=datetime.datetime.now())
+    init_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return str(self.product_no) + "_" + self.product_name
