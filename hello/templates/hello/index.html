@@ -20,7 +20,7 @@
 			<a href='/product/{{ product.product_no }}/'>
 				<div class="product-img-block">
 					{% if product.product_image.width|div:product.product_image.height > 0.75  %}
-						<img src="{{ product.product_image.url }}" style="width:{{product.product_image.width|div:product.product_image.height|mul:360}}px;margin-left:-{{product.product_image.width|div:product.product_image.height|mul:360|div:2|sub:130}}px">
+						<img src="{{ product.product_image.url }}" style="height:100%;margin-left:-{{product.product_image.width|div:product.product_image.height|mul:360|div:2|sub:135}}px">
 					{% else %}
 						<img src="{{ product.product_image.url }}" style="width:100%;margin-top:-{{product.product_image.height|div:product.product_image.width|mul:270|div:2|sub:180}}px">
 					{% endif %}
