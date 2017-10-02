@@ -6,7 +6,7 @@
         <img src="{{ product.product_image.url }}" width="100%" \>
     </div>
     <div class="col-12 col-md-8">
-        <h2>{{ product.product_name }}</h2><br>
+        <h2>{{ product.product_name }}</h2> <div class="posted-by">posted by: {{ product.seller_username }} </div> </br>
         <p>{{product.product_details }}</p>
         <p>
             <h6>Avaliable Days</h6>
@@ -19,6 +19,10 @@
         <p>
             <h6>Tag</h6>
             {{ product.tag }}
+        </p>
+        <p>
+            <h6>Price (per hour) </h6>
+            {{ product.price }} ฿
         </p>
     </div>
 </div>
