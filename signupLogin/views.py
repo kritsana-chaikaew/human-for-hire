@@ -58,9 +58,9 @@ def signup(request):
             except ValidationError as e:
                 error = e
                 return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'bankaccount':bankaccount, 'profile_image':profile_image, "error":error})
-            if (username in password or password in username) or (lastname in password or password in lastname) or (address in password or password in address) or (telephone in password or password in telephone) or (email in password or password in email) or (bankaccount in password or password in bankaccount) or (birthday in password or password in birthday):
-                error = 'Your password is relating to your personal informations.'
-                return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'bankaccount':bankaccount, 'profile_image':profile_image, "error":[error]})
+            # if (username in password or password in username) or (lastname in password or password in lastname) or (address in password or password in address) or (telephone in password or password in telephone) or (email in password or password in email) or (bankaccount in password or password in bankaccount) or (birthday in password or password in birthday):
+            #     error = 'Your password is relating to your personal informations.'
+            #     return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'bankaccount':bankaccount, 'profile_image':profile_image, "error":[error]})
 
         # If username is unique and passwords are match, then save that username to database.
         user = User.objects.create_user(username, email, password)
