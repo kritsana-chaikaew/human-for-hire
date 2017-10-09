@@ -55,24 +55,3 @@ def change_password(request):
 
         args = {'form': form}
         return render(request, 'userprofile/change_password.html', args)
-
-def change_password2(request):
-    message = 'eieieiei'
-    if request.method == 'POST':
-        oldpassword = request.POST['oldpassword']
-        authen = authenticate(request, username=request.user.username, password=oldpassword)
-        if authen:
-            password1 = request.POST['password1']
-            password2 = request.POST['password2']
-            if password1 == password2:
-                try:
-                    message = pv.validate_password(password1, request.user)
-                except ValidationError as e:
-                    message = e
-            else:
-                return render(request, 'userprofile/change_password2.html')
-            print('have this id')
-        else:
-            print('not have this id')
-
-    return render(request, 'userprofile/change_password2.html', {'error': message})
