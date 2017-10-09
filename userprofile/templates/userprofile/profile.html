@@ -2,9 +2,14 @@
 
 {% block content %}
 <h3>Profile</h3>
+<img class="img" src="{{ user.profile.image.url }}" height="300">
 <p><b>Username:</b> {{ user }}</p>
-<p><b>First Name:</b> {{ user.first_name }}</p>
-<p><b>Last Name:</b> {{ user.last_name }}</p>
+<p><b>First name:</b> {{ user.first_name }}</p>
+<p><b>Last name:</b> {{ user.last_name }}</p>
 <p><b>Email:</b> {{ user.email }}</p>
+<p><b>Address:</b> {{ user.profile.address }}</p>
+<p><b>Tel:</b> {{ user.profile.telephone }}</p>
+<p><b>Birthday:</b> {{ user.profile.birthday }}</p>
+<p><b>Bank Account:</b> {{ user.profile.bankaccount }}</p>
 <a class="btn btn-info hh-btn" role="button" href="/userprofile/profile/edit">Edit</a>
 {% endblock %}

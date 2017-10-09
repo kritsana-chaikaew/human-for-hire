@@ -6,13 +6,17 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import password_validation as pv
 
 from .models import Profile
 from django.core.files.images import ImageFile
 
-@login_required(login_url='/login')
-def main(request):
-    return render(request,'main.html',{})
+from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
+
+# @login_required(login_url='/login')
+# def main(request):
+#     return render(request,'main.html',{})
 
 def signup(request):
     if request.method == 'POST':
@@ -27,19 +31,45 @@ def signup(request):
         birthday = request.POST['birthday']
         bankaccount = request.POST['bankaccount']
         profile_image = ImageFile(request.FILES['profile_image'])
+
+        # Check duplicate username
+        # error = ''
+        # try:
+        #     user = User.objects.create_user(username, email, password)
+        # except IntegrityError as e:
+        #     print(str(e))
+        #     if str(e) == 'UNIQUE constraint failed: auth_user.username':
+        #         error = 'This username ( ' + username + ' ) has been taken.'
+        #     return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'bankaccount':bankaccount, 'profile_image':profile_image, "error":[error]})
+
+        # Check duplicate username
+        error = ''
+        if User.objects.filter(username=username).exists():
+            error = 'This username ( ' + username + ' ) has been taken.'
+            return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'bankaccount':bankaccount, 'profile_image':profile_image, "error":[error]})
+
+        # Check passwords matching
+        error = ''
         if password != password2:
-            return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, "error":"2 passwords is not the same"})
-        print(username, password, email, firstname, lastname, address,telephone, birthday)
-        try:
-            user = User.objects.create_user(username, email, password)
-            user.first_name = firstname
-            user.last_name = lastname
-            user.save()
-        except (IntegrityError) as e:
-            print(str(e))
-            if str(e) == "UNIQUE constraint failed: auth_user.username":
-                error = "this username has been taken."
-            return render(request,'signup.html',{"error": error})
+            return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'bankaccount':bankaccount, 'profile_image':profile_image, "error":["Passwords dont't match."]})
+        else:
+            try:
+                pv.validate_password(password, request.user)
+            except ValidationError as e:
+                error = e
+                return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'bankaccount':bankaccount, 'profile_image':profile_image, "error":error})
+            if (username in password or password in username) or (lastname in password or password in lastname) or (address in password or password in address) or (telephone in password or password in telephone) or (email in password or password in email) or (bankaccount in password or password in bankaccount) or (birthday in password or password in birthday):
+                error = 'Your password is relating to your personal informations.'
+                return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'bankaccount':bankaccount, 'profile_image':profile_image, "error":[error]})
+
+        # If username is unique and passwords are match, then save that username to database.
+        user = User.objects.create_user(username, email, password)
+        user.first_name = firstname
+        user.last_name = lastname
+        user.save()
+
+        print(username, password, email, firstname, lastname, address,telephone, birthday, bankaccount)
+
         p = Profile()
         p.user = user
         p.address = address
