@@ -29,5 +29,5 @@ def buy(request):
         o.location = location
         o.price = price
         o.save()
-        return render(request,'buy_success.html',{})
-    return render(request,'order.html',{})
+        return render(request,'order/buy_success.html',{})
+    return render(request,'order/order.html',{})
