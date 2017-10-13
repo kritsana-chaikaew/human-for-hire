@@ -31,3 +31,6 @@ def buy(request):
         o.save()
         return render(request,'order/buy_success.html',{})
     return render(request,'order/order.html',{})
+
+def manage_work(request):
+    return render(request, 'order/manage_work.html', {})

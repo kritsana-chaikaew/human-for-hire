@@ -1,0 +1,75 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+<h3>My Work</h3>
+<!-- current work: the start date hasn't come yet -->
+<h4>Current Work</h4>
+<table class="table" id="hh-managework">
+	<thead>
+		<th>Employer</th>
+		<th>Descriptions</th>
+		<th>Date</th>
+		<th>Price</th>
+		<th></th>
+	</thead>
+	<tbody>
+	    <tr>
+	      <td>Kritsana</td>
+	      <td>สอนหนังสือภาษาอังกฤษ</td>
+	      <td>20 Oct 2017</td>
+	      <td>2800 THB</td>
+	      <!-- Hover to show the button that can click to confirm -->
+	      <td class="manage-status__tobeconfirmed">TO BE CONFIRMED</td> 
+	    </tr>
+	    <tr>
+	      <td>Kritsana</td>
+	      <td>สอนหนังสือภาษาอังกฤษ</td>
+	      <td>20 Oct 2017</td>
+	      <td>2800 THB</td>
+	      <td class="manage-status__waitingforwork">WAITING FOR WORK DONE</td>
+	    </tr>
+	</tbody>
+</table>
+<!-- past work: the start date has passed -->
+<h4>Past Work</h4>
+<table class="table" id="hh-managework">
+	<thead>
+		<th>Employer</th>
+		<th>Descriptions</th>
+		<th>Date</th>
+		<th>Price</th>
+		<th></th>
+	</thead>
+	<tbody>
+	    <tr>
+	      <td>Kritsana</td>
+	      <td>สอนหนังสือภาษาอังกฤษ</td>
+	      <td>20 Oct 2017</td>
+	      <td>2800 THB</td>
+	      <!-- Hover to show the button that can click to update staus work done -->
+	      <td class="manage-status__waitingforwork">WAITING FOR WORK DONE</td>
+	    </tr>
+	    <tr>
+	      <td>Kritsana</td>
+	      <td>สอนหนังสือภาษาอังกฤษ</td>
+	      <td>20 Oct 2017</td>
+	      <td>2800 THB</td>
+	      <td class="manage-status__failed">FAILED</td>
+	    </tr>
+	    <tr>
+	      <td>Kritsana</td>
+	      <td>สอนหนังสือภาษาอังกฤษ</td>
+	      <td>20 Oct 2017</td>
+	      <td>2800 THB</td>
+	      <td class="manage-status__cancelled">CANCELLED</td>
+	    </tr>
+	    <tr>
+	      <td>Kritsana</td>
+	      <td>สอนหนังสือภาษาอังกฤษ</td>
+	      <td>20 Oct 2017</td>
+	      <td>2800 THB</td>
+	      <td class="manage-status__workdone">WORK DONE</td>
+	    </tr>
+	</tbody>
+</table>
+{% endblock %}
