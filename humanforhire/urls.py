@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'', include('post.urls')),
     url(r'', include('signupLogin.urls')),
     url(r'^userprofile/', include('userprofile.urls')),
+    url(r'', include('order.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

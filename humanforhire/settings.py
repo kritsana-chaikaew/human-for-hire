@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'userprofile',
     'mathfilters',
     'widget_tweaks',
+    'order'
 ]
 
 MIDDLEWARE = [
