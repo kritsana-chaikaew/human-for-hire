@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'userprofile',
     'mathfilters',
     'widget_tweaks',
+    'taggit'
 ]
 
 MIDDLEWARE = [
@@ -157,3 +158,5 @@ DATABASES['default'].update(db_from_env)
 # LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL= '/'
+
+TAGGIT_CASE_INSENSITIVE = True

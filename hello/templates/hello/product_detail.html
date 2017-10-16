@@ -18,7 +18,9 @@
         </p>
         <p>
             <h6>Tag</h6>
-            {{ product.tag }}
+            {% for tag in product.tag.all %}
+              {{ tag }}
+            {% endfor %}
         </p>
         <p>
             <h6>Price (per hour) </h6>

@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.db import models
 import datetime
 
+from taggit.managers import TaggableManager
+
 # Create your models here.
 class Product(models.Model):
     product_no = models.IntegerField(primary_key=True)
@@ -17,7 +19,7 @@ class Product(models.Model):
     product_details = models.CharField(max_length=2000, default='product details')
     location = models.CharField(max_length=250, default='location')
     price = models.IntegerField(default=0)
-    tag = models.CharField(max_length=250, default='tag')
+    tag = TaggableManager()
     init_date = models.DateTimeField(default=datetime.datetime.now())
 
     def __str__(self):
