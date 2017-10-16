@@ -19,7 +19,7 @@ class Product(models.Model):
     product_details = models.CharField(max_length=2000, default='product details')
     location = models.CharField(max_length=250, default='location')
     price = models.IntegerField(default=0)
-    tag = TaggableManager()
+    tags = TaggableManager()
     init_date = models.DateTimeField(default=datetime.datetime.now())
 
     def __str__(self):

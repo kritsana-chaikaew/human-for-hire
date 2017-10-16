@@ -24,7 +24,7 @@ def action(request):
     product.product_details = request.POST['product_details']
     product.price = request.POST['price']
     product.location = request.POST['location']
-    product.tag = request.POST['tag']
+    product.tags = request.POST['tags']
 
     product.save()
     return render(request,'post_respond.html',{})

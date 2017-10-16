@@ -23,3 +23,13 @@ class ProductDetailView(generic.DetailView):
         object.save()
 
         return object
+
+class TagResultView(generic.ListView):
+    template_name = 'hello/index.html'
+    context_object_name = 'product_list'
+
+    def get_queryset(self):
+        product_list = Product.objects.order_by('-init_date')
+        product_list = product_list.filter(tags__name__in=[self.kwargs['tags']]).distinct()
+
+        return product_list
