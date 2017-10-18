@@ -14,6 +14,9 @@ class Profile(models.Model):
     bankaccount = models.CharField(max_length=30, blank=True)
     image = models.ImageField(upload_to='userImage', blank=True)
 
+    def __str__(self):
+        return str(self.user)
+
 # @receiver(post_save, sender=User)
 # def update_user_profile(sender, instance, created, **kwargs):
 #     if created:
