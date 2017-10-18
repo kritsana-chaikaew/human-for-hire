@@ -9,7 +9,7 @@ class IndexView(generic.ListView):
     context_object_name = 'product_list'
 
     def get_queryset(self):
-        return Product.objects.order_by('-init_date')
+        return Product.objects.order_by('-init_date').filter(product_details='1')
 
 class ProductDetailView(generic.DetailView):
     template_name = 'hello/product_detail.html'
