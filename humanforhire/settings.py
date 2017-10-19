@@ -24,16 +24,19 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$yb+0p1b6c5d_0&6**rgg_k-0hv6@(ilg@y8+n5dwlo-8pjohv'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 try:
-    if os.environ['HOST_NAME'] == "heroku":
-        DEBUG = False
+    ON_DEPLOY = os.environ['ONDEPLOY'] 
 except:
-    pass
+    ON_DEPLOY = False
 
 ALLOWED_HOSTS = ['*']
+
+# SECURITY WARNING: don't run with debug turned on in production!
+
+try:
+    DEBUG = os.environ['DEBUG']
+except:
+    DEBUG = True
 
 
 # Application definition
@@ -162,12 +165,11 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL= '/'
 
 # Update database configuration with $DATABASE_URL.
-if not DEBUG:
+if ON_DEPLOY:
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
 
-
-    # AWS S3
+# AWS S3
     AWS_QUERYSTRING_AUTH = False
     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
