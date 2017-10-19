@@ -8,7 +8,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Product(models.Model):
-    product_no = models.IntegerField(primary_key=True)
+    product_no = models.AutoField(primary_key=True)
 
     seller_username = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     product_image = models.ImageField(upload_to='img')
