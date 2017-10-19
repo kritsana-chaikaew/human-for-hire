@@ -25,7 +25,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '$yb+0p1b6c5d_0&6**rgg_k-0hv6@(ilg@y8+n5dwlo-8pjohv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if socket.gethostname() == "83972643-f505-4559-a4ac-2859409b76da":
+if os.environ['HOST'] == "heroku":
      DEBUG = False
 else:
      DEBUG = True
