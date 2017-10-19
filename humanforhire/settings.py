@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
+import socket
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +25,10 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '$yb+0p1b6c5d_0&6**rgg_k-0hv6@(ilg@y8+n5dwlo-8pjohv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if socket.gethostname() == "83972643-f505-4559-a4ac-2859409b76da":
+     DEBUG = False
+else:
+     DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
     'userprofile',
     'mathfilters',
     'widget_tweaks',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -149,11 +154,22 @@ MEDIA_URL = '/media/'
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-# Update database configuration with $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
 # LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL= '/'
+
+# Update database configuration with $DATABASE_URL.
+if not DEBUG:
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+
+
+    # AWS S3
+    AWS_QUERYSTRING_AUTH = False
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
+    MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
