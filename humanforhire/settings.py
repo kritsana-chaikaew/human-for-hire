@@ -25,7 +25,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '$yb+0p1b6c5d_0&6**rgg_k-0hv6@(ilg@y8+n5dwlo-8pjohv'
 
 try:
-    ON_DEPLOY = os.environ['ONDEPLOY'] 
+    ON_DEPLOY = os.environ['ON_DEPLOY'] 
 except:
     ON_DEPLOY = False
 
