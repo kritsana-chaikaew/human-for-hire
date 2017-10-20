@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Order
+from order.models import Order
 from django.shortcuts import redirect
 
 

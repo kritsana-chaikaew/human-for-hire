@@ -3,7 +3,11 @@
 {% block content %}
 <div class="row">
     <div class="col-12 col-md-4 product-img">
-        <img src="{{ product.product_image.url }}" width="100%" \>
+        <img src="{{ product.product_image.url }}" width="100%" \> 
+        <center>
+            <br>
+            <button type="submit" class="btn btn-lg btn-outline-success hh-btn">Hire</button>
+        </center>
     </div>
     <div class="col-12 col-md-8">
         <h2>{{ product.product_name }}</h2> <div class="posted-by">posted by: {{ product.seller_username }} </div> </br>
