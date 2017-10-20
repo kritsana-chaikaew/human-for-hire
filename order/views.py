@@ -7,18 +7,19 @@ from django.contrib.auth.decorators import login_required
 from post.models import Product
 from signupLogin.models import Profile
 from .models import Order
+from order.forms import OrderForm
 
 
-def buy(request):
+def buy(request, pk):
     if request.method == 'POST':
         user = User.objects.get(id=request.user.id)
-        product = Product.objects.get(id=request.product_no)
+        product = Product.objects.get(product_no=pk)
         start_date = request.POST['start_date']
         end_date = request.POST['end_date']
         detail = request.POST['detail']
         location = request.POST['location']
         price = request.POST['price']
-        #bankaccount = request.POST['bankaccount']
+        # bankaccount = request.POST['bankaccount']
         
         o = Order()
         o.buyer_username = user

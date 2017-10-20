@@ -2,8 +2,8 @@
 
 {% block content %}
 <div class="row justify-content-md-center">
-  <form method="buy" action="{% url 'order:buy' %}" enctype="multipart/form-data" class="col col-lg-6" required>
-    <h1>Hi</h1>
+  <form method="post" action="" enctype="multipart/form-data" class="col col-lg-6" required>
+    <h1>Hire</h1>
     {% csrf_token %}
     <div class="form-group">
     <label class="form-control-label" for="start_date">Start date and time</label>
@@ -27,7 +27,7 @@
 
     <div class="form-group">
     <label class="form-control-label" for="detail">Detail</label>
-        <textarea class="form-control" id="detail" rows="2" type="text" name="detail" value="{{details}}"></textarea>
+        <textarea class="form-control" id="detail" rows="2" type="text" name="detail" value="{{detail}}"></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary hh-btn">Submit</button>

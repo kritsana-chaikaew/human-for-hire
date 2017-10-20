@@ -6,7 +6,7 @@
         <img src="{{ product.product_image.url }}" width="100%" \> 
         <center>
             <br>
-            <button type="submit" class="btn btn-lg btn-outline-success hh-btn">Hire</button>
+            <a href="{% url 'order:buy' pk=product.product_no %}" class="btn btn-lg btn-outline-success hh-btn" role="button" aria-pressed="true">Hire</a>
         </center>
     </div>
     <div class="col-12 col-md-8">
