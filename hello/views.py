@@ -7,9 +7,20 @@ from django.utils import timezone
 class IndexView(generic.ListView):
     template_name = 'hello/index.html'
     context_object_name = 'product_list'
+    # gender = request.POST['gender']
+    # start_age = ""
+    # end_age = ""
+    # start_date = ""
+    # end_date = ""
+
+    # def filter_gender(self, gender):
+    #     self.gender = gender
 
     def get_queryset(self):
-        return Product.objects.order_by('-init_date')
+        card = Product.objects.order_by('-init_date')
+        # if self.gender != "":
+        #     card = card.filter()
+        return card
 
 class ProductDetailView(generic.DetailView):
     template_name = 'hello/product_detail.html'
@@ -23,3 +34,6 @@ class ProductDetailView(generic.DetailView):
         object.save()
 
         return object
+
+# def filter(request):
+#     IndexView.filter_gender()
