@@ -5,6 +5,8 @@ from django.core.files.images import ImageFile
 
 from django.contrib.auth.models import User
 from .models import Product
+from .forms import EditPostForm
+from django.shortcuts import render, redirect
 
 import taggit
 
@@ -40,3 +42,17 @@ def delete(request, pk):
         product.delete()
 
     return render(request, 'delete_respond.html', {})
+
+def edit(request, pk):
+    product = Product.objects.get(product_no=pk)
+    if request.method == 'POST':
+        form = EditPostForm(request.POST, instance=product)
+
+        if form.is_valid():
+            form.save()
+            return render(request, 'edit_response.html', {})
+
+    else:
+        form = EditPostForm(instance=product)
+        args = {'form': form}
+        return render(request, 'edit.html', args)
