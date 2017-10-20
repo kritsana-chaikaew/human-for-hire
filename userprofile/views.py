@@ -5,7 +5,11 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, password_validation as pv
+
+from signupLogin.models import Profile
+from django.core.exceptions import ValidationError
+
 
 # Create your views here.
 # @login_required
@@ -26,7 +30,7 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             return redirect('/userprofile/')
-        
+
     else:
         form = EditProfileForm(instance=request.user)
         args = {'form': form}
@@ -45,10 +49,9 @@ def change_password(request):
             messages.warning(request, 'Please check your password again.')
             return redirect('/userprofile/change-password')
             #return render(request, 'userprofile/change_password.html', args)
-    
+
     else:
         form = PasswordChangeForm(user=request.user)
 
         args = {'form': form}
         return render(request, 'userprofile/change_password.html', args)
-        
