@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name="signup"),
     # url(r'^login$', views.login, name="login"),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
-    url(r'^main$', views.main, name="main"),
+    # url(r'^main$', views.main, name="main"),
     url(r'^logout$', views.logout, name="logout"),
     url(r'^signup_success$', views.signup_success, name="signup_success"),
 ]
