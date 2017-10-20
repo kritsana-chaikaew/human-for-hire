@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.shortcuts import render
@@ -28,21 +27,16 @@ def action(request):
     product.price = request.POST['price']
     product.location = request.POST['location']
 
-    print(product.pk)
     product.save()
-    print(product.pk)
-
-    # product = Product.objects.create(
-    #     seller_username = User.objects.get(id=request.user.id),
-    #     product_image = ImageFile(request.FILES['product_image']),
-    #     product_name = request.POST['product_name'],
-    #     start_date = request.POST['start_date'],
-    #     end_date = request.POST['end_date'],
-    #     product_details = request.POST['product_details'],
-    #     price = request.POST['price'],
-    #     location = request.POST['location'])
 
     tag_list = taggit.utils._parse_tags(request.POST['tags'])
     product.tags.add(*tag_list)
 
-    return render(request,'post_respond.html',{})
+    return render(request, 'post_respond.html', {})
+
+def delete(request, pk):
+    product = Product.objects.get(product_no=pk)
+    if product:
+        product.delete()
+
+    return render(request, 'delete_respond.html', {})
