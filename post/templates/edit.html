@@ -1,0 +1,29 @@
+{% extends 'hello/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h3>Edit Post</h3>
+<form method="post" class="col col-lg-5">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+	    <ul>
+			{% for error in form.non_field_errors %}
+				<li>{{ error }}</li>
+			{% endfor %}
+	    </ul>
+    {% endif %}
+    {% for field in form %}
+		<div id="{{ field.auto_id }}_container form-group">
+			{{ field.help_text }}
+			<label class="form-control-label" for="id_{{ field.name }}">
+				{{ field.label }}
+			</label>
+			 {{ field|add_class:"form-control" }}
+			<div id="{{ field.auto_id }}_errors">
+				{{ field.errors }}
+			</div>
+		</div> <br>
+	{% endfor %}
+    <button class="btn btn-info hh-btn" type="submit">Submit</button>
+</form>
+{% endblock %}
