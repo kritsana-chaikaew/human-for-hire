@@ -14,6 +14,7 @@ def buy(request, pk):
     if request.method == 'POST':
         user = User.objects.get(id=request.user.id)
         product = Product.objects.get(product_no=pk)
+        seller_user = product.seller_username
         start_date = request.POST['start_date']
         end_date = request.POST['end_date']
         detail = request.POST['detail']
@@ -23,6 +24,7 @@ def buy(request, pk):
         
         o = Order()
         o.buyer_username = user
+        o.seller_username = seller_user
         o.product_no = product
         o.start_date = start_date
         o.end_date = end_date
@@ -35,3 +37,10 @@ def buy(request, pk):
 
 def manage_work(request):
     return render(request, 'order/manage_work.html', {})
+
+class WorkView(generic.ListView):
+    template_name = 'order/manage_work.html'
+    context_object_name = 'work_list'
+
+    def get_queryset(self):
+        return Order.objects.filter(seller_username=self.request.user.id)
