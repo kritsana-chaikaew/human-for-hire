@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from post.models import Product
 from signupLogin.models import Profile
 from .models import Order
-from order.forms import OrderForm
 
 
 def buy(request, pk):
@@ -34,9 +33,6 @@ def buy(request, pk):
         o.save()
         return render(request,'order/buy_success.html',{})
     return render(request,'order/order.html',{})
-
-def manage_work(request):
-    return render(request, 'order/manage_work.html', {})
 
 class WorkView(generic.ListView):
     template_name = 'order/manage_work.html'
