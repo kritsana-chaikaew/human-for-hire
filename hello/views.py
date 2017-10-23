@@ -2,25 +2,25 @@ from django.shortcuts import render
 from django.views import generic
 from post.models import Product
 from django.views.generic import DetailView
+from django.views.generic.edit import FormMixin
 from django.utils import timezone
+from django.http import HttpResponse
 
 class IndexView(generic.ListView):
     template_name = 'hello/index.html'
     context_object_name = 'product_list'
-    # gender = request.POST['gender']
-    # start_age = ""
-    # end_age = ""
-    # start_date = ""
-    # end_date = ""
 
-    # def filter_gender(self, gender):
-    #     self.gender = gender
+    def post(self, request, *args, **kwargs):
+        card = Product.objects.order_by('-init_date')
+        if(request.method == 'POST'):
+            card = card.filter(product_name=request.POST['gender'])
+        args = {'product_list': card}
+        return render(request, 'hello/index.html', args)
 
     def get_queryset(self):
         card = Product.objects.order_by('-init_date')
-        # if self.gender != "":
-        #     card = card.filter()
         return card
+
 
 class ProductDetailView(generic.DetailView):
     template_name = 'hello/product_detail.html'
@@ -34,6 +34,3 @@ class ProductDetailView(generic.DetailView):
         object.save()
 
         return object
-
-# def filter(request):
-#     IndexView.filter_gender()
