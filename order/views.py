@@ -30,6 +30,7 @@ def buy(request, pk):
         o.detail = detail
         o.location = location
         o.price = price
+        o.status = 0
         o.save()
         return render(request,'order/buy_success.html',{})
     return render(request,'order/order.html',{})

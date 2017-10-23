@@ -18,7 +18,14 @@ class Order(models.Model):
     detail = models.CharField(max_length=250, default='datail')
     start_date = models.DateTimeField(default=datetime.datetime.now())
     end_date = models.DateTimeField(default=datetime.datetime.now())
-    #status_code = models.
+    STATUS_CODE = (
+            (0, 'TO BE ACCEPTED'),
+            (1, 'WAITING FOR WORK'),
+            (2, 'WORK DONE'),
+            (3, 'FAILED'),
+            (4, 'CANCELLED')
+        )
+    status = models.PositiveSmallIntegerField(choices=STATUS_CODE, default=0)
 
     def __str__(self):
-        return str(self.product_no) + "_" + self.product_name
+        return str(self.order_no) + '_' + str(self.buyer_username) 
