@@ -21,7 +21,7 @@
 			<td>{{work.detail}}</td>
 			<td>{{work.start_date}}</td>
 			<td>{{work.price}} THB</td>
-		    <td class="manage-status__tobeconfirmed">TO BE CONFIRMED</td> 
+		    <td class="manage-status__{{work.get_status_display|cut:" "}}">{{work.get_status_display}}</td> 
 			</tr>
 		{% endfor %}
 	{% endif %}
@@ -31,14 +31,14 @@
 	      <td>20 Oct 2017</td>
 	      <td>2800 THB</td>
 	      <!-- Hover to show the button that can click to confirm -->
-	      <td class="manage-status__tobeconfirmed">TO BE CONFIRMED</td> 
+	      <td class="manage-status__TOBEACCEPTED">TO BE ACCEPTED</td> 
 	    </tr>
 	    <tr>
 	      <td>Kritsana</td>
 	      <td>สอนหนังสือภาษาอังกฤษ</td>
 	      <td>20 Oct 2017</td>
 	      <td>2800 THB</td>
-	      <td class="manage-status__waitingforwork">WAITING FOR WORK DONE</td>
+	      <td class="manage-status__WAITINGFORWORK">WAITING FOR WORK DONE</td>
 	    </tr>
 	</tbody>
 </table>
@@ -59,28 +59,28 @@
 	      <td>20 Oct 2017</td>
 	      <td>2800 THB</td>
 	      <!-- Hover to show the button that can click to update staus work done -->
-	      <td class="manage-status__waitingforwork">WAITING FOR WORK DONE</td>
+	      <td class="manage-status__WAITINGFORWORK">WAITING FOR WORK DONE</td>
 	    </tr>
 	    <tr>
 	      <td>Kritsana</td>
 	      <td>สอนหนังสือภาษาอังกฤษ</td>
 	      <td>20 Oct 2017</td>
 	      <td>2800 THB</td>
-	      <td class="manage-status__failed">FAILED</td>
+	      <td class="manage-status__FAILED">FAILED</td>
 	    </tr>
 	    <tr>
 	      <td>Kritsana</td>
 	      <td>สอนหนังสือภาษาอังกฤษ</td>
 	      <td>20 Oct 2017</td>
 	      <td>2800 THB</td>
-	      <td class="manage-status__cancelled">CANCELLED</td>
+	      <td class="manage-status__CANCELLED">CANCELLED</td>
 	    </tr>
 	    <tr>
 	      <td>Kritsana</td>
 	      <td>สอนหนังสือภาษาอังกฤษ</td>
 	      <td>20 Oct 2017</td>
 	      <td>2800 THB</td>
-	      <td class="manage-status__workdone">WORK DONE</td>
+	      <td class="manage-status__WORKDONE">WORK DONE</td>
 	    </tr>
 	</tbody>
 </table>

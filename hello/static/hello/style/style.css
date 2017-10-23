@@ -73,24 +73,24 @@ body {
 }*/
 
 /*START MANAGE*/
-.manage-status__waitingforwork {
+.manage-status__WAITINGFORWORK {
 }
 
-.manage-status__tobeconfirmed {
+.manage-status__TOBEACCEPTED {
   background-color: #fcdc42;
 }
 
-.manage-status__workdone {
+.manage-status__WORKDONE {
   background-color: #2db035;
   color: #FFF;
 }
 
-.manage-status__failed {
+.manage-status__FAILED {
   background-color: #333;
   color: #FFF;
 }
 
-.manage-status__cancelled {
+.manage-status__CANCELLED {
   background-color: #333;
   color: #FFF;
 }
