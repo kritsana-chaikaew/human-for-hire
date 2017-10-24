@@ -44,10 +44,25 @@ class WorkView(generic.ListView):
         return Order.objects.filter(seller_username=self.request.user.id)
 
 def accept_work(request):
-    o = Order.objects.get(order_no=request.GET.get('order_no'));
-    o.status = 1;
-    o.save()
     data = {
         'success': True
     }
+    # try:
+    #     o = Order.objects.get(order_no=request.GET.get('order_no'));
+    #     o.status = 1;
+    #     o.save()
+    # except:
+    #     data.success = False
+    return JsonResponse(data)
+
+def confirm_workdone(request):
+    data = {
+        'success': True
+    }
+    # try:
+    #     o = Order.objects.get(order_no=request.GET.get('order_no'));
+    #     o.status = 2;
+    #     o.save()
+    # except:
+    #     data.success = False
     return JsonResponse(data)

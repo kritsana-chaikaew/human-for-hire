@@ -116,5 +116,22 @@
 			}
 		});
 	});
+	$(".manage-status__WAITINGFORWORK").click(function(){
+		var element = this
+		$.ajax({
+			url: '/ajax/confirm_workdone',
+			data: {
+				'order_no': $(this).attr('order')
+			},
+			dataType: 'json',
+			success: function(data) {
+				if(data.success) {
+					$(element).attr("class", "manage-status__WORKDONE");
+					$(element).unbind();
+					$(element).text("WORK DONE")
+				}
+			}
+		});
+	});
 </script>
 {% endblock %}
