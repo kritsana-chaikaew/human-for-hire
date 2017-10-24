@@ -21,7 +21,7 @@
 			<td>{{work.detail}}</td>
 			<td>{{work.start_date}}</td>
 			<td>{{work.price}} THB</td>
-		    <td class="manage-status__{{work.get_status_display|cut:" "}}">{{work.get_status_display}}</td> 
+		    <td order="{{work.order_no}}" class="manage-status__{{work.get_status_display|cut:" "}}">{{work.get_status_display}}</td> 
 			</tr>
 		{% endfor %}
 	{% endif %}
@@ -84,4 +84,37 @@
 	    </tr>
 	</tbody>
 </table>
+<script type="text/javascript">
+	$(".manage-status__TOBEACCEPTED").hover(
+		function() {
+		    $(this).text("ACCEPT");
+		}, function() {
+			$(this).text("TO BE ACCEPTED");
+		}
+    );
+	$(".manage-status__WAITINGFORWORK").hover(
+		function() {
+		    $(this).text("MARK AS DONE");
+		}, function() {
+			$(this).text("WAITING FOR WORK DONE");
+		}
+    );
+	$(".manage-status__TOBEACCEPTED").click(function(){
+		var element = this
+		$.ajax({
+			url: '/ajax/accept_work',
+			data: {
+				'order_no': $(this).attr('order')
+			},
+			dataType: 'json',
+			success: function(data) {
+				if(data.success) {
+					$(element).attr("class", "manage-status__ACCEPTED");
+					$(element).unbind();
+					$(element).text("ACCEPTED!")
+				}
+			}
+		});
+	});
+</script>
 {% endblock %}

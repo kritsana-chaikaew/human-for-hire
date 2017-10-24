@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -41,3 +42,12 @@ class WorkView(generic.ListView):
 
     def get_queryset(self):
         return Order.objects.filter(seller_username=self.request.user.id)
+
+def accept_work(request):
+    o = Order.objects.get(order_no=request.GET.get('order_no'));
+    o.status = 1;
+    o.save()
+    data = {
+        'success': True
+    }
+    return JsonResponse(data)
