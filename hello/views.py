@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
 from post.models import Product
+from signupLogin.models import Profile
+from django.contrib.auth.models import User
 from django.views.generic import DetailView
 from django.views.generic.edit import FormMixin
 from django.utils import timezone
@@ -13,7 +15,24 @@ class IndexView(generic.ListView):
     def post(self, request, *args, **kwargs):
         card = Product.objects.order_by('-init_date')
         if(request.method == 'POST'):
-            card = card.filter(product_name=request.POST['gender'])
+            gender = request.POST['gender']
+            first_age = request.POST['first_age']
+            end_age = request.POST['end_age']
+            first_date = request.POST['first_date']
+            end_date = request.POST['end_date']
+
+            if gender != "":
+                profile = Profile.objects.filter(gender=gender)
+                user = User.objects.filter(profile__in=profile)
+                card = card.filter(seller_username__in=user)
+            if first_age != "" and end_age != "":
+                profile = Profile.objects.filter(gender=gender)
+                card = card.filter()
+            if first_date != "":
+                card = card.filter(start_date__gte=first_date)
+            if end_date != "":
+                card = card.filter(end_date__lte=end_date)
+
         args = {'product_list': card}
         return render(request, 'hello/index.html', args)
 
