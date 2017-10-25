@@ -7,6 +7,7 @@ from django.views.generic import DetailView
 from django.views.generic.edit import FormMixin
 from django.utils import timezone
 from django.http import HttpResponse
+import datetime
 
 class IndexView(generic.ListView):
     template_name = 'hello/index.html'
@@ -25,9 +26,18 @@ class IndexView(generic.ListView):
                 profile = Profile.objects.filter(gender=gender)
                 user = User.objects.filter(profile__in=profile)
                 card = card.filter(seller_username__in=user)
-            if first_age != "" and end_age != "":
-                profile = Profile.objects.filter(gender=gender)
-                card = card.filter()
+            if first_age != "":
+                max_date = datetime.date.today()
+                max_date = max_date.replace(year=max_date.year - int(first_age))
+                profile = Profile.objects.filter(birthday__lte=max_date)
+                user = User.objects.filter(profile__in=profile)
+                card = card.filter(seller_username__in=user)
+            if end_age != "":
+                min_date = datetime.date.today()
+                min_date = min_date.replace(year=min_date.year - int(end_age))
+                profile = Profile.objects.filter(birthday__gte=min_date)
+                user = User.objects.filter(profile__in=profile)
+                card = card.filter(seller_username__in=user)
             if first_date != "":
                 card = card.filter(start_date__gte=first_date)
             if end_date != "":
