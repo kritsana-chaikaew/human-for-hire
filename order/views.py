@@ -43,26 +43,55 @@ class WorkView(generic.ListView):
     def get_queryset(self):
         return Order.objects.filter(seller_username=self.request.user.id)
 
+class HiredView(generic.ListView):
+    template_name = 'order/manage_hired.html'
+    context_object_name = 'work_list'
+
+    def get_queryset(self):
+        return Order.objects.filter(buyer_username=self.request.user.id)
+
 def accept_work(request):
     data = {
         'success': True
     }
-    # try:
-    #     o = Order.objects.get(order_no=request.GET.get('order_no'));
-    #     o.status = 1;
-    #     o.save()
-    # except:
-    #     data.success = False
+    try:
+        o = Order.objects.get(order_no=request.GET.get('order_no'))
+        o.status = 1;
+        o.save()
+    except:
+        data.success = False
     return JsonResponse(data)
 
 def confirm_workdone(request):
     data = {
         'success': True
     }
-    # try:
-    #     o = Order.objects.get(order_no=request.GET.get('order_no'));
-    #     o.status = 2;
-    #     o.save()
-    # except:
-    #     data.success = False
+    username = request.user.id
+    try:
+        o = Order.objects.get(order_no=request.GET.get('order_no'))
+        if username == o.buyer_username:
+            if o.status == 2:
+                o.status = 4
+            if o.status == 1:
+                o.status = 3
+        if username == o.seller_username:
+            if o.status == 3:
+                o.status = 4
+            if o.status == 1:
+                o.status = 2
+        o.save()
+    except:
+        data.success = False
+    return JsonResponse(data)
+
+def cancel_work(request):
+    data = {
+        'success': True
+    }
+    try:
+        o = Order.objects.get(order_no=request.GET.get('order_no'))
+        o.status = 6;
+        o.save()
+    except:
+        data.success = False
     return JsonResponse(data)

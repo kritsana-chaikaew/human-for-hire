@@ -21,9 +21,11 @@ class Order(models.Model):
     STATUS_CODE = (
             (0, 'TO BE ACCEPTED'),
             (1, 'WAITING FOR WORK'),
-            (2, 'WORK DONE'),
-            (3, 'FAILED'),
-            (4, 'CANCELLED')
+            (2, 'WAIT BUYER MARK DONE'),
+            (3, 'WAIT SELLER MARK DONE'),
+            (4, 'WORK DONE'),
+            (5, 'FAILED'),
+            (6, 'CANCELLED')
         )
     status = models.PositiveSmallIntegerField(choices=STATUS_CODE, default=0)
 
