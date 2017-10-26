@@ -17,7 +17,7 @@ class EditPostForm(forms.ModelForm):
         )
 
     def save(self, commit=True):
-        post = super(EditPostForm, self).save(commit)
+        product = super(EditPostForm, self).save(commit)
         if commit:
-            post.save()
-        return post
+            product.save()
+        return product

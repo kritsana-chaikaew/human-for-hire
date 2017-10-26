@@ -46,7 +46,7 @@ def delete(request, pk):
 def edit(request, pk):
     product = Product.objects.get(product_no=pk)
     if request.method == 'POST':
-        form = EditPostForm(request.POST, instance=product)
+        form = EditPostForm(request.POST, request.FILES, instance=product)
 
         if form.is_valid():
             form.save()
