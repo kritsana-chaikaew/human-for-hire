@@ -22,7 +22,11 @@
         </p>
         <p>
             <h6>Tag</h6>
-            {{ product.tag }}
+            {% for tag in product.tags.all %}
+              <a href='/tags/{{ tag }}/'>
+                {{ tag }}
+              </a>
+            {% endfor %}
         </p>
         <p>
             <h6>Price (per hour) </h6>

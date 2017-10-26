@@ -5,7 +5,11 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, password_validation as pv
+
+from signupLogin.models import Profile
+from django.core.exceptions import ValidationError
+
 
 from signupLogin.models import Profile
 from django.contrib.auth.models import User
