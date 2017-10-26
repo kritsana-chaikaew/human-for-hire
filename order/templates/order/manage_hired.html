@@ -46,7 +46,7 @@
 <h4>Past Work</h4>
 <table class="table" id="hh-managework">
 	<thead>
-		<th>Employer</th>
+		<th>Employee</th>
 		<th>Descriptions</th>
 		<th>Date</th>
 		<th>Price</th>
@@ -102,7 +102,7 @@
 	$(".manage-status__TOBEACCEPTED").click(function(){
 		var element = this
 		$.ajax({
-			url: '/ajax/cancel',
+			url: '/ajax/cancel_work',
 			data: {
 				'order_no': $(this).attr('order')
 			},
