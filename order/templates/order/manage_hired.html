@@ -87,6 +87,7 @@
 <script type="text/javascript">
 	$(".manage-status__TOBEACCEPTED").hover(
 		function() {
+			$(this).addClass('cancel-hover');
 		    $(this).text("CANCEL");
 		}, function() {
 			$(this).text("TO BE ACCEPTED");
@@ -94,9 +95,18 @@
     );
 	$(".manage-status__WAITINGFORWORK").hover(
 		function() {
+			$(this).addClass('workdone-hover');
 		    $(this).text("MARK AS DONE");
 		}, function() {
 			$(this).text("WAITING FOR WORK DONE");
+		}
+    );
+	$(".manage-status__WAITBUYERMARKDONE").hover(
+		function() {
+			$(this).addClass('workdone-hover');
+		    $(this).text("MARK AS DONE");
+		}, function() {
+			$(this).text("WAIT BUYER MARK DONE");
 		}
     );
 	$(".manage-status__TOBEACCEPTED").click(function(){
@@ -116,10 +126,10 @@
 			}
 		});
 	});
-	$(".manage-status__WAITINGFORWORK").click(function(){
-		var element = this
+	function confirm_workdone(){
+		element = this
 		$.ajax({
-			url: '/ajax/confirm_workdone',
+			url: '/ajax/buyer_confirm_workdone',
 			data: {
 				'order_no': $(this).attr('order')
 			},
@@ -132,6 +142,8 @@
 				}
 			}
 		});
-	});
+	}
+	$(".manage-status__WAITINGFORWORK").click(confirm_workdone);
+	$(".manage-status__WAITBUYERMARKDONE").click(confirm_workdone);
 </script>
 {% endblock %}

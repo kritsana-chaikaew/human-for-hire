@@ -59,29 +59,42 @@ def accept_work(request):
         o.status = 1;
         o.save()
     except:
-        data.success = False
+        data['success'] = False
     return JsonResponse(data)
 
-def confirm_workdone(request):
+def seller_confirm_workdone(request):
     data = {
         'success': True
     }
-    username = request.user.id
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
-        if username == o.buyer_username:
-            if o.status == 2:
-                o.status = 4
-            if o.status == 1:
-                o.status = 3
-        if username == o.seller_username:
-            if o.status == 3:
-                o.status = 4
-            if o.status == 1:
-                o.status = 2
+        print("hie")
+        if o.status == 3:
+            o.status = 4
+        elif o.status == 1:
+            o.status = 2
+        else:
+            raise ValueError('Can not be done.')
         o.save()
     except:
-        data.success = False
+        data['success'] = False
+    return JsonResponse(data)
+
+def buyer_confirm_workdone(request):
+    data = {
+        'success': True
+    }
+    try:
+        o = Order.objects.get(order_no=request.GET.get('order_no'))
+        if o.status == 2:
+            o.status = 4
+        elif o.status == 1:
+            o.status = 3
+        else:
+            raise ValueError('Can not be done.')
+        o.save()
+    except:
+        data['success'] = False
     return JsonResponse(data)
 
 def cancel_work(request):
@@ -93,5 +106,5 @@ def cancel_work(request):
         o.status = 6;
         o.save()
     except:
-        data.success = False
+        data['success'] = False
     return JsonResponse(data)
