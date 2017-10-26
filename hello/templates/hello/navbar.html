@@ -23,6 +23,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="/userprofile">Profile</a>
+                  <a class="dropdown-item" href="{% url 'order:manage_work' %}">My Work</a>
+                  <a class="dropdown-item" href="{% url 'order:manage_hired' %}">Manage Hired</a>
                   <a class="dropdown-item" href="{% url 'signupLogin:logout' %}">Logout</a>
                 </div>
             </li>

@@ -1,31 +1,67 @@
 {% extends 'hello/base.html' %}
-{% load widget_tweaks %}
 
 {% block content %}
-<h3>Edit Profile</h3>
-<form method="post" class="col col-lg-5">
+
+<div class="row justify-content-md-center">
+  <form method="post" action="{% url 'userprofile:edit_profile' %}" enctype="multipart/form-data" class="col col-lg-6">
+    <h3>Edit Profile</h3>
+
     {% csrf_token %}
-    {% if form.non_field_errors %}
-	    <ul>
-			{% for error in form.non_field_errors %}
-				<li>{{ error }}</li>
-			{% endfor %}
-	    </ul>
-	{% endif %}
-    {% for field in form %}
-		<div id="{{ field.auto_id }}_container form-group">
-			{{ field.help_text }}
-			<label class="form-control-label" for="id_{{ field.name }}">
-				{{ field.label }}
-			</label>
-			 {{ field|add_class:"form-control" }}
-			<div id="{{ field.auto_id }}_errors">
-				{{ field.errors }}
-			</div>
-		</div> <br>
-	{% endfor %}
-    <!-- {{ form.as_p }} -->
-    <p><a href="{% url 'userprofile:change_password' %}">Change password</a></p>
-    <button class="btn btn-info hh-btn" type="submit">Submit</button>
-</form>
+    <div class="form-row">
+      <div class="form-group col-lg-6">
+        <label class="form-control-label" for="firstname">First Name</label>
+        <input class="form-control" id="firstname" type="text" name="firstname" value="{{firstname}}"/>
+      </div>
+
+      <div class="form-group col-lg-6">
+        <label class="form-control-label" for="lastname">Last Name</label>
+        <input class="form-control" id="lastname" type="text" name="lastname" value="{{lastname}}"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="address">Address</label>
+      <textarea class="form-control" id="address" name="address"/>{{address}}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="telephone">Telephone</label>
+      <input class="form-control" id="telephone" type="text" name="telephone" value="{{telephone}}" onkeypress="return isNumberKey(event)"/>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="email">Email Address</label>
+      <input class="form-control" id="email" type="text" name="email" value="{{email}}"/>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="bankaccount">Bank Account</label>
+      <input class="form-control" id="bankaccount" type="text" name="bankaccount" value="{{bankaccount}}" onkeypress="return isNumberKey(event)"/>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="birthday">Birthday</label>
+      <input class="form-control" id="birthday" type="date" name="birthday" value="{{birthday|date:'c'}}"/>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="profile_image">Picture</label>
+      <div class="input-group">
+        <input type="file" class="custom-file-input" name="profile_image" aria-describedby="fileHelp">
+        <span class="custom-file-control form-control-file" id="profile_image"></span>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <p><a href="{% url 'userprofile:change_password' %}">Change password</a></p>
+    </div>
+
+    <div class="form-group">
+      <center><button class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Register">Submit</button></center>
+    </div>
+  </form>
+</div>
+<script src="../../../static/js/form-validation.js"></script>
+
 {% endblock %}

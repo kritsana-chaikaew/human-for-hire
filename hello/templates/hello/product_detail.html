@@ -3,7 +3,11 @@
 {% block content %}
 <div class="row">
     <div class="col-12 col-md-4 product-img">
-        <img src="{{ product.product_image.url }}" width="100%" \>
+        <img src="{{ product.product_image.url }}" width="100%" \> 
+        <center>
+            <br>
+            <a href="{% url 'order:buy' pk=product.product_no %}" class="btn btn-lg btn-outline-success hh-btn" role="button" aria-pressed="true">Hire</a>
+        </center>
     </div>
     <div class="col-12 col-md-8">
         <h2>{{ product.product_name }}</h2> <div class="posted-by">posted by: {{ product.seller_username }} </div> </br>
@@ -18,7 +22,11 @@
         </p>
         <p>
             <h6>Tag</h6>
-            {{ product.tag }}
+            {% for tag in product.tags.all %}
+              <a href='/tags/{{ tag }}/'>
+                {{ tag }}
+              </a>
+            {% endfor %}
         </p>
         <p>
             <h6>Price (per hour) </h6>
