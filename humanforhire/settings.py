@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'userprofile',
     'mathfilters',
     'widget_tweaks',
+    'order',
     'taggit',
     'storages',
 ]
@@ -161,7 +162,7 @@ MEDIA_URL = '/media/'
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-# LOGIN_URL = 'login'
+LOGIN_URL = '/login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL= '/'
 
