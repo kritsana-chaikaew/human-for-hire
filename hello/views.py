@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
-from post.models import Product
-from django.views.generic import DetailView
 from django.utils import timezone
+
+from post.models import Product
 
 class IndexView(generic.ListView):
     template_name = 'hello/index.html'
