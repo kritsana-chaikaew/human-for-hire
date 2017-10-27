@@ -27,6 +27,7 @@ def signup(request):
         firstname = request.POST['firstname']
         lastname = request.POST['lastname']
         address = request.POST['address']
+        gender = request.POST['gender']
         telephone = request.POST['telephone']
         birthday = request.POST['birthday']
         bankaccount = request.POST['bankaccount']
@@ -73,6 +74,7 @@ def signup(request):
         p = Profile()
         p.user = user
         p.address = address
+        p.gender = gender
         p.telephone = telephone
         p.birthday = birthday
         p.bankaccount = bankaccount
