@@ -3,21 +3,25 @@
 {% block content %}
 <div class="row">
     <div class="col-12 col-md-4 product-img">
-        <img src="{{ product.product_image.url }}" width="100%" \>
+        <img src="{{ product.product_image.url }}" width="100%" \> 
+        <center>
+            <br>
+            <a href="{% url 'order:buy' pk=product.product_no %}" class="btn btn-lg btn-outline-success hh-btn" role="button" aria-pressed="true">Hire</a>
+        </center>
     </div>
     <div class="col-12 col-md-8">
         <h2>{{ product.product_name }}</h2> <div class="posted-by">posted by: {{ product.seller_username }} </div> </br>
         <p>{{product.product_details }}</p>
         <p>
-            <h6>Avaliable Days</h6>
-            {{ product.start_date }} - {{ product.end_date }}
+          <h6>Avaliable Days</h6>
+          {{ product.start_date }} - {{ product.end_date }}
         </p>
         <p>
-            <h6>Location</h6>
-            {{ product.location }}
+          <h6>Location</h6>
+          {{ product.location }}
         </p>
         <p>
-            <h6>Tag</h6>
+          <h6>Tag</h6>
             {% for tag in product.tags.all %}
               <a class="btn btn-light btn-sm" role="button" href='/tags/{{ tag }}/'>
                 {{ tag }}
@@ -25,8 +29,18 @@
             {% endfor %}
         </p>
         <p>
-            <h6>Price (per hour) </h6>
-            {{ product.price }} ฿
+          <h6>Price (per hour) </h6>
+          {{ product.price }} ฿
+        </p>
+        <p>
+          <a href='/product/{{ product.product_no }}/delete'>
+            Delete
+          </a>
+        </p>
+        <p>
+          <a href="/product/{{  product.product_no }}/edit/">
+            Edit
+          </a>
         </p>
     </div>
 </div>
