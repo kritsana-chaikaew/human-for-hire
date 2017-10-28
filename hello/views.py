@@ -9,6 +9,8 @@ import datetime
 from post.models import Product
 from signupLogin.models import Profile
 
+import json
+
 class IndexView(generic.ListView):
     template_name = 'hello/index.html'
     context_object_name = 'product_list'
@@ -73,3 +75,21 @@ class TagResultView(generic.ListView):
         product_list = product_list.filter(tags__name__in=[self.kwargs['tags']]).distinct()
 
         return product_list
+
+def get_tags(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        tags = Product.objects.filter(product_name__icontains = q )[:20]
+        results = []
+        for tag in tags:
+            tag_json = {}
+            tag_json['id'] = tag.product_no
+            tag_json['label'] = tag.product_name
+            tag_json['value'] = tag.product_name
+            results.append(tag_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+

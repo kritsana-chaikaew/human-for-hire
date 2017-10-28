@@ -7,6 +7,19 @@
 	<h1>Find a worker.</h1>
 </div>
 
+<script>
+    $(function() {
+        $("#tags").autocomplete({
+            source: "/get_tags/",
+            minLength: 1,
+        });
+    });
+</script>
+
+<style>
+.ui-autocomplete { position: absolute; cursor: default;z-index:30 !important;}
+</style>
+
 <form action="{% url 'hello:index' %}" method="post" enctype="multipart/form-data" class="col-lg-12">
 	<div class="form-row">
 	  {% csrf_token %}
@@ -33,6 +46,10 @@
 		</div>
 	</div>
 </form>
+<div class="ui-widget">
+        <label for="tags">Tag</label>
+        <input id="tags">
+</div>
 
 <dt class="recent"><strong>recent posts</strong></dt>
 
