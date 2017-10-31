@@ -9,7 +9,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     telephone = models.CharField(max_length=200, blank=True)
     address = models.TextField(max_length=500, blank=True)
-    gender = models.TextField(max_length=10, blank=True)
+    GENDER = (
+            ('male', 'Male'),
+            ('female', 'Female'),
+        )
+    gender = models.TextField(max_length=10, choices=GENDER)
     birthday = models.DateField(default=datetime.date.today)
     bankaccount = models.CharField(max_length=200, blank=True)
     image = models.ImageField(upload_to='userImage', blank=True)
