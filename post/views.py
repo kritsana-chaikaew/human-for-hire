@@ -7,9 +7,12 @@ from django.contrib.auth.models import User
 from .models import Product
 from .forms import EditPostForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 import taggit
 
+
+@login_required(login_url='/login')
 def post(request):
     return render(request,'post.html',{})
 

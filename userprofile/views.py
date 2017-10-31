@@ -17,6 +17,7 @@ from django.core.files.images import ImageFile
 
 # Create your views here.
 # @login_required
+    
 
 @login_required(login_url='/login')
 def home(request):
@@ -24,7 +25,8 @@ def home(request):
 
 @login_required(login_url='/login')
 def view_profile(request):
-    args = {'user': request.user}
+    p = Profile.objects.get(user=request.user)
+    args = {'user': request.user, 'age': p.get_age()}
     return render(request, 'userprofile/profile.html', args)
 
 # @login_required(login_url='/login')

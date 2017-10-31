@@ -14,8 +14,12 @@ class Profile(models.Model):
     bankaccount = models.CharField(max_length=200, blank=True)
     image = models.ImageField(upload_to='userImage', blank=True)
 
+
     def __str__(self):
         return str(self.user)
+
+    def get_age(self):
+        return datetime.datetime.now().year - self.birthday.year
 
 # @receiver(post_save, sender=User)
 # def update_user_profile(sender, instance, created, **kwargs):

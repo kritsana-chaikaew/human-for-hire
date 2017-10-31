@@ -13,6 +13,8 @@ from django.core.files.images import ImageFile
 
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+import datetime
+import dateutil
 
 # @login_required(login_url='/login')
 # def main(request):
@@ -32,6 +34,7 @@ def signup(request):
         birthday = request.POST['birthday']
         bankaccount = request.POST['bankaccount']
         profile_image = ImageFile(request.FILES['profile_image'])
+
 
         # Check duplicate username
         # error = ''
