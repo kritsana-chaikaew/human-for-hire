@@ -68,6 +68,7 @@ def change_password(request):
 def edit_profile(request):
     # return render(request, 'userprofile/edit_profile2.html')
     user = User.objects.get(username=request.user.username)
+    p = user.profile
     userReq = request.user
     if request.method == 'POST':
         firstname = request.POST['firstname']
@@ -83,8 +84,6 @@ def edit_profile(request):
         except:
             imageFound = False
 
-        p = Profile()
-        p.user = user
         if firstname != "":
             user.first_name = firstname
 
