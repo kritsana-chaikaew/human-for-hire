@@ -12,7 +12,6 @@ class EditPostForm(forms.ModelForm):
             'end_date',
             'product_details',
             'location',
-            'price',
             'tags',
         )
 
