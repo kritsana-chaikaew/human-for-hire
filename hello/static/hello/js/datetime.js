@@ -6,6 +6,6 @@ $(".form-datetime").datetimepicker({
     fontAwesome: true
 });
 
-$('.datepicker').datepicker({
+$('.form-date').datepicker({
     format: "yyyy-mm-dd"
 });
