@@ -13,7 +13,7 @@ class Profile(models.Model):
             ('male', 'Male'),
             ('female', 'Female'),
         )
-    gender = models.TextField(max_length=10, choices=GENDER)
+    gender = models.CharField(max_length=10, choices=GENDER)
     birthday = models.DateField(default=datetime.date.today)
     bankaccount = models.CharField(max_length=200, blank=True)
     image = models.ImageField(upload_to='userImage', blank=True)
