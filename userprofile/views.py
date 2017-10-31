@@ -17,7 +17,7 @@ from django.core.files.images import ImageFile
 
 # Create your views here.
 # @login_required
-    
+
 
 @login_required(login_url='/login')
 def home(request):
