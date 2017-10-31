@@ -18,6 +18,9 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user)
 
+    def get_age(self):
+        return datetime.datetime.now().year - self.birthday.year
+
 # @receiver(post_save, sender=User)
 # def update_user_profile(sender, instance, created, **kwargs):
 #     if created:
