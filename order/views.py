@@ -10,6 +10,7 @@ from signupLogin.models import Profile
 from .models import Order
 
 
+@login_required(login_url='/login')
 def buy(request, pk):
     if request.method == 'POST':
         user = User.objects.get(id=request.user.id)
