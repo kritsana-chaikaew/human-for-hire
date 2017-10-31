@@ -12,8 +12,8 @@
         <h2>{{ user.first_name }}  {{ user.last_name }}, {{ age }}</h2>
         <div class="username">( {{ user }} )</div> </br>
         <br>
-        seller rate: ★★★☆☆ (3)</br>
-        buyer rate: ★★★☆☆ (3)</br></br></br>
+        seller rate: ★★★☆☆ ({{ user.profile.seller_rating }})</br>
+        buyer rate: ★★★☆☆ ({{ user.profile.buyer_rating }})</br></br></br>
         <div class="row" style="height:40px">
             <div class="col-sm-3"><b>Email:</b></div>
             <div class="col-sm-9">{{ user.email }}</div>

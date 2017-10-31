@@ -17,6 +17,8 @@ class Profile(models.Model):
     birthday = models.DateField(default=datetime.date.today)
     bankaccount = models.CharField(max_length=200, blank=True)
     image = models.ImageField(upload_to='userImage', blank=True)
+    seller_rating = models.IntegerField(null=True)
+    buyer_rating = models.IntegerField(null=True)
 
 
     def __str__(self):
