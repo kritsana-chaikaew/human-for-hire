@@ -1,5 +1,6 @@
 {% extends 'hello/base.html' %}
 {% load widget_tweaks %}
+{% load static %}
 
 {% block content %}
 <h3>Edit Post</h3>
@@ -12,18 +13,98 @@
 			{% endfor %}
 	    </ul>
     {% endif %}
-    {% for field in form %}
-		<div id="{{ field.auto_id }}_container form-group">
-			{{ field.help_text }}
-			<label class="form-control-label" for="id_{{ field.name }}">
-				{{ field.label }}
-			</label>
-			 {{ field|add_class:"form-control" }}
-			<div id="{{ field.auto_id }}_errors">
-				{{ field.errors }}
-			</div>
-		</div> <br>
-	{% endfor %}
+
+    <div id="{{ form.product_image.auto_id }}_container form-group">
+        {{ form.product_image.help_text }}
+	<label class="form-control-label" for="id_{{ form.product_image.name }}">
+	    {{ form.product_image.label }}
+	</label>
+	    {{ form.product_image|add_class:"form-control" }}
+	<div id="{{ form.product_image.auto_id }}_errors">
+	    {{ form.product_image.errors }}
+	</div>
+    </div> <br>
+
+    <div id="{{ form.product_name.auto_id }}_container form-group">
+        {{ form.product_name.help_text }}
+	<label class="form-control-label" for="id_{{ form.product_name.name }}">
+	    {{ form.product_name.label }}
+	</label>
+	    {{ form.product_name|add_class:"form-control" }}
+	<div id="{{ form.product_name.auto_id }}_errors">
+	    {{ form.product_name.errors }}
+	</div>
+    </div> <br>
+    
+    <div id="{{ form.start_date.auto_id }}_container form-group">
+        {{ form.start_date.help_text }}
+	<label class="form-control-label" for="id_{{ form.start_date.name }}">
+	    {{ form.start_date.label }}
+	</label>
+	    {{ form.start_date|add_class:"form-control" }}
+	<div id="{{ form.start_date.auto_id }}_errors">
+	    {{ form.start_date.errors }}
+	</div>
+    </div> <br>
+    
+    <div id="{{ form.end_date.auto_id }}_container form-group">
+        {{ form.end_date.help_text }}
+	<label class="form-control-label" for="id_{{ form.end_date.name }}">
+	    {{ form.end_date.label }}
+	</label>
+	    {{ form.end_date|add_class:"form-control" }}
+	<div id="{{ form.end_date.auto_id }}_errors">
+	    {{ form.end_date.errors }}
+	</div>
+    </div> <br>
+    
+    <div id="{{ form.product_details.auto_id }}_container form-group">
+        {{ form.product_details.help_text }}
+	<label class="form-control-label" for="id_{{ form.product_details.name }}">
+	    {{ form.product_details.label }}
+	</label>
+	    {{ form.product_details|add_class:"form-control" }}
+	<div id="{{ form.product_details.auto_id }}_errors">
+	    {{ form.product_details.errors }}
+	</div>
+    </div> <br>
+    
+    <div id="{{ form.location.auto_id }}_container form-group">
+        {{ form.location.help_text }}
+	<label class="form-control-label" for="id_{{ form.location.name }}">
+	    {{ form.location.label }}
+	</label>
+	    {{ form.location|add_class:"form-control" }}
+	<div id="{{ form.location.auto_id }}_errors">
+	    {{ form.location.errors }}
+	</div>
+    </div> <br>
+    
+    <div id="{{ form.price.auto_id }}_container form-group">
+        {{ form.price.help_text }}
+	<label class="form-control-label" for="id_{{ form.price.name }}">
+	    {{ form.price.label }}
+	</label>
+	    {{ form.price|add_class:"form-control" }}
+	<div id="{{ form.price.auto_id }}_errors">
+	    {{ form.price.errors }}
+	</div>
+    </div> <br>
+    
+    <div id="{{ form.tag.auto_id }}_container form-group">
+        {{ form.tag.help_text }}
+	<label class="form-control-label" for="id_{{ form.tag.name }}">
+	    {{ form.tag.label }}
+	</label>
+	    {{ form.tag|add_class:"form-control" }}
+	<div id="{{ form.tagauto_id }}_errors">
+	    {{ form.tag.errors }}
+	</div>
+    </div> <br>
+    
     <button class="btn btn-info hh-btn" type="submit">Submit</button>
 </form>
 {% endblock %}
+
+<script src="{% static "hello/js/datetime.js" %}"></script>
+
