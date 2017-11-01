@@ -103,6 +103,16 @@ body {
   color: #FFF;
 }
 
+.manage-status__WORKDONERATED {
+  background-color: #2db035;
+  color: #FFF;
+}
+
+.manage-status__WORKDONENOTRATED {
+  background-color: #2db035;
+  color: #FFF;
+}
+
 .manage-status__FAILED {
   background-color: #333;
   color: #FFF;
@@ -120,8 +130,29 @@ body {
 #hh-managework thead {
   margin-bottom: 30px;
 }
+
+.rate-link {
+  height: 100%;
+  width: 100%;
+}
+
+.status-block {
+  padding: 0;
+}
+
+.rate-work {
+  color: white;
+}
 /*END MANAGE*/
 
-/*.rating-radio {
-  margin-right: 10px;
-}*/
+
+/*START RATING*/
+#rate-username {
+  font-size: 2em;
+  font-weight: 700;
+}
+
+#rate-image {
+  width: 500px
+}
+/*END RATING*/

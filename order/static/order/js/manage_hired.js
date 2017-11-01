@@ -3,7 +3,17 @@ $(".manage-status__WAITINGFORWORK").hover(
     $(this).addClass('workdone-hover');
       $(this).text("MARK AS DONE");
   }, function() {
-    $(this).text("WAITING FOR WORK DONE");
+    $(this).text("WAITING FOR WORK");
+  }
+);
+
+$(".manage-status__WORKDONENOTRATED").hover(
+  function() {
+    $(this).addClass('workdone-hover');
+    var order_no = $(this).attr('order')
+    $(this).html('<a class="rate-work" href="/rate_employee/' + order_no + '">RATE</a>');
+  }, function() {
+    $(this).text("WORK DONE NOT RATED");
   }
 );
 

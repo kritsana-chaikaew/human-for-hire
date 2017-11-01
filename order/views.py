@@ -9,7 +9,7 @@ from post.models import Product
 from signupLogin.models import Profile
 from .models import Order
 
-from enum import Enum
+from signupLogin.models import Profile
 
 TO_BE_ACCEPTED = 0
 WAITING_FOR_WORK = 1
@@ -121,22 +121,43 @@ def cancel_work(request):
         data['success'] = False
     return JsonResponse(data)
 
-def rate_employee(request, order_no, username):
+def rate_employee(request, order_no):
     request.session['order_no'] = order_no
-    request.session['username'] = username
-    print(request.session['order_no'])
-    print(request.session['username'])
+    request.session['user_type'] = 'employee'
+    return redirect('/rate/')
+
+def rate_employer(request, order_no):
+    request.session['order_no'] = order_no
+    request.session['user_type'] = 'employer'
+    return redirect('/rate/')
+
+def rate(request):
+    try:
+        order_no = request.session['order_no']
+        user_type = request.session['user_type']
+    except:
+        order_no = None
+        user_type = None
+
+    if order_no != None:
+        od = Order.objects.get(order_no=order_no)
+    else:
+        return render(request, 'order/fail.html')
+
+    if user_type == 'employee':
+        who = od.seller_username
+        product_name = od.product_no.product_name
+        image = od.product_no.product_image
+        detail = od.product_no.product_details
+    elif user_type == 'employer':
+        who = od.buyer_username
+        product_name = ''
+        image = Profile.objects.get(user=od.buyer_username).image
+        detail = od.detail
 
     if request.method == 'POST':
-        print(request.POST['rating'])
-    return render(request,'order/rate_employee.html',{})
+        print('rate: ' + request.POST['rating'])
 
-def rate_employer(request, order_no, username):
-    request.session['order_no'] = order_no
-    request.session['username'] = username
-    print(request.session['order_no'])
-    print(request.session['username'])
+    args = {'user_type': user_type, 'username': who, 'product_name': product_name, 'image': image, 'detail': detail}
 
-    if request.method == 'POST':
-        print(request.POST['rating'])
-    return render(request,'order/rate_employer.html',{})
+    return render(request, 'order/rate.html', args)
