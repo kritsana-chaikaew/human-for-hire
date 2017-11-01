@@ -9,6 +9,7 @@
   {% endif %}
   <img id="rate-image" src="{{ image.url }}">
   <p id="rate-detail">Detail: {{ detail }}</p>
+  <p id="rate-rating">Rating: {{ rating|floatformat:2 }}</p>
 
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}

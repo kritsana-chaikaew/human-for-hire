@@ -144,20 +144,44 @@ def rate(request):
     else:
         return render(request, 'order/fail.html')
 
+
     if user_type == 'employee':
         who = od.seller_username
+        who_pf = Profile.objects.get(user=od.seller_username)
         product_name = od.product_no.product_name
         image = od.product_no.product_image
         detail = od.product_no.product_details
+        rating = who_pf.sell_rating
     elif user_type == 'employer':
         who = od.buyer_username
+        who_pf = Profile.objects.get(user=od.buyer_username)
         product_name = ''
-        image = Profile.objects.get(user=od.buyer_username).image
+        image = who_pf.image
         detail = od.detail
+        rating = who_pf.buy_rating
+
 
     if request.method == 'POST':
-        print('rate: ' + request.POST['rating'])
+        score = int(request.POST['rating'])
+        if user_type == 'employee':
+            pf = Profile.objects.get(user=od.seller_username)
+            pf.sell_rating = ((pf.sell_rating * pf.sell_rating_count) + score) / (pf.sell_rating_count + 1)
+            pf.sell_rating_count = pf.sell_rating_count + 1
+            pf.save()
+        if user_type == 'employer':
+            pf = Profile.objects.get(user=od.buyer_username)
+            pf.buy_rating = ((pf.buy_rating * pf.buy_rating_count) + score) / (pf.buy_rating_count + 1)
+            pf.buy_rating_count = pf.buy_rating_count + 1
+            pf.save()
 
-    args = {'user_type': user_type, 'username': who, 'product_name': product_name, 'image': image, 'detail': detail}
+        request.session['order_no'] = None
+        request.session['user_type'] = None
 
+        if user_type == 'employee':
+            return redirect('/manage-hired')
+        if user_type == 'employer':
+            return redirect('/manage-work')
+
+
+    args = {'user_type': user_type, 'username': who, 'product_name': product_name, 'image': image, 'detail': detail, 'rating': rating}
     return render(request, 'order/rate.html', args)

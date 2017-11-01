@@ -12,6 +12,10 @@ class Profile(models.Model):
     birthday = models.DateField(default=datetime.date.today)
     bankaccount = models.CharField(max_length=200, blank=True)
     image = models.ImageField(upload_to='userImage', blank=True)
+    buy_rating = models.FloatField(default=0)
+    buy_rating_count = models.FloatField(default=0)
+    sell_rating = models.FloatField(default=0)
+    sell_rating_count = models.FloatField(default=0)
 
 # @receiver(post_save, sender=User)
 # def update_user_profile(sender, instance, created, **kwargs):
