@@ -13,24 +13,34 @@
         <h2>{{ product.product_name }}</h2> <div class="posted-by">posted by: {{ product.seller_username }} </div> </br>
         <p>{{product.product_details }}</p>
         <p>
-            <h6>Avaliable Days</h6>
-            {{ product.start_date }} - {{ product.end_date }}
+          <h6>Name</h6>
+          {{ product.seller_username.first_name }}  {{ product.seller_username.last_name }}
         </p>
         <p>
-            <h6>Location</h6>
-            {{ product.location }}
+          <h6>Avaliable Days</h6>
+          {{ product.start_date }} - {{ product.end_date }}
         </p>
         <p>
-            <h6>Tag</h6>
+          <h6>Location</h6>
+          {{ product.location }}
+        </p>
+        <p>
+          <h6>Tag</h6>
             {% for tag in product.tags.all %}
-              <a href='/tags/{{ tag }}/'>
+              <a class="btn btn-light btn-sm" role="button" href='/tags/{{ tag }}/'>
                 {{ tag }}
               </a>
             {% endfor %}
         </p>
         <p>
-            <h6>Price (per hour) </h6>
-            {{ product.price }} ฿
+          <a href='/product/{{ product.product_no }}/delete'>
+            Delete
+          </a>
+        </p>
+        <p>
+          <a href="/product/{{  product.product_no }}/edit/">
+            Edit
+          </a>
         </p>
     </div>
 </div>

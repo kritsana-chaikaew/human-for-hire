@@ -20,6 +20,7 @@ WORK_DONE_RATED = 5
 FAILED = 6
 CANCELLED = 7
 
+@login_required(login_url='/login')
 def buy(request, pk):
     if request.method == 'POST':
         user = User.objects.get(id=request.user.id)

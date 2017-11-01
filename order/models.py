@@ -11,7 +11,6 @@ class Order(models.Model):
     order_no = models.IntegerField(primary_key=True)
     product_no = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     buyer_username = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='buyer')
-    seller_username = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='seller')
     purchase_date = models.DateTimeField(default=datetime.datetime.now())
     location = models.CharField(max_length=250, default='location')
     price = models.IntegerField(default=0)
@@ -31,4 +30,7 @@ class Order(models.Model):
     status = models.PositiveSmallIntegerField(choices=STATUS_CODE, default=0)
 
     def __str__(self):
-        return str(self.order_no) + '_' + str(self.buyer_username)
+        return str(self.order_no) + '_' + str(self.buyer_username) 
+
+    def get_seller_username(self):
+        return self.product_no.seller_username

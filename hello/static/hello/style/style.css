@@ -143,8 +143,16 @@ body {
 .rate-work {
   color: white;
 }
-/*END MANAGE*/
 
+#block_container{
+  text-align:center;
+}
+#bloc1, #bloc2{
+  font-size: 14px;
+  color: #666;
+  display:inline;
+}
+/*END MANAGE*/
 
 /*START RATING*/
 #rate-username {
