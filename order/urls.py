@@ -13,4 +13,7 @@ urlpatterns = [
     url(r'^ajax/buyer_confirm_workdone/$', views.buyer_confirm_workdone, name='buyer_confirm_workdone'),
     url(r'^ajax/seller_confirm_workdone/$', views.seller_confirm_workdone, name='seller_confirm_workdone'),
     url(r'^ajax/cancel_work/$', views.cancel_work, name='cancel_work'),
+
+    url(r'^rate_employee/(?P<order_no>[0-9]+)/(?P<username>[a-zA-Z0-9_-]+)/$', login_required(views.rate_employee), name='rate_employee'),
+    url(r'^rate_employer/(?P<order_no>[0-9]+)/(?P<username>[a-zA-Z0-9_-]+)/$', login_required(views.rate_employer), name='rate_employer'),
 ]

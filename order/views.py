@@ -9,6 +9,16 @@ from post.models import Product
 from signupLogin.models import Profile
 from .models import Order
 
+from enum import Enum
+
+TO_BE_ACCEPTED = 0
+WAITING_FOR_WORK = 1
+WAIT_BUYER_MARK_DONE = 2
+WAIT_SELLER_MARK_DONE = 3
+WORK_DONE_NOT_RATE = 4
+WORK_DONE_RATED = 5
+FAILED = 6
+CANCELLED = 7
 
 def buy(request, pk):
     if request.method == 'POST':
@@ -21,7 +31,7 @@ def buy(request, pk):
         location = request.POST['location']
         price = request.POST['price']
         # bankaccount = request.POST['bankaccount']
-        
+
         o = Order()
         o.buyer_username = user
         o.seller_username = seller_user
@@ -31,7 +41,7 @@ def buy(request, pk):
         o.detail = detail
         o.location = location
         o.price = price
-        o.status = 0
+        o.status = TO_BE_ACCEPTED
         o.save()
         return render(request,'order/buy_success.html',{})
     return render(request,'order/order.html',{})
@@ -56,7 +66,7 @@ def accept_work(request):
     }
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
-        o.status = 1;
+        o.status = WAITING_FOR_WORK;
         o.save()
     except:
         data['success'] = False
@@ -69,10 +79,11 @@ def seller_confirm_workdone(request):
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
         print("hie")
-        if o.status == 3:
-            o.status = 4
-        elif o.status == 1:
-            o.status = 2
+        print(o.status)
+        if o.status == WAITING_FOR_WORK:
+            o.status = WAIT_BUYER_MARK_DONE
+        elif o.status == WAIT_SELLER_MARK_DONE:
+            o.status = WORK_DONE_NOT_RATE
         else:
             raise ValueError('Can not be done.')
         o.save()
@@ -86,10 +97,11 @@ def buyer_confirm_workdone(request):
     }
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
-        if o.status == 2:
-            o.status = 4
-        elif o.status == 1:
-            o.status = 3
+        print(o.status)
+        if o.status == WAITING_FOR_WORK:
+            o.status = WAIT_SELLER_MARK_DONE
+        elif o.status == WAIT_BUYER_MARK_DONE:
+            o.status = WORK_DONE_NOT_RATE
         else:
             raise ValueError('Can not be done.')
         o.save()
@@ -103,8 +115,28 @@ def cancel_work(request):
     }
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
-        o.status = 6;
+        o.status = CANCELLED;
         o.save()
     except:
         data['success'] = False
     return JsonResponse(data)
+
+def rate_employee(request, order_no, username):
+    request.session['order_no'] = order_no
+    request.session['username'] = username
+    print(request.session['order_no'])
+    print(request.session['username'])
+
+    if request.method == 'POST':
+        print(request.POST['rating'])
+    return render(request,'order/rate_employee.html',{})
+
+def rate_employer(request, order_no, username):
+    request.session['order_no'] = order_no
+    request.session['username'] = username
+    print(request.session['order_no'])
+    print(request.session['username'])
+
+    if request.method == 'POST':
+        print(request.POST['rating'])
+    return render(request,'order/rate_employer.html',{})

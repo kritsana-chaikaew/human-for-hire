@@ -18,7 +18,7 @@ body {
 .product:before {
   content: "";
   display: block;
-  padding-top: 133.33%; 
+  padding-top: 133.33%;
 }
 
 .product-container {
@@ -121,3 +121,7 @@ body {
   margin-bottom: 30px;
 }
 /*END MANAGE*/
+
+/*.rating-radio {
+  margin-right: 10px;
+}*/

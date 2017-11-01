@@ -23,11 +23,12 @@ class Order(models.Model):
             (1, 'WAITING FOR WORK'),
             (2, 'WAIT BUYER MARK DONE'),
             (3, 'WAIT SELLER MARK DONE'),
-            (4, 'WORK DONE'),
-            (5, 'FAILED'),
-            (6, 'CANCELLED')
+            (4, 'WORK DONE NOT RATED'),
+            (5, 'WORK DONE RATED'),
+            (6, 'FAILED'),
+            (7, 'CANCELLED'),
         )
     status = models.PositiveSmallIntegerField(choices=STATUS_CODE, default=0)
 
     def __str__(self):
-        return str(self.order_no) + '_' + str(self.buyer_username) 
+        return str(self.order_no) + '_' + str(self.buyer_username)
