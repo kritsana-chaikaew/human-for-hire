@@ -14,16 +14,6 @@
   </ul>
   {% endif %}
 
-  <div class="form-group" id="{{ form.product_image.auto_id }}_container">
-    <label class="form-control-label" for="id_{{ form.product_image.name }}">
-      {{ form.product_image.label }}
-    </label>
-    {{ form.product_image|add_class:"form-control" }}
-    <div id="{{ form.product_image.auto_id }}_errors">
-      {{ form.product_image.errors }}
-    </div>
-  </div>
-
   <div class="form-group" id="{{ form.product_name.auto_id }}_container">
     <label class="form-control-label" for="id_{{ form.product_name.name }}">
       {{ form.product_name.label }}
@@ -31,6 +21,36 @@
     {{ form.product_name|add_class:"form-control" }}
     <div id="{{ form.product_name.auto_id }}_errors">
       {{ form.product_name.errors }}
+    </div>
+  </div>
+
+  <div class="form-group" id="{{ form.product_image.auto_id }}_container">
+    <label class="form-control-label" for="id_{{ form.product_image.name }}">
+      {{ form.product_image.label }}
+    </label><br>
+    {{ form.product_image|add_class:"form-control input-group" }}
+    <div id="{{ form.product_image.auto_id }}_errors">
+      {{ form.product_image.errors }}
+    </div>
+  </div>
+
+  <div class="form-group" id="{{ form.product_details.auto_id }}_container">
+    <label class="form-control-label" for="id_{{ form.product_details.name }}">
+      {{ form.product_details.label }}
+    </label>
+    {{ form.product_details|add_class:"form-control" }}
+    <div id="{{ form.product_details.auto_id }}_errors">
+      {{ form.product_details.errors }}
+    </div>
+  </div>
+
+  <div class="form-group" id="{{ form.price.auto_id }}_container">
+    <label class="form-control-label" for="id_{{ form.price.name }}">
+      {{ form.price.label }}
+    </label>
+    {{ form.price|add_class:"form-control" }}
+    <div id="{{ form.price.auto_id }}_errors">
+      {{ form.price.errors }}
     </div>
   </div>
 
@@ -62,16 +82,6 @@
     </div>
   </div>
 
-  <div class="form-group" id="{{ form.product_details.auto_id }}_container">
-    <label class="form-control-label" for="id_{{ form.product_details.name }}">
-      {{ form.product_details.label }}
-    </label>
-    {{ form.product_details|add_class:"form-control" }}
-    <div id="{{ form.product_details.auto_id }}_errors">
-      {{ form.product_details.errors }}
-    </div>
-  </div>
-
   <div class="form-group" id="{{ form.location.auto_id }}_container">
     <label class="form-control-label" for="id_{{ form.location.name }}">
       {{ form.location.label }}
@@ -82,23 +92,13 @@
     </div>
   </div>
 
-  <div class="form-group" id="{{ form.price.auto_id }}_container">
-    <label class="form-control-label" for="id_{{ form.price.name }}">
-      {{ form.price.label }}
+  <div class="form-group" id="{{ form.tags.auto_id }}_container">
+    <label class="form-control-label" for="id_{{ form.tags.name }}">
+      {{ form.tags.label }}
     </label>
-    {{ form.price|add_class:"form-control" }}
-    <div id="{{ form.price.auto_id }}_errors">
-      {{ form.price.errors }}
-    </div>
-  </div>
-
-  <div class="form-group" id="{{ form.tag.auto_id }}_container">
-    <label class="form-control-label" for="id_{{ form.tag.name }}">
-      {{ form.tag.label }}
-    </label>
-    {{ form.tag|add_class:"form-control" }}
-    <div id="{{ form.tagauto_id }}_errors">
-      {{ form.tag.errors }}
+    {{ form.tags|add_class:"form-control" }}
+    <div id="{{ form.tags.auto_id }}_errors">
+      {{ form.tags.errors }}
     </div>
   </div>
 

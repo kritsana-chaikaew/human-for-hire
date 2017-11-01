@@ -13,11 +13,11 @@ class Product(models.Model):
     product_image = models.ImageField(upload_to='img')
     product_details = models.CharField(max_length=2000, default='product details')
     price = models.IntegerField(default=0)
-    location = models.CharField(max_length=250, default='location')
-    tags = TaggableManager(blank=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     init_date = models.DateTimeField(default=timezone.now)
+    location = models.CharField(max_length=250, default='location')
+    tags = TaggableManager(blank=True)
 
     def __str__(self):
         return str(self.product_no) + "_" + self.product_name
