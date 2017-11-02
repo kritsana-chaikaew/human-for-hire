@@ -17,17 +17,26 @@ class Order(models.Model):
     detail = models.CharField(max_length=250, default='datail')
     start_date = models.DateTimeField(default=datetime.datetime.now())
     end_date = models.DateTimeField(default=datetime.datetime.now())
-    STATUS_CODE = (
-            (0, 'TO BE ACCEPTED'),
-            (1, 'WAITING FOR WORK'),
-            (2, 'WAIT BUYER MARK DONE'),
-            (3, 'WAIT SELLER MARK DONE'),
-            (4, 'WORK DONE NOT RATED'),
-            (5, 'WORK DONE RATED'),
-            (6, 'FAILED'),
-            (7, 'CANCELLED'),
+
+    TO_BE_ACCEPTED = 0
+    WAITING_FOR_WORK = 1
+    WAIT_BUYER_MARK_DONE = 2
+    WAIT_SELLER_MARK_DONE = 3
+    WORK_DONE_NOT_RATE = 4
+    WORK_DONE_RATED = 5
+    FAILED = 6
+    CANCELLED = 7
+    STATUS_CODE_CHOICES = (
+            (TO_BE_ACCEPTED, 'TO BE ACCEPTED'),
+            (WAITING_FOR_WORK, 'WAITING FOR WORK'),
+            (WAIT_BUYER_MARK_DONE, 'WAIT BUYER MARK DONE'),
+            (WAIT_SELLER_MARK_DONE, 'WAIT SELLER MARK DONE'),
+            (WORK_DONE_NOT_RATE, 'WORK DONE NOT RATED'),
+            (WORK_DONE_RATED, 'WORK DONE RATED'),
+            (FAILED, 'FAILED'),
+            (CANCELLED, 'CANCELLED'),
         )
-    status = models.PositiveSmallIntegerField(choices=STATUS_CODE, default=0)
+    status = models.PositiveSmallIntegerField(choices=STATUS_CODE_CHOICES, default=TO_BE_ACCEPTED)
 
     def __str__(self):
         return str(self.order_no) + '_' + str(self.buyer_username) 

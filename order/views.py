@@ -11,15 +11,6 @@ from .models import Order
 
 from signupLogin.models import Profile
 
-TO_BE_ACCEPTED = 0
-WAITING_FOR_WORK = 1
-WAIT_BUYER_MARK_DONE = 2
-WAIT_SELLER_MARK_DONE = 3
-WORK_DONE_NOT_RATE = 4
-WORK_DONE_RATED = 5
-FAILED = 6
-CANCELLED = 7
-
 @login_required(login_url='/login')
 def buy(request, pk):
     if request.method == 'POST':
@@ -41,7 +32,7 @@ def buy(request, pk):
         o.detail = detail
         o.location = location
         o.price = price
-        o.status = TO_BE_ACCEPTED
+        o.status = Order.TO_BE_ACCEPTED
         o.save()
         return render(request,'order/buy_success.html',{})
     return render(request,'order/order.html',{})
@@ -80,10 +71,10 @@ def seller_confirm_workdone(request):
         o = Order.objects.get(order_no=request.GET.get('order_no'))
         print("hie")
         print(o.status)
-        if o.status == WAITING_FOR_WORK:
-            o.status = WAIT_BUYER_MARK_DONE
-        elif o.status == WAIT_SELLER_MARK_DONE:
-            o.status = WORK_DONE_NOT_RATE
+        if o.status == Order.WAITING_FOR_WORK:
+            o.status = Order.WAIT_BUYER_MARK_DONE
+        elif o.status == Order.WAIT_SELLER_MARK_DONE:
+            o.status = Order.WORK_DONE_NOT_RATE
         else:
             raise ValueError('Can not be done.')
         o.save()
@@ -98,10 +89,10 @@ def buyer_confirm_workdone(request):
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
         print(o.status)
-        if o.status == WAITING_FOR_WORK:
-            o.status = WAIT_SELLER_MARK_DONE
-        elif o.status == WAIT_BUYER_MARK_DONE:
-            o.status = WORK_DONE_NOT_RATE
+        if o.status == Order.WAITING_FOR_WORK:
+            o.status = Order.WAIT_SELLER_MARK_DONE
+        elif o.status == Order.WAIT_BUYER_MARK_DONE:
+            o.status = Order.WORK_DONE_NOT_RATE
         else:
             raise ValueError('Can not be done.')
         o.save()
@@ -115,7 +106,7 @@ def cancel_work(request):
     }
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
-        o.status = CANCELLED;
+        o.status = Order.CANCELLED;
         o.save()
     except:
         data['success'] = False
