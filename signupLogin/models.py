@@ -21,8 +21,6 @@ class Profile(models.Model):
     buy_rating_count = models.FloatField(default=0)
     sell_rating = models.FloatField(default=0)
     sell_rating_count = models.FloatField(default=0)
-    # seller_rating = models.FloatField(null=True, blank=True)
-    # buyer_rating = models.FloatField(null=True, blank=True)
 
 
     def __str__(self):

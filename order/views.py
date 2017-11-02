@@ -35,7 +35,6 @@ def buy(request, pk):
 
         o = Order()
         o.buyer_username = user
-        o.seller_username = seller_user
         o.product_no = product
         o.start_date = start_date
         o.end_date = end_date
@@ -52,7 +51,7 @@ class WorkView(generic.ListView):
     context_object_name = 'work_list'
 
     def get_queryset(self):
-        return Order.objects.filter(seller_username=self.request.user.id)
+        return Order.objects.filter(product_no__seller_username=self.request.user.id)
 
 class HiredView(generic.ListView):
     template_name = 'order/manage_hired.html'
@@ -147,8 +146,8 @@ def rate(request):
 
 
     if user_type == 'employee':
-        who = od.seller_username
-        who_pf = Profile.objects.get(user=od.seller_username)
+        who = od.product_no.seller_username
+        who_pf = Profile.objects.get(user=od.product_no.seller_username)
         product_name = od.product_no.product_name
         image = od.product_no.product_image
         detail = od.product_no.product_details
@@ -165,7 +164,7 @@ def rate(request):
     if request.method == 'POST':
         score = int(request.POST['rating'])
         if user_type == 'employee':
-            pf = Profile.objects.get(user=od.seller_username)
+            pf = Profile.objects.get(user=od.product_no.seller_username)
             pf.sell_rating = ((pf.sell_rating * pf.sell_rating_count) + score) / (pf.sell_rating_count + 1)
             pf.sell_rating_count = pf.sell_rating_count + 1
             pf.save()
