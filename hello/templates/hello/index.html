@@ -50,6 +50,8 @@
 	</div>
 </form>
 
+<h1 id="log"></h1>
+
 <script>
 	$(function() {
 		$("#tagInput").autocomplete({
@@ -80,26 +82,33 @@
     	var div = this.parentElement;
     	div.style.display = "none";
   	}
-}
+	}
 
 // Create a new list item when clicking on the "Add" button
 	function newElement() {
   	var li = document.createElement("li");
+		var a = document.createElement("a");
   	var inputValue = document.getElementById("tagInput").value;
   	var t = document.createTextNode(inputValue);
-  	li.appendChild(t);
+
+  	a.appendChild(t);
+		a.href = "/tags/"+inputValue+"/";
+		a.role = "button"
+		a.className = "btn btn-light btn-sm";
+		li.appendChild(a);
+
   	if (inputValue === '') {
     	alert("You must write something!");
   	} else {
-    	document.getElementById("myUL").appendChild(li);
+			var span = document.createElement("SPAN");
+			var txt = document.createTextNode("\u00D7");
+
+			span.className = "close"
+			span.appendChild(txt);
+			li.appendChild(span);
+			document.getElementById("myUL").appendChild(li);
   	}
   	document.getElementById("tagInput").value = "";
-
-  	var span = document.createElement("SPAN");
-  	var txt = document.createTextNode("\u00D7");
-  	span.className = "close";
-  	span.appendChild(txt);
-  	li.appendChild(span);
 
   	for (i = 0; i < close.length; i++) {
     	close[i].onclick = function() {
@@ -110,6 +119,14 @@
 	}
 
 </script>
+
+<style>
+	ul#myUL li{
+  	display:inline;
+		float:left;
+		list-style:none;
+	}
+</style>
 
 
 <dt class="recent"><strong>recent posts</strong></dt>
