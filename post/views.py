@@ -7,9 +7,12 @@ from django.contrib.auth.models import User
 from .models import Product
 from .forms import EditPostForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 import taggit
 
+
+@login_required(login_url='/login')
 def post(request):
     return render(request,'post.html',{})
 
@@ -26,7 +29,6 @@ def action(request):
     product.start_date = request.POST['start_date']
     product.end_date = request.POST['end_date']
     product.product_details = request.POST['product_details']
-    product.price = request.POST['price']
     product.location = request.POST['location']
 
     product.save()

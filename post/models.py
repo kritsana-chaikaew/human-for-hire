@@ -15,7 +15,6 @@ class Product(models.Model):
     product_name = models.CharField(max_length=250, default='product name')
     product_image = models.ImageField(upload_to='img')
     product_details = models.CharField(max_length=2000, default='product details')
-    price = models.IntegerField(default=0)
     location = models.CharField(max_length=250, default='location')
     tags = TaggableManager(blank=True)
     start_date = models.DateTimeField(blank=True)

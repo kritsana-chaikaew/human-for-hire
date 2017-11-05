@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'order',
     'taggit',
     'storages',
+    'report',
 ]
 
 MIDDLEWARE = [

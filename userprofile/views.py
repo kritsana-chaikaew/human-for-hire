@@ -18,13 +18,15 @@ from django.core.files.images import ImageFile
 # Create your views here.
 # @login_required
 
+
 @login_required(login_url='/login')
 def home(request):
     return render(request, 'userprofile/home.html')
 
 @login_required(login_url='/login')
 def view_profile(request):
-    args = {'user': request.user}
+    p = Profile.objects.get(user=request.user)
+    args = {'user': request.user, 'age': p.get_age()}
     return render(request, 'userprofile/profile.html', args)
 
 # @login_required(login_url='/login')
@@ -66,6 +68,7 @@ def change_password(request):
 def edit_profile(request):
     # return render(request, 'userprofile/edit_profile2.html')
     user = User.objects.get(username=request.user.username)
+    p = user.profile
     userReq = request.user
     if request.method == 'POST':
         firstname = request.POST['firstname']
@@ -81,8 +84,6 @@ def edit_profile(request):
         except:
             imageFound = False
 
-        p = Profile()
-        p.user = user
         if firstname != "":
             user.first_name = firstname
 

@@ -13,6 +13,10 @@
         <h2>{{ product.product_name }}</h2> <div class="posted-by">posted by: {{ product.seller_username }} </div> </br>
         <p>{{product.product_details }}</p>
         <p>
+          <h6>Name</h6>
+          {{ product.seller_username.first_name }}  {{ product.seller_username.last_name }}
+        </p>
+        <p>
           <h6>Avaliable Days</h6>
           {{ product.start_date }} - {{ product.end_date }}
         </p>
@@ -27,10 +31,6 @@
                 {{ tag }}
               </a>
             {% endfor %}
-        </p>
-        <p>
-          <h6>Price (per hour) </h6>
-          {{ product.price }} ฿
         </p>
         <p>
           <a href='/product/{{ product.product_no }}/delete'>

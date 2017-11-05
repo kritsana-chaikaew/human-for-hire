@@ -17,11 +17,13 @@
 	{% if work_list %}
 		{% for work in work_list %}
 			<tr>
-			<td>{{work.seller_username}}</td> 
-			<td>{{work.detail}}</td>
-			<td>{{work.start_date}}</td>
-			<td>{{work.price}} THB</td>
-		    <td order="{{work.order_no}}" class="manage-status__{{work.get_status_display|cut:" "}}">{{work.get_status_display}}</td> 
+				<td>{{work.product_no.seller_username}}</td> 
+				<td>{{work.detail}}</td>
+				<td>{{work.start_date}}</td>
+				<td>{{work.price}} THB</td>
+				<td order="{{work.order_no}}" class="manage-status__{{work.get_status_display|cut:" "}} status-block">
+					{{work.get_status_display}}
+				</td>
 			</tr>
 		{% endfor %}
 	{% endif %}
@@ -31,7 +33,7 @@
 	      <td>20 Oct 2017</td>
 	      <td>2800 THB</td>
 	      <!-- Hover to show the button that can click to confirm -->
-	      <td class="manage-status__TOBEACCEPTED">TO BE ACCEPTED</td> 
+	      <td class="manage-status__TOBEACCEPTED">TO BE ACCEPTED</td>
 	    </tr>
 	    <tr>
 	      <td>Kritsana</td>
@@ -84,66 +86,5 @@
 	    </tr>
 	</tbody>
 </table>
-<script type="text/javascript">
-	$(".manage-status__TOBEACCEPTED").hover(
-		function() {
-			$(this).addClass('cancel-hover');
-		    $(this).text("CANCEL");
-		}, function() {
-			$(this).text("TO BE ACCEPTED");
-		}
-    );
-	$(".manage-status__WAITINGFORWORK").hover(
-		function() {
-			$(this).addClass('workdone-hover');
-		    $(this).text("MARK AS DONE");
-		}, function() {
-			$(this).text("WAITING FOR WORK DONE");
-		}
-    );
-	$(".manage-status__WAITBUYERMARKDONE").hover(
-		function() {
-			$(this).addClass('workdone-hover');
-		    $(this).text("MARK AS DONE");
-		}, function() {
-			$(this).text("WAIT BUYER MARK DONE");
-		}
-    );
-	$(".manage-status__TOBEACCEPTED").click(function(){
-		var element = this
-		$.ajax({
-			url: '/ajax/cancel_work',
-			data: {
-				'order_no': $(this).attr('order')
-			},
-			dataType: 'json',
-			success: function(data) {
-				if(data.success) {
-					$(element).attr("class", "manage-status__CANCELLED");
-					$(element).unbind();
-					$(element).text("CANCELLED")
-				}
-			}
-		});
-	});
-	function confirm_workdone(){
-		element = this
-		$.ajax({
-			url: '/ajax/buyer_confirm_workdone',
-			data: {
-				'order_no': $(this).attr('order')
-			},
-			dataType: 'json',
-			success: function(data) {
-				if(data.success) {
-					$(element).attr("class", "manage-status__WORKDONE");
-					$(element).unbind();
-					$(element).text("WORK DONE")
-				}
-			}
-		});
-	}
-	$(".manage-status__WAITINGFORWORK").click(confirm_workdone);
-	$(".manage-status__WAITBUYERMARKDONE").click(confirm_workdone);
-</script>
+<script type="text/javascript" src="../../static/order/js/manage_hired.js"></script>
 {% endblock %}
