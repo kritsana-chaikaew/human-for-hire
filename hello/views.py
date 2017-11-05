@@ -7,6 +7,7 @@ from django.utils import timezone
 import datetime
 
 from post.models import Product
+from taggit.models import Tag
 from signupLogin.models import Profile
 
 import json
@@ -23,6 +24,7 @@ class IndexView(generic.ListView):
             end_age = request.POST['end_age']
             first_date = request.POST['first_date']
             end_date = request.POST['end_date']
+            tag = request.POST['tag']
 
             if gender != "":
                 profile = Profile.objects.filter(gender=gender)
@@ -44,6 +46,8 @@ class IndexView(generic.ListView):
                 card = card.filter(start_date__gte=first_date)
             if end_date != "":
                 card = card.filter(end_date__lte=end_date)
+            if tag != "":
+                card = card.filter(tags__name=tag)
 
         args = {'product_list': card}
         return render(request, 'hello/index.html', args)
@@ -79,17 +83,16 @@ class TagResultView(generic.ListView):
 def get_tags(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
-        tags = Product.objects.filter(product_name__icontains = q )[:20]
+        tags = Tag.objects.filter(name__icontains = q )[:20]
         results = []
         for tag in tags:
             tag_json = {}
-            tag_json['id'] = tag.product_no
-            tag_json['label'] = tag.product_name
-            tag_json['value'] = tag.product_name
+            tag_json['id'] = tag.id
+            tag_json['label'] = tag.name
+            tag_json['value'] = tag.name
             results.append(tag_json)
         data = json.dumps(results)
     else:
         data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
-
