@@ -19,7 +19,7 @@
 			<tr>
 			<td>{{work.buyer_username}}</td>
 			<td>{{work.detail}}</td>
-			<td>{{work.start_date|date:'d M Y'}}</td>
+			<td>{{work.start_date|date:'d M y'}}</td>
 			<td>{{work.price}} THB</td>
 		    <td order="{{work.order_no}}" class="manage-status__{{work.get_status_display|cut:" "}}">{{work.get_status_display}}</td>
 			</tr>

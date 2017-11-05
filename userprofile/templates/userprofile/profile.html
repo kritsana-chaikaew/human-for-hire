@@ -10,7 +10,7 @@
 <p><b>Address:</b> {{ user.profile.address }}</p>
 <p><b>Gender:</b> {{ user.profile.gender }}</p>
 <p><b>Tel:</b> {{ user.profile.telephone }}</p>
-<p><b>Birthday:</b> {{ user.profile.birthday|date:'d M Y'}}</p>
+<p><b>Birthday:</b> {{ user.profile.birthday|date:'d M y'}}</p>
 <p><b>Bank Account:</b> {{ user.profile.bankaccount }}</p>
 <a class="btn btn-info hh-btn" role="button" href="/userprofile/profile/edit">Edit</a>
 {% endblock %}
