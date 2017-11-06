@@ -1,22 +1,21 @@
-# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 from django.db import models
-from post.models import Product
-import datetime
+from django.utils import timezone
 
-# Create your models here.
+from post.models import Product
+
 class Order(models.Model):
     order_no = models.IntegerField(primary_key=True)
     product_no = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     buyer_username = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='buyer')
-    purchase_date = models.DateTimeField(default=datetime.datetime.now())
+    purchase_date = models.DateTimeField(default=timezone.now)
     location = models.CharField(max_length=250, default='location')
     price = models.IntegerField(default=0)
     detail = models.CharField(max_length=250, default='datail')
-    start_date = models.DateTimeField(default=datetime.datetime.now())
-    end_date = models.DateTimeField(default=datetime.datetime.now())
+    start_date = models.DateTimeField(default=timezone.now)
+    end_date = models.DateTimeField(default=timezone.now)
 
     TO_BE_ACCEPTED = 0
     WAITING_FOR_WORK = 1

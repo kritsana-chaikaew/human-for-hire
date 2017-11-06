@@ -6,7 +6,7 @@
     <div class="col-12 col-md-4">
         <img class="img" src="{{ user.profile.image.url }}" width="350">
         <br><br>
-        <center><a class="btn btn-info hh-btn" role="button" href="/userprofile/profile/edit">Edit</a></center> 
+        <center><a class="btn btn-info hh-btn" role="button" href="/userprofile/profile/edit">Edit</a></center>
     </div>
     <div class="col-12 col-md-8">
         <h2>{{ user.first_name }} {{ user.last_name }}, {{ age }}</h2>
@@ -37,7 +37,7 @@
         </div>
         <div class="row" style="height:40px">
             <div class="col-sm-3"><b>Birthday:</b></div>
-            <div class="col-sm-9">{{ user.profile.birthday }}</div>
+            <div class="col-sm-9">{{ user.profile.birthday|date:'d M y'}}</div>
         </div>
         <div class="row" style="height:40px">
             <div class="col-sm-3"><b>Bank Account:</b></div>
