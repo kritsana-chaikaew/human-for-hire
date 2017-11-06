@@ -145,7 +145,7 @@ def rate(request):
     if order_no == None:
         request.session['order_no'] = None
         request.session['user_type'] = None
-        return render(request, 'order/fail.html', {'message':'Do not access link without clicking button!!!!!!!!'})
+        return render(request, 'order/fail.html', {'message':'Do not access link without clicking button...'})
 
     print('order_no: ' + order_no)
 
@@ -156,7 +156,7 @@ def rate(request):
     except:
         request.session['order_no'] = None
         request.session['user_type'] = None
-        return render(request, 'order/fail.html', {'message':"Don't try to hack url... haha"})
+        return render(request, 'order/fail.html', {'message':"Don't try to hack url..."})
 
 
     if user_type == 'employee':
