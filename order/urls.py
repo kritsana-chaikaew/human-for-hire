@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^rate_employee/(?P<order_no>.+)/$', login_required(views.rate_employee), name='rate_employee'),
     url(r'^rate_employer/(?P<order_no>.+)/$', login_required(views.rate_employer), name='rate_employer'),
     url(r'^rate/$', login_required(views.rate), name='rate'),
+    url(r'^rate/.+$', login_required(views.rate_wrong_url), name='rate_wrong_url'),
 ]

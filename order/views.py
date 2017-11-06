@@ -219,3 +219,6 @@ def rate(request):
 
     args = {'user_type': user_type, 'username': who, 'product_name': product_name, 'image': image, 'detail': detail, 'rating': rating}
     return render(request, 'order/rate.html', args)
+
+def rate_wrong_url(request):
+    return render(request, 'order/fail.html', {'message':"Sorry, wrong url..."})
