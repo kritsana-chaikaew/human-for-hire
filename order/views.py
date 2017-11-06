@@ -71,8 +71,10 @@ def seller_confirm_workdone(request):
         o = Order.objects.get(order_no=request.GET.get('order_no'))
         print("status seller_confirm_workdone: " + str(o.status))
         if o.status == Order.WAITING_FOR_WORK:
+            print('aaaaaaaa')
             o.status = Order.WAIT_BUYER_MARK_DONE
         elif o.status == Order.WAIT_SELLER_MARK_DONE:
+            print('bbbbbbbb')
             o.status = Order.WORK_DONE
         else:
             raise ValueError('Can not be done.')
@@ -89,8 +91,10 @@ def buyer_confirm_workdone(request):
         o = Order.objects.get(order_no=request.GET.get('order_no'))
         print("status buyer_confirm_workdone: " + str(o.status))
         if o.status == Order.WAITING_FOR_WORK:
+            print('aaaaaaaa')
             o.status = Order.WAIT_SELLER_MARK_DONE
         elif o.status == Order.WAIT_BUYER_MARK_DONE:
+            print('bbbbbbbb')
             o.status = Order.WORK_DONE
         else:
             raise ValueError('Can not be done.')
@@ -158,11 +162,29 @@ def rate(request):
             pf.sell_rating = ((pf.sell_rating * pf.sell_rating_count) + score) / (pf.sell_rating_count + 1)
             pf.sell_rating_count = pf.sell_rating_count + 1
             pf.save()
+            try:
+                o = Order.objects.get(order_no=order_no)
+                if o.status == Order.WAITING_FOR_WORK:
+                    o.status = Order.WAIT_SELLER_MARK_DONE
+                elif o.status == Order.WAIT_BUYER_MARK_DONE:
+                    o.status = Order.WORK_DONE
+                o.save()
+            except:
+                print('cannot rate employee')
         if user_type == 'employer':
             pf = Profile.objects.get(user=od.buyer_username)
             pf.buy_rating = ((pf.buy_rating * pf.buy_rating_count) + score) / (pf.buy_rating_count + 1)
             pf.buy_rating_count = pf.buy_rating_count + 1
             pf.save()
+            try:
+                o = Order.objects.get(order_no=order_no)
+                if o.status == Order.WAITING_FOR_WORK:
+                    o.status = Order.WAIT_BUYER_MARK_DONE
+                elif o.status == Order.WAIT_SELLER_MARK_DONE:
+                    o.status = Order.WORK_DONE
+                o.save()
+            except:
+                print('cannot rate employer')
 
         request.session['order_no'] = None
         request.session['user_type'] = None

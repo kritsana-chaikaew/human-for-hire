@@ -21,9 +21,7 @@ class Order(models.Model):
     WAITING_FOR_WORK = 1
     WAIT_BUYER_MARK_DONE = 2
     WAIT_SELLER_MARK_DONE = 3
-    # WORK_DONE_NOT_RATE = 4
-    # WORK_DONE_RATED = 5
-    WORK_DONE_RATED = 4
+    WORK_DONE = 4
     FAILED = 5
     CANCELLED = 6
     STATUS_CODE_CHOICES = (
@@ -31,9 +29,7 @@ class Order(models.Model):
             (WAITING_FOR_WORK, 'WAITING FOR WORK'),
             (WAIT_BUYER_MARK_DONE, 'WAIT BUYER MARK DONE'),
             (WAIT_SELLER_MARK_DONE, 'WAIT SELLER MARK DONE'),
-            # (WORK_DONE_NOT_RATE, 'WORK DONE NOT RATED'),
-            # (WORK_DONE_RATED, 'WORK DONE RATED'),
-            (WORK_DONE_RATED, 'WORK DONE'),
+            (WORK_DONE, 'WORK DONE'),
             (FAILED, 'FAILED'),
             (CANCELLED, 'CANCELLED'),
         )
