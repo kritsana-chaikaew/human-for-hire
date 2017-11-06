@@ -143,8 +143,6 @@ def rate(request):
         user_type = None
 
     if order_no == None:
-        request.session['order_no'] = None
-        request.session['user_type'] = None
         return render(request, 'order/fail.html', {'message':'Do not access link without clicking button...'})
 
     print('order_no: ' + order_no)
