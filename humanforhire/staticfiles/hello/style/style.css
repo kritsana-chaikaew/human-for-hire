@@ -73,29 +73,47 @@ body {
 }*/
 
 /*START MANAGE*/
-.manage-status__waitingforwork {
+.manage-status__WAITINGFORWORK {
 }
 
-.manage-status__tobeaccepted {
+.workdone-hover:hover {
+  cursor: pointer;
+  background-color: #2db035;
+  color: #FFF;
+}
+.cancel-hover:hover {
+  cursor: pointer;
+  background-color: #ff3333;
+  color: #FFF;
+}
+.accept-hover:hover {
+  cursor: pointer;
+  background-color: #fcdc42;
+}
+.manage-status__ACCEPTED {
   background-color: #fcdc42;
 }
 
-.manage-status__workdone {
+.manage-status__TOBEACCEPTED {
+  background-color: #fcdc42;
+}
+
+.manage-status__WORKDONE {
   background-color: #2db035;
   color: #FFF;
 }
 
-.manage-status__failed {
+.manage-status__FAILED {
   background-color: #333;
   color: #FFF;
 }
 
-.manage-status__cancelled {
+.manage-status__CANCELLED {
   background-color: #333;
   color: #FFF;
 }
 
-#hh-managework td {
+#hh-managework td, #hh-managehired td,#hh-managework th, #hh-managehired th {
   border: 1px solid black;
 }
 
