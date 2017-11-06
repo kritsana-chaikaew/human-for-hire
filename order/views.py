@@ -11,6 +11,15 @@ from .models import Order
 
 from signupLogin.models import Profile
 
+import base64
+import urllib.parse
+
+def stringToBase64(s):
+    return base64.b64encode(s.encode('utf-8'))
+
+def base64ToString(b):
+    return base64.b64decode(b).decode('utf-8')
+
 @login_required(login_url='/login')
 def buy(request, pk):
     if request.method == 'POST':
@@ -129,14 +138,20 @@ def rate(request):
     try:
         order_no = request.session['order_no']
         user_type = request.session['user_type']
+
     except:
         order_no = None
         user_type = None
 
-    if order_no != None:
+    if order_no == None:
+        return render(request, 'order/fail.html', {'message':'Do not access link without clicking button!!!!!!!!'})
+
+    try:
+        order_no = str(int((int(base64ToString(urllib.parse.unquote(order_no))) + 5555) / 9876))
+        print('order_no: ' + order_no)
         od = Order.objects.get(order_no=order_no)
-    else:
-        return render(request, 'order/fail.html')
+    except:
+        return render(request, 'order/fail.html', {'message':"Don't try to hack url... haha"})
 
 
     if user_type == 'employee':
@@ -186,8 +201,10 @@ def rate(request):
             except:
                 print('cannot rate employer')
 
+
         request.session['order_no'] = None
         request.session['user_type'] = None
+
 
         if user_type == 'employee':
             return redirect('/manage-hired')

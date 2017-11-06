@@ -11,7 +11,8 @@ $(".manage-status__WAITINGFORWORK").hover(
   function() {
     $(this).addClass('workdone-hover');
     var order_no = $(this).attr('order')
-    $(this).html('<a class="rate-work" href="/rate_employee/' + order_no + '">CONFIRM WORK DONE</a>');
+    order_no = Number(order_no) * 9876 - 5555
+    $(this).html('<a class="rate-work" href="/rate_employee/' + btoa(order_no) + '">CONFIRM WORK DONE</a>');
   }, function() {
     $(this).text("WAITING FOR WORK");
   }
@@ -21,7 +22,8 @@ $(".manage-status__WAITBUYERMARKDONE").hover(
   function() {
     $(this).addClass('workdone-hover');
     var order_no = $(this).attr('order')
-    $(this).html('<a class="rate-work" href="/rate_employee/' + order_no + '">CONFIRM WORK DONE</a>');
+    order_no = Number(order_no) * 9876 - 5555
+    $(this).html('<a class="rate-work" href="/rate_employee/' + btoa(order_no) + '">CONFIRM WORK DONE</a>');
   }, function() {
     $(this).text("WAIT BUYER MARK DONE");
   }
