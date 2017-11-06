@@ -57,7 +57,7 @@ def accept_work(request):
     }
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
-        o.status = WAITING_FOR_WORK;
+        o.status = Order.WAITING_FOR_WORK;
         o.save()
     except:
         data['success'] = False
@@ -69,12 +69,11 @@ def seller_confirm_workdone(request):
     }
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
-        print("hie")
-        print(o.status)
+        print("status seller_confirm_workdone: " + str(o.status))
         if o.status == Order.WAITING_FOR_WORK:
             o.status = Order.WAIT_BUYER_MARK_DONE
         elif o.status == Order.WAIT_SELLER_MARK_DONE:
-            o.status = Order.WORK_DONE_NOT_RATE
+            o.status = Order.WORK_DONE
         else:
             raise ValueError('Can not be done.')
         o.save()
@@ -88,11 +87,11 @@ def buyer_confirm_workdone(request):
     }
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
-        print(o.status)
+        print("status buyer_confirm_workdone: " + str(o.status))
         if o.status == Order.WAITING_FOR_WORK:
             o.status = Order.WAIT_SELLER_MARK_DONE
         elif o.status == Order.WAIT_BUYER_MARK_DONE:
-            o.status = Order.WORK_DONE_NOT_RATE
+            o.status = Order.WORK_DONE
         else:
             raise ValueError('Can not be done.')
         o.save()

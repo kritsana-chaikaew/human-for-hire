@@ -22,24 +22,26 @@ class Order(models.Model):
     WAITING_FOR_WORK = 1
     WAIT_BUYER_MARK_DONE = 2
     WAIT_SELLER_MARK_DONE = 3
-    WORK_DONE_NOT_RATE = 4
-    WORK_DONE_RATED = 5
-    FAILED = 6
-    CANCELLED = 7
+    # WORK_DONE_NOT_RATE = 4
+    # WORK_DONE_RATED = 5
+    WORK_DONE_RATED = 4
+    FAILED = 5
+    CANCELLED = 6
     STATUS_CODE_CHOICES = (
             (TO_BE_ACCEPTED, 'TO BE ACCEPTED'),
             (WAITING_FOR_WORK, 'WAITING FOR WORK'),
             (WAIT_BUYER_MARK_DONE, 'WAIT BUYER MARK DONE'),
             (WAIT_SELLER_MARK_DONE, 'WAIT SELLER MARK DONE'),
-            (WORK_DONE_NOT_RATE, 'WORK DONE NOT RATED'),
-            (WORK_DONE_RATED, 'WORK DONE RATED'),
+            # (WORK_DONE_NOT_RATE, 'WORK DONE NOT RATED'),
+            # (WORK_DONE_RATED, 'WORK DONE RATED'),
+            (WORK_DONE_RATED, 'WORK DONE'),
             (FAILED, 'FAILED'),
             (CANCELLED, 'CANCELLED'),
         )
     status = models.PositiveSmallIntegerField(choices=STATUS_CODE_CHOICES, default=TO_BE_ACCEPTED)
 
     def __str__(self):
-        return str(self.order_no) + '_' + str(self.buyer_username) 
+        return str(self.order_no) + '_' + str(self.buyer_username)
 
     def get_seller_username(self):
         return self.product_no.seller_username
