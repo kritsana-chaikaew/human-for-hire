@@ -7,7 +7,7 @@
 	<h1>Find a worker.</h1>
 </div>
 
-<form action="{% url 'hello:index' %}" method="post" enctype="multipart/form-data" class="col-lg-12">
+<form id="post-form" action="{% url 'hello:index' %}" method="post" enctype="multipart/form-data" class="col-lg-12">
 	<div class="form-row">
 		{% csrf_token %}
 		<div class="form-group col-lg-1">
@@ -35,22 +35,18 @@
 			<label class="form-control-label">Tag</label><br>
 			<span>
 				<input class="form-control" type="text" name="tag" id="tagInput" placeholder="Tag">
-				<button onclick="newElement()" type='button' class="btn hh-btn">Add</button>
+				<button onclick="newElement()" id="mark_as_done" type='button' class="btn hh-btn">Add</button>
 			</span>
 		</div>
 
-		<div>
-			<ul id="myUL">
-			</ul>
+		<div id="tags">
 		</div>
 
 		<div class="form-group col-lg-2">
-			<button class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Search">Search</button>
+			<button id="mark_as_done" class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Search">Search</button>
 		</div>
 	</div>
 </form>
-
-<h1 id="log"></h1>
 
 <script>
 	$(function() {
@@ -62,72 +58,61 @@
 </script>
 
 <script>
-	var myNodelist = document.getElementsByTagName("LI");
+	var tags = {};
+	var list = [];
 
-	// add x mark
-	var i;
-	for (i = 0; i < myNodelist.length; i++) {
-		var span = document.createElement("SPAN");
-  	var txt = document.createTextNode("\u00D7");
-  	span.className = "close";
-  	span.appendChild(txt);
-  	myNodelist[i].appendChild(span);
-}
-
-// Click on a close button to hide the current list item
-	var close = document.getElementsByClassName("close");
-	var i;
-	for (i = 0; i < close.length; i++) {
-  	close[i].onclick = function() {
-    	var div = this.parentElement;
-    	div.style.display = "none";
-  	}
-	}
 
 // Create a new list item when clicking on the "Add" button
 	function newElement() {
-  	var li = document.createElement("li");
-		var a = document.createElement("a");
-  	var inputValue = document.getElementById("tagInput").value;
-  	var t = document.createTextNode(inputValue);
+		var inputValue = document.getElementById("tagInput").value;
 
-  	a.appendChild(t);
-		a.href = "/tags/"+inputValue+"/";
-		a.role = "button"
-		a.className = "btn btn-light btn-sm";
-		li.appendChild(a);
+		if (inputValue === '') {
+			alert("You must write something!");
+		} else if (!list.includes(inputValue)) {
+			list.push(inputValue);
+		} else {
+			alert("tag is added!");
+		}
 
-  	if (inputValue === '') {
-    	alert("You must write something!");
-  	} else {
+		document.getElementById("tagInput").value = "";
+		render();
+	}
+
+	function delElement(obj) {
+		var id = obj.id;
+
+		list.splice(id, 1);
+		render();
+	}
+
+	function render() {
+		document.getElementById("tags").innerHTML = "";
+
+		for (var i=0; i<list.length; i++) {
+			var tag = list[i];
+			var div = document.createElement("div");
+			var a = document.createElement("a");
+			var t = document.createTextNode(tag);
+
+			a.role = "button"
+			a.href = "/tags/"+tag+"/";
+			a.className = "btn btn-light btn-sm";
+			a.appendChild(t);
+
+			div.appendChild(a);
+
 			var span = document.createElement("SPAN");
 			var txt = document.createTextNode("\u00D7");
 
-			span.className = "close"
+			span.id = i;
 			span.appendChild(txt);
-			li.appendChild(span);
-			document.getElementById("myUL").appendChild(li);
-  	}
-  	document.getElementById("tagInput").value = "";
-
-  	for (i = 0; i < close.length; i++) {
-    	close[i].onclick = function() {
-      	var div = this.parentElement;
-      	div.style.display = "none";
-    	}
-  	}
+			span.onclick = function() {delElement(this);};
+			div.appendChild(span);
+			document.getElementById("tags").appendChild(div);
+		}
 	}
-
+// TODO: send list to views.py
 </script>
-
-<style>
-	ul#myUL li{
-  	display:inline;
-		float:left;
-		list-style:none;
-	}
-</style>
-
 
 <dt class="recent"><strong>recent posts</strong></dt>
 
