@@ -138,19 +138,24 @@ def rate(request):
     try:
         order_no = request.session['order_no']
         user_type = request.session['user_type']
-
     except:
         order_no = None
         user_type = None
 
     if order_no == None:
+        request.session['order_no'] = None
+        request.session['user_type'] = None
         return render(request, 'order/fail.html', {'message':'Do not access link without clicking button!!!!!!!!'})
+
+    print('order_no: ' + order_no)
 
     try:
         order_no = str(int((int(base64ToString(urllib.parse.unquote(order_no))) + 5555) / 9876))
         print('order_no: ' + order_no)
         od = Order.objects.get(order_no=order_no)
     except:
+        request.session['order_no'] = None
+        request.session['user_type'] = None
         return render(request, 'order/fail.html', {'message':"Don't try to hack url... haha"})
 
 
