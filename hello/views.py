@@ -24,7 +24,8 @@ class IndexView(generic.ListView):
             end_age = request.POST['end_age']
             first_date = request.POST['first_date']
             end_date = request.POST['end_date']
-            tag = request.POST['tag']
+            tag_list = request.POST['tag_list']
+            tag_list = tag_list.split(',')
 
             if gender != "":
                 profile = Profile.objects.filter(gender=gender)
@@ -46,8 +47,10 @@ class IndexView(generic.ListView):
                 card = card.filter(start_date__gte=first_date)
             if end_date != "":
                 card = card.filter(end_date__lte=end_date)
-            if tag != "":
-                card = card.filter(tags__name=tag)
+            if tag_list != []:
+                for l in tag_list:
+                    print(l)
+                    card = card.filter(tags__name=l)
 
         args = {'product_list': card}
         return render(request, 'hello/index.html', args)

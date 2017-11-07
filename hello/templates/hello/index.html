@@ -38,6 +38,7 @@
 				<button onclick="newElement()" id="mark_as_done" type='button' class="btn hh-btn">Add</button>
 			</span>
 		</div>
+		<input type="hidden" id="tag_list" name="tag_list" value="" />
 
 		<div id="tags">
 		</div>
@@ -110,8 +111,8 @@
 			div.appendChild(span);
 			document.getElementById("tags").appendChild(div);
 		}
+		document.getElementById('tag_list').value = list.toString();
 	}
-// TODO: send list to views.py
 </script>
 
 <dt class="recent"><strong>recent posts</strong></dt>
