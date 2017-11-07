@@ -7,47 +7,7 @@
 	<h1>Find a worker.</h1>
 </div>
 
-<form action="{% url 'hello:index' %}" method="post" enctype="multipart/form-data" class="col-lg-12">
-	<div class="form-row">
-		{% csrf_token %}
-		<div class="form-group col-lg-1">
-			<label for="Gender">Gender</label>
-			<select class="form-control" type="text" name="gender" id="gender">
-				<option></option>
-				<option>male</option>
-				<option>female</option>
-			</select>
-		</div>
-
-		<div class="form-group col-lg-2">
-			<label class="form-control-label">Age</label>
-			<input class="form-control" type="text" name="first_age" id="first_age" placeholder="Enter first age" style="width:150px">
-			<input class="form-control" type="text" name="end_age" id="end_age" placeholder="Enter end age" style="width:150px">
-		</div>
-
-		<div class="form-group col-lg-4">
-			<label class="form-control-label">Date</label>
-			<input class="form-control" type="datetime-local" name="first_date" id="first_age" placeholder="Enter first date">
-			<input class="form-control" type="datetime-local" name="end_date" id="end_age" placeholder="Enter end date">
-		</div>
-
-		<div id="myDIV" class="ui-widget form-group col-lg-2">
-			<label class="form-control-label">Tag</label><br>
-			<span>
-				<input class="form-control" type="text" name="tag" id="tagInput" placeholder="Tag">
-				<button onclick="newElement()" type='button' class="btn hh-btn">Add</button>
-			</span>
-		</div>
-		<input type="hidden" id="tag_list" name="tag_list" value="" />
-
-		<div id="tags">
-		</div>
-
-		<div class="form-group col-lg-2">
-			<button class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Search">Search</button>
-		</div>
-	</div>
-</form>
+{% include "hello/filter.html" %}
 
 <dt class="recent"><strong>recent posts</strong></dt>
 

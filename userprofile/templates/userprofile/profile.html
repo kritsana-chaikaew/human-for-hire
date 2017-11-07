@@ -1,16 +1,48 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
-<h3>Profile</h3>
-<img class="img" src="{{ user.profile.image.url }}" height="300">
-<p><b>Username:</b> {{ user }}</p>
-<p><b>First name:</b> {{ user.first_name }}</p>
-<p><b>Last name:</b> {{ user.last_name }}</p>
-<p><b>Email:</b> {{ user.email }}</p>
-<p><b>Address:</b> {{ user.profile.address }}</p>
-<p><b>Gender:</b> {{ user.profile.gender }}</p>
-<p><b>Tel:</b> {{ user.profile.telephone }}</p>
-<p><b>Birthday:</b> {{ user.profile.birthday }}</p>
-<p><b>Bank Account:</b> {{ user.profile.bankaccount }}</p>
-<a class="btn btn-info hh-btn" role="button" href="/userprofile/profile/edit">Edit</a>
+<div class="row">
+    <br><br>
+    <div class="col-12 col-md-4">
+        <img class="img" src="{{ user.profile.image.url }}" width="350">
+        <br><br>
+        <center><a class="btn btn-info hh-btn" role="button" href="/userprofile/profile/edit">Edit</a></center>
+    </div>
+    <div class="col-12 col-md-8">
+        <h2>{{ user.first_name }} {{ user.last_name }}, {{ age }}</h2>
+        <div class="username">( {{ user }} )</div> </br>
+        <br>
+        {% if user.profile.sell_rating %}
+        seller rate: ★★★☆☆ ({{ user.profile.sell_rating|floatformat:2 }})</br>
+        {% endif %}
+        {% if user.profile.buy_rating %}
+        buyer rate: ★★★☆☆ ({{ user.profile.buy_rating|floatformat:2 }})</br>
+        {% endif %}
+        </br></br>
+        <div class="row" style="height:40px">
+            <div class="col-sm-3"><b>Email:</b></div>
+            <div class="col-sm-9">{{ user.email }}</div>
+        </div>
+        <div class="row" style="height:40px">
+            <div class="col-sm-3"><b>Address:</b></div>
+            <div class="col-sm-9">{{ user.profile.address }}</div>
+        </div>
+        <div class="row" style="height:40px">
+            <div class="col-sm-3"><b>Gender:</b></div>
+            <div class="col-sm-9">{{ user.profile.get_gender_display }}</div>
+        </div>
+        <div class="row" style="height:40px">
+            <div class="col-sm-3"><b>Tel:</b></div>
+            <div class="col-sm-9">{{ user.profile.telephone }}</div>
+        </div>
+        <div class="row" style="height:40px">
+            <div class="col-sm-3"><b>Birthday:</b></div>
+            <div class="col-sm-9">{{ user.profile.birthday|date:'d M y'}}</div>
+        </div>
+        <div class="row" style="height:40px">
+            <div class="col-sm-3"><b>Bank Account:</b></div>
+            <div class="col-sm-9">{{ user.profile.bankaccount }}</div>
+        </div>
+    </div>
+</div>
 {% endblock %}

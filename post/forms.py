@@ -6,13 +6,13 @@ class EditPostForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = (
-            'product_image',
             'product_name',
+            'product_image',
+            'product_details',
+            'price',
             'start_date',
             'end_date',
-            'product_details',
             'location',
-            'price',
             'tags',
         )
 
