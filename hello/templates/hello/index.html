@@ -7,7 +7,7 @@
 	<h1>Find a worker.</h1>
 </div>
 
-<form id="post-form" action="{% url 'hello:index' %}" method="post" enctype="multipart/form-data" class="col-lg-12">
+<form action="{% url 'hello:index' %}" method="post" enctype="multipart/form-data" class="col-lg-12">
 	<div class="form-row">
 		{% csrf_token %}
 		<div class="form-group col-lg-1">
@@ -35,7 +35,7 @@
 			<label class="form-control-label">Tag</label><br>
 			<span>
 				<input class="form-control" type="text" name="tag" id="tagInput" placeholder="Tag">
-				<button onclick="newElement()" id="mark_as_done" type='button' class="btn hh-btn">Add</button>
+				<button onclick="newElement()" type='button' class="btn hh-btn">Add</button>
 			</span>
 		</div>
 		<input type="hidden" id="tag_list" name="tag_list" value="" />
@@ -44,76 +44,10 @@
 		</div>
 
 		<div class="form-group col-lg-2">
-			<button id="mark_as_done" class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Search">Search</button>
+			<button class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Search">Search</button>
 		</div>
 	</div>
 </form>
-
-<script>
-	$(function() {
-		$("#tagInput").autocomplete({
-			source: "/get_tags/",
-			minLength: 2,
-		});
-	});
-</script>
-
-<script>
-	var tags = {};
-	var list = [];
-
-
-// Create a new list item when clicking on the "Add" button
-	function newElement() {
-		var inputValue = document.getElementById("tagInput").value;
-
-		if (inputValue === '') {
-			alert("You must write something!");
-		} else if (!list.includes(inputValue)) {
-			list.push(inputValue);
-		} else {
-			alert("tag is added!");
-		}
-
-		document.getElementById("tagInput").value = "";
-		render();
-	}
-
-	function delElement(obj) {
-		var id = obj.id;
-
-		list.splice(id, 1);
-		render();
-	}
-
-	function render() {
-		document.getElementById("tags").innerHTML = "";
-
-		for (var i=0; i<list.length; i++) {
-			var tag = list[i];
-			var div = document.createElement("div");
-			var a = document.createElement("a");
-			var t = document.createTextNode(tag);
-
-			a.role = "button"
-			a.href = "/tags/"+tag+"/";
-			a.className = "btn btn-light btn-sm";
-			a.appendChild(t);
-
-			div.appendChild(a);
-
-			var span = document.createElement("SPAN");
-			var txt = document.createTextNode("\u00D7");
-
-			span.id = i;
-			span.appendChild(txt);
-			span.onclick = function() {delElement(this);};
-			div.appendChild(span);
-			document.getElementById("tags").appendChild(div);
-		}
-		document.getElementById('tag_list').value = list.toString();
-	}
-</script>
 
 <dt class="recent"><strong>recent posts</strong></dt>
 
