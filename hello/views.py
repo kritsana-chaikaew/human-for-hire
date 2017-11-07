@@ -11,6 +11,9 @@ from taggit.models import Tag
 from signupLogin.models import Profile
 
 import json
+from functools import reduce
+import operator
+from django.db.models import Q
 
 class IndexView(generic.ListView):
     template_name = 'hello/index.html'
@@ -48,9 +51,9 @@ class IndexView(generic.ListView):
             if end_date != "":
                 card = card.filter(end_date__lte=end_date)
             if tag_list != []:
-                for l in tag_list:
-                    print(l)
-                    card = card.filter(tags__name=l)
+                card = card.filter(reduce(operator.or_, (Q(tags__name__contains=t) for t in tag_list)))
+
+            card = list(set(card))
 
         args = {'product_list': card}
         return render(request, 'hello/index.html', args)
