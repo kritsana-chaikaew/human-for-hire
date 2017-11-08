@@ -31,7 +31,7 @@ def buy(request, pk):
         detail = request.POST['detail']
         location = request.POST['location']
         price = request.POST['price']
-        # bankaccount = request.POST['bankaccount']
+        # payment = request.POST['payment']
 
         o = Order()
         o.buyer_username = user

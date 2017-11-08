@@ -14,7 +14,7 @@ class Profile(models.Model):
         )
     gender = models.CharField(max_length=10, choices=GENDER)
     birthday = models.DateField()
-    bankaccount = models.CharField(max_length=200, blank=True)
+    payment = models.CharField(max_length=200, blank=True)
     image = models.ImageField(upload_to='userImage', blank=True)
     buy_rating = models.FloatField(default=0)
     buy_rating_count = models.FloatField(default=0)

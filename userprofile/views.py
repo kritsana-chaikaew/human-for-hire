@@ -76,7 +76,7 @@ def edit_profile(request):
         address = request.POST['address']
         telephone = request.POST['telephone']
         email = request.POST['email']
-        bankaccount = request.POST['bankaccount']
+        payment = request.POST['payment']
         birthday = request.POST['birthday']
         try:
             imageFound = True
@@ -103,10 +103,10 @@ def edit_profile(request):
         if email != "":
             user.email = email
 
-        if bankaccount != "":
-            p.bankaccount = bankaccount
+        if payment != "":
+            p.payment = payment
         else:
-            p.bankaccount = userReq.profile.telephone
+            p.payment = userReq.profile.telephone
 
         if birthday != "":
             p.birthday = birthday
@@ -122,4 +122,4 @@ def edit_profile(request):
         p.save()
         return redirect('/userprofile/')
 
-    return render(request, 'userprofile/edit_profile.html', {'firstname':user.first_name, 'lastname':user.last_name, 'address':user.profile.address, 'telephone':user.profile.telephone, 'email':user.email, 'bankaccount':user.profile.bankaccount, 'birthday':user.profile.birthday})
+    return render(request, 'userprofile/edit_profile.html', {'firstname':user.first_name, 'lastname':user.last_name, 'address':user.profile.address, 'telephone':user.profile.telephone, 'email':user.email, 'payment':user.profile.payment, 'birthday':user.profile.birthday})
