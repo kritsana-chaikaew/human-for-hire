@@ -1,7 +1,6 @@
 var tags = {};
 var list = [];
 
-
 // Create a new list item when clicking on the "Add" button
 function newElement() {
   var inputValue = document.getElementById("tagInput").value;
@@ -33,21 +32,23 @@ function render() {
     var div = document.createElement("div");
     var a = document.createElement("a");
     var t = document.createTextNode(tag);
+    var span = document.createElement("span");
+    var icon = document.createElement("i");
 
     a.role = "button"
     a.href = "/tags/"+tag+"/";
-    a.className = "btn btn-light btn-sm";
-    a.appendChild(t);
-
-    div.appendChild(a);
-
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-
-    span.id = i;
-    span.appendChild(txt);
+    a.className = "btn btn-light btn-sm btn-secondary";
+    icon.className = "fa fa-times";
+    span.className = "btn btn-light btn-sm btn-secondary";
     span.onclick = function() {delElement(this);};
+    span.id = i;
+    div.className = "btn-group mr-2";
+
+    a.appendChild(t);
+    span.appendChild(icon);
+    div.appendChild(a);
     div.appendChild(span);
+
     document.getElementById("tags").appendChild(div);
   }
   document.getElementById('tag_list').value = list.toString();
