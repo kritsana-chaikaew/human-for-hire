@@ -45,7 +45,11 @@ def buy(request, pk):
         o.status = Order.TO_BE_ACCEPTED
         o.save()
         return render(request,'order/buy_success.html',{})
-    return render(request,'order/order.html',{})
+
+    product = Product.objects.get(product_no=pk)
+    seller_user = product.seller_username
+    args = {'seller_user': seller_user}
+    return render(request,'order/order.html', args)
 
 class WorkView(generic.ListView):
     template_name = 'order/manage_work.html'

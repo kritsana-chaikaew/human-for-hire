@@ -4,7 +4,8 @@
 {% block content %}
 <div class="row justify-content-md-center">
   <form method="post" action="" enctype="multipart/form-data" class="col col-lg-6" required>
-    <h1>Hire</h1>
+    <h2>Hire</h3>
+    <div>Make a call to {{ seller_user.first_name }} : <b>{{ seller_user.profile.telephone }}</b></div></br>
     {% csrf_token %}
 
     <div class="form-group">
