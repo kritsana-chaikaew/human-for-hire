@@ -34,9 +34,16 @@ def action(request):
     product.save()
 
     tag_list = taggit.utils._parse_tags(request.POST['tags'])
+    tag_list = clean_tags(tag_list)
     product.tags.add(*tag_list)
 
     return render(request, 'post_respond.html', {})
+
+def clean_tags(tag_list):
+    if tag_list:
+        tag_list = [tag.lower() for tag in tag_list]
+
+    return tag_list
 
 def delete(request, pk):
     product = Product.objects.get(product_no=pk)

@@ -21,7 +21,7 @@ class IndexView(generic.ListView):
 
     def post(self, request, *args, **kwargs):
         cards = Product.objects
-        
+
         if(request.method == 'POST'):
             gender = request.POST['gender']
             first_age = request.POST['first_age']

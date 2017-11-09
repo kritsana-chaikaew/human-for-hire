@@ -4,6 +4,7 @@ var list = [];
 // Create a new list item when clicking on the "Add" button
 function newElement() {
   var inputValue = document.getElementById("tagInput").value;
+  inputValue = inputValue.toLowerCase();
 
   if (inputValue === '') {
     alert("You must write something!");
