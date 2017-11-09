@@ -5,14 +5,17 @@
 			<p class="card-text">{{work.detail}}</p>
 			<div class="row">
 				<div class="col-6 managework__buyerdetail">
-					<p class="name">{{work.buyer_username.first_name}}</p>
-					<p class="tel"><i class="fa fa-phone" aria-hidden="true"></i> {{work.buyer_username.profile.telephone}}</p>
+					<div>
+						<p class="name">{{work.buyer_username.first_name}}</p>
+						<p class="tel"><i class="fa fa-phone" aria-hidden="true"></i> {{work.buyer_username.profile.telephone}}</p>
+					</div>
 				</div>
 				<div class="col-6">
-				<div class="managework__price">
-					<span class="price">{{work.price}}</span>
-					<span class="thb">THB</span>
-				</div></div>
+					<div class="managework__price">
+						<span class="price">{{work.price}}</span>
+						<span class="thb">THB</span>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div order="{{work.order_no}}" class="manage-status__{{work.get_status_display|cut:" "}} status-block">{{work.get_status_display}}</div>

@@ -156,7 +156,10 @@ body {
   line-height: 0.4em;
   margin-top: 30px;
 }
-.managework__buyerdetail > .name {
+.managework__buyerdetail > div {
+  margin-bottom: -0.5em;
+}
+.managework__buyerdetail > div > .name {
   font-weight: bold;
 }
 .managework__price {
