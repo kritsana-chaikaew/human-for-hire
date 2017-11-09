@@ -4,7 +4,7 @@
 {% block content %}
 <h3>My Work</h3>
 <!-- current work: the start date hasn't come yet -->
-<h4>New</h4>
+<h4 class="manage__header">New</h4>
 
 {% if work_list %}
 	<div class="row">
@@ -14,10 +14,10 @@
 	</div>
 {% endif %}
 
-<h4>Upcoming</h4>
+<h4 class="manage__header">Upcoming</h4>
 
 <!-- past work: the start date has passed -->
-<h4>History</h4>
+<h4 class="manage__header">History</h4>
 <table class="table table-hover table-responsive-sm" id="hh-managework">
 	<thead class="thead-dark">
 		<tr>

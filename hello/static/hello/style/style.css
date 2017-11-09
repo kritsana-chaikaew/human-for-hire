@@ -152,6 +152,30 @@ body {
   color: #666;
   display:inline;
 }
+.managework__buyerdetail {
+  line-height: 0.4em;
+  margin-top: 30px;
+}
+.managework__buyerdetail > .name {
+  font-weight: bold;
+}
+.managework__price {
+  position: absolute;
+  right: 15px;
+  bottom: 0px;
+}
+.managework__price > .price {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.managework__price > .thb {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+.manage__header {
+  margin-bottom: 30px;
+  padding-top: 50px;
+}
 /*END MANAGE*/
 
 /*START RATING*/
