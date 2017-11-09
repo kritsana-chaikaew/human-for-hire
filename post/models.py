@@ -11,7 +11,7 @@ class Product(models.Model):
     seller_username = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     product_name = models.CharField(max_length=250, default='product name')
     product_image = models.ImageField(upload_to='img')
-    product_details = models.CharField(max_length=2000, default='product details')
+    product_details = models.TextField(max_length=2000, default='product details')
     price = models.IntegerField(default=0)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
