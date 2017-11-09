@@ -33,24 +33,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
-.card {
-    width: 13.2rem !important;
-}
-
-.card-name {
-    font-size: 20px;
-    color: black;
-}
-
-.card-job {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.card-columns {
-    column-count: 4;
-}
-
 .product-img > img {
     border: solid #b2b2b2 1px;
 }
