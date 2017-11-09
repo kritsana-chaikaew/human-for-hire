@@ -20,7 +20,7 @@ class IndexView(generic.ListView):
     context_object_name = 'product_list'
 
     def post(self, request, *args, **kwargs):
-        card = Product.objects.order_by('-init_date')
+        cards = Product.objects.order_by('-init_date')
         if(request.method == 'POST'):
             gender = request.POST['gender']
             first_age = request.POST['first_age']
@@ -33,34 +33,34 @@ class IndexView(generic.ListView):
             if gender != "":
                 profile = Profile.objects.filter(gender=gender)
                 user = User.objects.filter(profile__in=profile)
-                card = card.filter(seller_username__in=user)
+                cards = cards.filter(seller_username__in=user)
             if first_age != "":
                 max_date = datetime.date.today()
                 max_date = max_date.replace(year=max_date.year - int(first_age))
                 profile = Profile.objects.filter(birthday__lte=max_date)
                 user = User.objects.filter(profile__in=profile)
-                card = card.filter(seller_username__in=user)
+                cards = cards.filter(seller_username__in=user)
             if end_age != "":
                 min_date = datetime.date.today()
                 min_date = min_date.replace(year=min_date.year - int(end_age))
                 profile = Profile.objects.filter(birthday__gte=min_date)
                 user = User.objects.filter(profile__in=profile)
-                card = card.filter(seller_username__in=user)
+                cards = cards.filter(seller_username__in=user)
             if first_date != "":
-                card = card.filter(start_date__gte=first_date)
+                cards = cards.filter(start_date__gte=first_date)
             if end_date != "":
-                card = card.filter(end_date__lte=end_date)
+                cards = cards.filter(end_date__lte=end_date)
             if tag_list != []:
-                card = card.filter(reduce(operator.or_, (Q(tags__name__contains=t) for t in tag_list)))
+                cards = cards.filter(tags__name__in=tag_list).distinct()
 
-            card = list(set(card))
+            cards = list(set(cards))
 
-        args = {'product_list': card}
+        args = {'product_list': cards}
         return render(request, 'hello/index.html', args)
 
     def get_queryset(self):
-        card = Product.objects.order_by('-init_date')
-        return card
+        cards = Product.objects.order_by('-init_date')
+        return cards
 
 
 class ProductDetailView(generic.DetailView):
