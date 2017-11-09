@@ -20,7 +20,8 @@ class IndexView(generic.ListView):
     context_object_name = 'product_list'
 
     def post(self, request, *args, **kwargs):
-        cards = Product.objects.order_by('-init_date')
+        cards = Product.objects
+        
         if(request.method == 'POST'):
             gender = request.POST['gender']
             first_age = request.POST['first_age']
@@ -51,9 +52,9 @@ class IndexView(generic.ListView):
             if end_date != "":
                 cards = cards.filter(end_date__lte=end_date)
             if tag_list != []:
-                cards = cards.filter(tags__name__in=tag_list).distinct()
+                cards = cards.filter(tags__name__in=tag_list)
 
-            cards = list(set(cards))
+            cards = cards.distinct().order_by('-init_date')
 
         args = {'product_list': cards}
         return render(request, 'hello/index.html', args)
