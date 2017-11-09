@@ -74,6 +74,7 @@ body {
 
 /*START MANAGE*/
 .manage-status__WAITINGFORWORK {
+  background-color: #eee;
 }
 
 .workdone-hover:hover {
@@ -123,12 +124,8 @@ body {
   color: #FFF;
 }
 
-#hh-managework td, #hh-managehired td,#hh-managework th, #hh-managehired th {
-  border: 1px solid black;
-}
-
-#hh-managework thead {
-  margin-bottom: 30px;
+#hh-managework {
+  background-color: white;
 }
 
 .rate-link {
@@ -137,10 +134,10 @@ body {
 }
 
 .status-block {
-  font-size: 1.1em;
-  text-align: center;
-  font-weight: 600;
-  padding: 8px;
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: 600;
+    padding: 8px;
 }
 
 .rate-work {
