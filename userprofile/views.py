@@ -26,7 +26,8 @@ def home(request):
 @login_required(login_url='/login')
 def view_profile(request):
     p = Profile.objects.get(user=request.user)
-    args = {'user': request.user, 'age': p.get_age()}
+    args = {'user': request.user, 'age': p.get_age(), 
+            'buy_star': p.get_buy_rating(), 'sell_star': p.get_sell_rating()}
     return render(request, 'userprofile/profile.html', args)
 
 # @login_required(login_url='/login')

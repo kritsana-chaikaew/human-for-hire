@@ -13,12 +13,33 @@
         <div class="username">( {{ user }} )</div> </br>
         <br>
         {% if user.profile.sell_rating %}
-        seller rate: ★★★☆☆ ({{ user.profile.sell_rating|floatformat:2 }})</br>
+        seller rate: 
+        {% for i in sell_star %}
+            {% if i == 1 %}
+                <span class="star-icon full">☆</span>
+            {% elif i == 0.5 %}
+                <span class="star-icon half">☆</span>
+            {% else %}
+                <span class="star-icon">☆</span>
+            {% endif %}
+        {% endfor %}
+        ({{ user.profile.sell_rating|floatformat:2 }})
+        <br>
         {% endif %}
         {% if user.profile.buy_rating %}
-        buyer rate: ★★★☆☆ ({{ user.profile.buy_rating|floatformat:2 }})</br>
+        buyer rate: 
+        {% for i in buy_star %}
+            {% if i == 1 %}
+                <span class="star-icon full">☆</span>
+            {% elif i == 0.5 %}
+                <span class="star-icon half">☆</span>
+            {% else %}
+                <span class="star-icon">☆</span>
+            {% endif %}
+        {% endfor %}
+        ({{ user.profile.buy_rating|floatformat:2 }})
         {% endif %}
-        </br></br>
+        </br></br><br>
         <div class="row" style="height:40px">
             <div class="col-sm-3"><b>Email:</b></div>
             <div class="col-sm-9">{{ user.email }}</div>

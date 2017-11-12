@@ -115,3 +115,27 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 15px;
     color: #666;
 }
+
+.star-icon {
+    font-size: 20px;
+    color: #ddd;
+    position: relative;
+}
+
+.star-icon.full:before {
+    text-shadow: 0 0 2px rgba(0,0,0,0.7);
+    color: #FDE16D;
+    content: '\2605';
+    position: absolute;
+    left: 0;
+}
+
+.star-icon.half:before {
+    text-shadow: 0 0 2px rgba(0,0,0,0.7);
+    color: #FDE16D;
+    content: '\2605';
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+}
