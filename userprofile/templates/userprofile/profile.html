@@ -10,10 +10,11 @@
     </div>
     <div class="col-12 col-md-8">
         <h2>{{ user.first_name }} {{ user.last_name }}, {{ age }}</h2>
-        <div class="username">( {{ user }} )</div> </br>
-        <br>
+        <div class="username">( {{ user }} )</div>
+        {% if user.profile.sell_rating or user.profile.buy_rating %}
+        <hr>
         {% if user.profile.sell_rating %}
-        seller rate: 
+        <span class="rate-type">seller rate:</span>
         {% for i in sell_star %}
             {% if i == 1 %}
                 <span class="star-icon full">☆</span>
@@ -23,11 +24,11 @@
                 <span class="star-icon">☆</span>
             {% endif %}
         {% endfor %}
-        ({{ user.profile.sell_rating|floatformat:2 }})
+        <span class="rate-type">({{ user.profile.sell_rating|floatformat:2 }})</span>
         <br>
         {% endif %}
         {% if user.profile.buy_rating %}
-        buyer rate: 
+        <span class="rate-type">buyer rate: </span>
         {% for i in buy_star %}
             {% if i == 1 %}
                 <span class="star-icon full">☆</span>
@@ -37,9 +38,12 @@
                 <span class="star-icon">☆</span>
             {% endif %}
         {% endfor %}
-        ({{ user.profile.buy_rating|floatformat:2 }})
+        <span class="rate-type">({{ user.profile.buy_rating|floatformat:2 }})</span>
+        <br><hr>
         {% endif %}
-        </br></br><br>
+        {% else %}
+        <hr>
+        {% endif %}
         <div class="row" style="height:40px">
             <div class="col-sm-3"><b>Email:</b></div>
             <div class="col-sm-9">{{ user.email }}</div>
@@ -63,7 +67,7 @@
         <div class="row" style="height:40px">
             <div class="col-sm-3"><b>Payment:</b></div>
             <div class="col-sm-9">{{ user.profile.payment }}</div>
-        </div>
+        </div><hr>
     </div>
 </div>
 {% endblock %}
