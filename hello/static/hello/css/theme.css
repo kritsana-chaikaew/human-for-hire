@@ -113,26 +113,26 @@ h1, h2, h3, h4, h5, h6 {
 
 .username {
     font-size: 15px;
-    color: #666;
+    color: #9a9a9a;
 }
 
 .star-icon {
     font-size: 20px;
-    color: #bbb;
+    color: #dad3d3;
     position: relative;
 }
 
 .star-icon.full:before {
-    text-shadow: 0 0 1px rgba(0,0,0,0.7);
-    color: #FDE16D;
+    text-shadow: 0 0 0.5px rgb(247, 183, 37);
+    color: rgb(255, 254, 43);
     content: '\2605';
     position: absolute;
     left: 0;
 }
 
 .star-icon.half:before {
-    text-shadow: 0 0 1px rgba(0,0,0,0.7);
-    color: #FDE16D;
+    text-shadow: 0 0 0.5px rgb(247, 183, 37);
+    color: rgb(255, 254, 43);
     content: '\2605';
     position: absolute;
     left: 0;
