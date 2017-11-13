@@ -33,6 +33,12 @@ def buy(request, pk):
         price = request.POST['price']
         # payment = request.POST['payment']
 
+        if int(price) < 0:
+            error = 'The price can\'t be negative'
+            return render(request, 'order/order.html', {'seller_user': seller_user, 'start_date':start_date, 'end_date':end_date, 'detail':detail, 'location':location, 'price':price, "error":[error]})
+
+
+
         o = Order()
         o.buyer_username = user
         o.seller_username = seller_user

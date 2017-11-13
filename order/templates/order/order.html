@@ -5,6 +5,11 @@
 <div class="row justify-content-md-center">
   <form method="post" action="" enctype="multipart/form-data" class="col col-lg-6" required>
     <h2>Hire</h3>
+    
+      {% for e in error %}
+      <p class='error'>{{ e }}</p>
+      {% endfor %}
+
     <div>Make a call to {{ seller_user.first_name }} : <b>{{ seller_user.profile.telephone }}</b></div></br>
     {% csrf_token %}
 
