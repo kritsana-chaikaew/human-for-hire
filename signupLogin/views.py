@@ -11,10 +11,12 @@ from django.contrib.auth import password_validation as pv
 from .models import Profile
 from django.core.files.images import ImageFile
 
+from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 import datetime
 import dateutil
+import pytz
 
 # @login_required(login_url='/login')
 # def main(request):
@@ -54,6 +56,13 @@ def signup(request):
             # if (username in password or password in username) or (lastname in password or password in lastname) or (address in password or password in address) or (telephone in password or password in telephone) or (email in password or password in email) or (payment in password or password in payment) or (birthday in password or password in birthday):
             #     error = 'Your password is relating to your personal informations.'
             #     return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'payment':payment, 'profile_image':profile_image, "error":[error]})
+
+        # Check Birthday
+        bd = datetime.datetime.strptime(birthday, "%Y-%m-%d")
+        error = ''
+        if bd > datetime.datetime.now():
+            error = 'Please check your birthday again'
+            return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'payment':payment, 'profile_image':profile_image, "error":[error]})
 
         # If username is unique and passwords are match, then save that username to database.
         user = User.objects.create_user(username, email, password)

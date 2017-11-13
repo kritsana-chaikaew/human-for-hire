@@ -10,10 +10,13 @@ from django.contrib.auth import login, authenticate, password_validation as pv
 from signupLogin.models import Profile
 from django.core.exceptions import ValidationError
 
-
 from signupLogin.models import Profile
 from django.contrib.auth.models import User
 from django.core.files.images import ImageFile
+
+import datetime
+import dateutil
+import pytz
 
 # Create your views here.
 # @login_required
@@ -84,6 +87,13 @@ def edit_profile(request):
             profile_image = ImageFile(request.FILES['profile_image'])
         except:
             imageFound = False
+
+        bd = datetime.datetime.strptime(birthday, "%Y-%m-%d")
+        error = ''
+        if bd > datetime.datetime.now():
+            error = 'Please check your birthday again'
+            return render(request, 'userprofile/edit_profile.html', {'firstname':user.first_name, 'lastname':user.last_name, 'address':user.profile.address, 'telephone':user.profile.telephone, 'email':user.email, 'payment':user.profile.payment, 'birthday':user.profile.birthday, "error":[error]})
+
 
         if firstname != "":
             user.first_name = firstname
