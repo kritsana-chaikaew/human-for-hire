@@ -13,6 +13,9 @@ from signupLogin.models import Profile
 
 import base64
 import urllib.parse
+import datetime
+import dateutil
+import pytz
 
 def stringToBase64(s):
     return base64.b64encode(s.encode('utf-8'))
@@ -37,7 +40,11 @@ def buy(request, pk):
             error = 'The price can\'t be negative'
             return render(request, 'order/order.html', {'seller_user': seller_user, 'start_date':start_date, 'end_date':end_date, 'detail':detail, 'location':location, 'price':price, "error":[error]})
 
-
+        start = datetime.datetime.strptime(start_date, "%Y-%m-%d %H:%M")
+        end = datetime.datetime.strptime(end_date, "%Y-%m-%d %H:%M")
+        if start >= end or datetime.datetime.now() > start:
+            error = 'Date time error'
+            return render(request, 'order/order.html', {'seller_user': seller_user, 'start_date':start_date, 'end_date':end_date, 'detail':detail, 'location':location, 'price':price, "error":[error]})
 
         o = Order()
         o.buyer_username = user
