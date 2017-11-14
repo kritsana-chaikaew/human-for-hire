@@ -74,6 +74,7 @@ body {
 
 /*START MANAGE*/
 .manage-status__WAITINGFORWORK {
+  background-color: #eee;
 }
 
 .workdone-hover:hover {
@@ -123,12 +124,8 @@ body {
   color: #FFF;
 }
 
-#hh-managework td, #hh-managehired td,#hh-managework th, #hh-managehired th {
-  border: 1px solid black;
-}
-
-#hh-managework thead {
-  margin-bottom: 30px;
+#hh-managework {
+  background-color: white;
 }
 
 .rate-link {
@@ -137,7 +134,10 @@ body {
 }
 
 .status-block {
-  padding: 0;
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: 600;
+    padding: 8px;
 }
 
 .rate-work {
@@ -151,6 +151,48 @@ body {
   font-size: 14px;
   color: #666;
   display:inline;
+}
+.managework__buyerdetail {
+  line-height: 0.4em;
+  margin-top: 30px;
+}
+.managework__buyerdetail > div {
+  margin-bottom: -0.5em;
+}
+.managework__buyerdetail > div > .name {
+  font-weight: bold;
+}
+.managework__price, .managehired__price {
+  position: absolute;
+  right: 15px;
+  bottom: 0px;
+}
+.managework__price > .price, .managehired__price > .price {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.managework__price > .thb, .managehired__price > .thb {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+.manage__header {
+  margin-bottom: 30px;
+  padding-top: 50px;
+}
+.managehired__pricerow {
+  margin-top: 45px;
+}
+.card-body__managehired > small {
+  vertical-align: -0.4em;
+}
+.managehired__detail > p {
+  margin: 0px;
+}
+.managehired__detail {
+  margin-bottom: 20px; 
+}
+.card {
+  margin-bottom: 25px;
 }
 /*END MANAGE*/
 

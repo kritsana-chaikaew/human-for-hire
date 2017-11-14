@@ -1,0 +1,24 @@
+<div class="col-lg-4">
+	<div class="card border-dark">
+		<div class="card-body">
+			<h4 class="card-title">{{work.seller_username.first_name}}</h4>
+			<div class="managehired__detail">
+				<p class="managehired__date">{{work.start_date|date:'d M y'}} </p>
+				<p class="managehired__tel">
+					<i class="fa fa-phone" aria-hidden="true"></i>
+					{{work.buyer_username.profile.telephone}}
+				</p>
+			</div>
+			<p class="card-text">{{work.detail}}</p>
+			<div class="row managehired__pricerow">
+				<div class="col-6 offset-6">
+					<div class="managehired__price">
+						<span class="price">{{work.price}}</span>
+						<span class="thb">THB</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div order="{{work.order_no}}" class="manage-status__{{work.get_status_display|cut:" "}} status-block">{{work.get_status_display}}</div>
+	</div>
+</div>

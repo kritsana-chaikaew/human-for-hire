@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static "hello/css/bootstrap.min.css" %}" >
     <link rel="stylesheet" href="{% static "hello/style/style.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "hello/css/theme.css"%}">
+    <link rel="stylesheet" type="text/css" href="{% static "font-awesome-4.7.0/css/font-awesome.min.css"%}">
     <script src="{% static "hello/js/jquery-3.2.1.min.js" %}" ></script>
     <script src="{% static "hello/js/popper.min.js" %}" ></script>
     <script src="{% static "hello/js/bootstrap.min.js" %}" ></script>
@@ -30,8 +31,8 @@
 	{% include "hello/navbar.html" %}
 
     <div class="container" id="container-hh">
-      {% block content %}
-	    {% endblock %}
+        {% block content %}
+        {% endblock %}
     </div>
 </body>
 </html>
