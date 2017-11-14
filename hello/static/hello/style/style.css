@@ -162,22 +162,37 @@ body {
 .managework__buyerdetail > div > .name {
   font-weight: bold;
 }
-.managework__price {
+.managework__price, .managehired__price {
   position: absolute;
   right: 15px;
   bottom: 0px;
 }
-.managework__price > .price {
+.managework__price > .price, .managehired__price > .price {
   font-size: 1.5em;
   font-weight: bold;
 }
-.managework__price > .thb {
+.managework__price > .thb, .managehired__price > .thb {
   font-size: 0.8em;
   font-weight: bold;
 }
 .manage__header {
   margin-bottom: 30px;
   padding-top: 50px;
+}
+.managehired__pricerow {
+  margin-top: 45px;
+}
+.card-body__managehired > small {
+  vertical-align: -0.4em;
+}
+.managehired__detail > p {
+  margin: 0px;
+}
+.managehired__detail {
+  margin-bottom: 20px; 
+}
+.card {
+  margin-bottom: 25px;
 }
 /*END MANAGE*/
 
