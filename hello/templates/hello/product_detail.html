@@ -36,10 +36,6 @@
               </a>
             {% endfor %}
         </p>
-        <p>
-          <h6>Price (per hour) </h6>
-          {{ product.price }} ฿
-        </p>
         {% if user.id == product.seller_username_id %}
         <p>
           <a href='/product/{{ product.product_no }}/delete'>
