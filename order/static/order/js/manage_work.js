@@ -62,7 +62,8 @@ $(".manage-status__TOBEACCEPTED").click(function(){
     dataType: 'json',
     success: function(data) {
       if(data.success) {
-        $(element).attr("class", "manage-status__ACCEPTED");
+        $(element).removeClass("manage-status__TOBEACCEPTED");
+        $(element).addClass("manage-status__ACCEPTED");
         $(element).unbind();
         $(element).text("ACCEPTED!")
       }

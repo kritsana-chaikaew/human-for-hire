@@ -4,10 +4,12 @@
 <div class="row">
     <div class="col-12 col-md-4 product-img">
         <img src="{{ product.product_image.url }}" width="100%" \>
+        {% if user.id != product.seller_username_id %}
         <center>
-            <br>
-            <a href="{% url 'order:buy' pk=product.product_no %}" class="btn btn-lg btn-outline-success hh-btn" role="button" aria-pressed="true">Hire</a>
+          <br>
+          <a href="{% url 'order:buy' pk=product.product_no %}" class="btn btn-lg btn-outline-success hh-btn" role="button" aria-pressed="true">Hire</a>
         </center>
+        {% endif %}
     </div>
     <div class="col-12 col-md-8">
         <h2>{{ product.product_name }}</h2> <div class="posted-by">posted by: {{ product.seller_username }} </div> </br>
@@ -34,6 +36,7 @@
               </a>
             {% endfor %}
         </p>
+        {% if user.id == product.seller_username_id %}
         <p>
           <a href='/product/{{ product.product_no }}/delete'>
             Delete
@@ -44,6 +47,7 @@
             Edit
           </a>
         </p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

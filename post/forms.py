@@ -1,7 +1,7 @@
-from django import forms
+from django.forms import ModelForm, Textarea
 from .models import Product
 
-class EditPostForm(forms.ModelForm):
+class EditPostForm(ModelForm):
 
     class Meta:
         model = Product
@@ -15,6 +15,17 @@ class EditPostForm(forms.ModelForm):
             'location',
             'tags',
         )
+        labels = {
+            'product_image': 'Picture',
+            'product_details': 'Description',
+            'price': 'Price (per hour)',
+            'start_date': 'Start date and time',
+            'end_date': 'End date and time',
+            'tags': 'Tag'
+        }
+        widgets = {
+            'product_details': Textarea(attrs={'rows': 3})
+        }
 
     def save(self, commit=True):
         product = super(EditPostForm, self).save(commit)

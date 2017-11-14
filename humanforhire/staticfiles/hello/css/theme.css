@@ -110,3 +110,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 13px;
     color: #666;
 }
+
+.username {
+    font-size: 15px;
+    color: #666;
+}

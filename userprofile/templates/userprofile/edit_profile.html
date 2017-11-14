@@ -5,10 +5,14 @@
 
 <div class="row justify-content-md-center">
   <form method="post" action="{% url 'userprofile:edit_profile' %}" enctype="multipart/form-data" class="col col-lg-6">
-    <h3>Edit Profile</h3>
+    <h3>Edit Profile</h3><br>
+
+    {% for e in error %}
+    <p class='error'>{{ e }}</p><br>
+    {% endfor %}
 
     {% csrf_token %}
-    <div class="form-row">
+    <div class="form-row"><br>
       <div class="form-group col-lg-6">
         <label class="form-control-label" for="firstname">First Name</label>
         <input class="form-control" id="firstname" type="text" name="firstname" value="{{firstname}}"/>
@@ -27,7 +31,7 @@
 
     <div class="form-group">
       <label class="form-control-label" for="telephone">Telephone</label>
-      <input class="form-control" id="telephone" type="text" name="telephone" value="{{telephone}}" onkeypress="return isNumberKey(event)"/>
+      <input class="form-control" id="telephone" type="text" name="telephone" value="{{telephone}}" maxlength="10" onkeypress="return isNumberKey(event)"/>
     </div>
 
     <div class="form-group">
@@ -36,8 +40,13 @@
     </div>
 
     <div class="form-group">
-      <label class="form-control-label" for="bankaccount">Bank Account</label>
-      <input class="form-control" id="bankaccount" type="text" name="bankaccount" value="{{bankaccount}}" onkeypress="return isNumberKey(event)"/>
+      <label class="form-control-label" for="payment">Credit/Debit Card</label>
+      <input class="form-control" id="card" type="text" name="card" value="{{card}}" maxlength="16" inputmode="numeric" onkeypress="return isNumberKey(event)"/>
+    </div>
+    
+    <div class="form-group">
+        <label class="form-control-label" for="payment">Bank Account</label>
+        <input class="form-control" id="bank" type="text" name="bank" maxlength="10" value="{{bank}}" inputmode="numeric" onkeypress="return isNumberKey(event)"/>
     </div>
 
     <div class="form-group">

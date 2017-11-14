@@ -13,6 +13,9 @@ from signupLogin.models import Profile
 
 import base64
 import urllib.parse
+import datetime
+import dateutil
+import pytz
 
 def stringToBase64(s):
     return base64.b64encode(s.encode('utf-8'))
@@ -31,10 +34,21 @@ def buy(request, pk):
         detail = request.POST['detail']
         location = request.POST['location']
         price = request.POST['price']
-        # bankaccount = request.POST['bankaccount']
+        # payment = request.POST['payment']
+
+        if int(price) < 0:
+            error = 'The price can\'t be negative'
+            return render(request, 'order/order.html', {'seller_user': seller_user, 'start_date':start_date, 'end_date':end_date, 'detail':detail, 'location':location, 'price':price, "error":[error]})
+
+        start = datetime.datetime.strptime(start_date, "%Y-%m-%d %H:%M")
+        end = datetime.datetime.strptime(end_date, "%Y-%m-%d %H:%M")
+        if start >= end or datetime.datetime.now() > start:
+            error = 'Date time error'
+            return render(request, 'order/order.html', {'seller_user': seller_user, 'start_date':start_date, 'end_date':end_date, 'detail':detail, 'location':location, 'price':price, "error":[error]})
 
         o = Order()
         o.buyer_username = user
+        o.seller_username = seller_user
         o.product_no = product
         o.start_date = start_date
         o.end_date = end_date
@@ -44,14 +58,18 @@ def buy(request, pk):
         o.status = Order.TO_BE_ACCEPTED
         o.save()
         return render(request,'order/buy_success.html',{})
-    return render(request,'order/order.html',{})
+
+    product = Product.objects.get(product_no=pk)
+    seller_user = product.seller_username
+    args = {'seller_user': seller_user}
+    return render(request,'order/order.html', args)
 
 class WorkView(generic.ListView):
     template_name = 'order/manage_work.html'
     context_object_name = 'work_list'
 
     def get_queryset(self):
-        return Order.objects.filter(product_no__seller_username=self.request.user.id)
+        return Order.objects.filter(seller_username=self.request.user.id)
 
 class HiredView(generic.ListView):
     template_name = 'order/manage_hired.html'
@@ -158,8 +176,8 @@ def rate(request):
 
 
     if user_type == 'employee':
-        who = od.product_no.seller_username
-        who_pf = Profile.objects.get(user=od.product_no.seller_username)
+        who = od.seller_username
+        who_pf = Profile.objects.get(user=od.seller_username)
         product_name = od.product_no.product_name
         image = od.product_no.product_image
         detail = od.product_no.product_details
@@ -176,7 +194,7 @@ def rate(request):
     if request.method == 'POST':
         score = int(request.POST['rating'])
         if user_type == 'employee':
-            pf = Profile.objects.get(user=od.product_no.seller_username)
+            pf = Profile.objects.get(user=od.seller_username)
             pf.sell_rating = ((pf.sell_rating * pf.sell_rating_count) + score) / (pf.sell_rating_count + 1)
             pf.sell_rating_count = pf.sell_rating_count + 1
             pf.save()

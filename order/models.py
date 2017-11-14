@@ -10,6 +10,7 @@ class Order(models.Model):
     order_no = models.IntegerField(primary_key=True)
     product_no = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     buyer_username = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='buyer')
+    seller_username = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='seller')
     purchase_date = models.DateTimeField(default=timezone.now)
     location = models.CharField(max_length=250, default='location')
     price = models.IntegerField(default=0)

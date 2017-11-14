@@ -1,41 +1,57 @@
 {% load static %}
 
-<form action="{% url 'hello:index' %}" method="post" enctype="multipart/form-data" class="col-lg-12">
-	<div class="form-row">
-	  {% csrf_token %}
+<div class="row">
+	<form action="{% url 'hello:index' %}" method="post" enctype="multipart/form-data" class="col-lg-12">
+		<div class="form-row">
+		  {% csrf_token %}
 
-		<div class="form-group col-lg-2">
-	    <label for="Gender">Gender</label>
-	    <select class="form-control" type="text" name="gender" id="gender">
-				<option></option>
-	      <option>male</option>
-	      <option>female</option>
-	    </select>
-	  </div>
-		<div class="form-group col-lg-2">
-			<label class="form-control-label">Age</label>
-			<input class="form-control" type="text" name="first_age" id="first_age" placeholder="Enter first age">
-			<input class="form-control" type="text" name="end_age" id="end_age" placeholder="Enter end age">
-		</div>
-
-		<div class="form-group col-lg-4">
-			<label class="form-control-label">Date</label>
-			<div class="form-datetime date input-group">
-				<input class="form-control" type="text" name="first_date" placeholder="Enter first date">
-				<span class="input-group-addon"><i class="fa fa-times"></i></span>
-				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+			<div class="form-group col-lg-2">
+		    <label for="Gender">Gender</label>
+		    <select class="form-control" type="text" name="gender" id="gender">
+					<option></option>
+		      <option>male</option>
+		      <option>female</option>
+		    </select>
+		  </div>
+			<div class="form-group col-lg-2">
+				<label class="form-control-label">Age</label>
+				<input class="form-control" type="text" name="first_age" id="first_age" placeholder="Enter first age">
+				<input class="form-control" type="text" name="end_age" id="end_age" placeholder="Enter end age">
 			</div>
-			<div class="form-datetime date input-group">
-				<input class="form-control" type="text" name="end_date" placeholder="Enter end date">
-				<span class="input-group-addon"><i class="fa fa-times"></i></span>
-				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+
+			<div class="form-group col-lg-3">
+				<label class="form-control-label">Date</label>
+				<div class="form-datetime date input-group">
+					<input class="form-control" type="text" name="first_date" placeholder="Enter first date">
+					<span class="input-group-addon"><i class="fa fa-times"></i></span>
+					<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+				</div>
+				<div class="form-datetime date input-group">
+					<input class="form-control" type="text" name="end_date" placeholder="Enter end date">
+					<span class="input-group-addon"><i class="fa fa-times"></i></span>
+					<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+				</div>
+			</div>
+
+			<div id="myDIV" class="form-group col-lg-3 ui-widget">
+				<label class="form-control-label">Tag</label><br>
+				<div class="input-group">
+					<input class="form-control" type="text" name="tag" id="tagInput" placeholder="Tag">
+					<span class="input-group-addon" onclick="newElement()"><i class="fa fa-plus"></i></span>
+				</div>
+				<input type="hidden" id="tag_list" name="tag_list" value="" />
+			</div>
+
+			<div class="form-group col-lg-2">
+				<button class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Search">Search</button>
 			</div>
 		</div>
+	</form>
+</div>
 
-		<div class="form-group col-lg-2">
-			<button class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Search">Search</button>
-		</div>
-	</div>
-</form>
+<div id="tags" class="d-flex flex-row">
+</div>
 
 <script src="{% static "hello/js/datetime.js" %}"></script>
+<script src="{% static "hello/js/search-tag.js" %}" ></script>
+<script src="{% static "hello/js/autocomplete.js" %}" ></script>

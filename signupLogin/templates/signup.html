@@ -7,7 +7,7 @@
     <h3>Register</h3>
     <br>
     {% for e in error %}
-      <p class='error'>{{ e }}</p>
+      <p class='error'>{{ e }}</p><br>
     {% endfor %}
 
     {% csrf_token %}
@@ -44,15 +44,19 @@
     </div>
     <div class="form-group">
       <label class="form-control-label" for="telephone">Telephone</label>
-      <input class="form-control" id="telephone" type="text" name="telephone" value="{{telephone}}" maxlength="30" onkeypress="return isNumberKey(event)" required/>
+      <input class="form-control" id="telephone" type="text" name="telephone" value="{{telephone}}" maxlength="10" onkeypress="return isNumberKey(event)" required/>
     </div>
     <div class="form-group">
       <label class="form-control-label" for="email">Email Address</label>
       <input class="form-control" id="email" type="text" name="email" value="{{email}}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,16}" required/>
     </div>
     <div class="form-group">
-      <label class="form-control-label" for="bankaccount">Bank Account</label>
-      <input class="form-control" id="bankaccount" type="text" name="bankaccount" value="{{bankaccount}}" maxlength="30" onkeypress="return isNumberKey(event)" required/>
+      <label class="form-control-label" for="payment">Credit/Debit Card</label>
+      <input class="form-control" id="payment" type="text" name="card" value="{{card}}" maxlength="16" inputmode="numeric" onkeypress="return isNumberKey(event)"/>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="payment">Bank Account</label>
+      <input class="form-control" id="payment" type="text" name="bank" value="{{bank}}" maxlength="10"  inputmode="numeric" onkeypress="return isNumberKey(event)"/>
     </div>
     <div class="form-group">
       <label class="form-control-label" for="birthday">Birthday</label>

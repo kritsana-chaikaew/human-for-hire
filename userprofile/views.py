@@ -10,10 +10,13 @@ from django.contrib.auth import login, authenticate, password_validation as pv
 from signupLogin.models import Profile
 from django.core.exceptions import ValidationError
 
-
 from signupLogin.models import Profile
 from django.contrib.auth.models import User
 from django.core.files.images import ImageFile
+
+import datetime
+import dateutil
+import pytz
 
 # Create your views here.
 # @login_required
@@ -26,7 +29,8 @@ def home(request):
 @login_required(login_url='/login')
 def view_profile(request):
     p = Profile.objects.get(user=request.user)
-    args = {'user': request.user, 'age': p.get_age()}
+    args = {'user': request.user, 'age': p.get_age(), 
+            'buy_star': p.get_buy_rating(), 'sell_star': p.get_sell_rating()}
     return render(request, 'userprofile/profile.html', args)
 
 # @login_required(login_url='/login')
@@ -76,13 +80,21 @@ def edit_profile(request):
         address = request.POST['address']
         telephone = request.POST['telephone']
         email = request.POST['email']
-        bankaccount = request.POST['bankaccount']
+        card = request.POST['card']
+        bank = request.POST['bank']
         birthday = request.POST['birthday']
         try:
             imageFound = True
             profile_image = ImageFile(request.FILES['profile_image'])
         except:
             imageFound = False
+
+        bd = datetime.datetime.strptime(birthday, "%Y-%m-%d")
+        error = ''
+        if bd > datetime.datetime.now():
+            error = 'Please check your birthday again'
+            return render(request, 'userprofile/edit_profile.html', {'firstname':user.first_name, 'lastname':user.last_name, 'address':user.profile.address, 'telephone':user.profile.telephone, 'email':user.email, 'payment':user.profile.payment, 'birthday':user.profile.birthday, "error":[error]})
+
 
         if firstname != "":
             user.first_name = firstname
@@ -103,10 +115,15 @@ def edit_profile(request):
         if email != "":
             user.email = email
 
-        if bankaccount != "":
-            p.bankaccount = bankaccount
+        if card != "":
+            p.card = card
         else:
-            p.bankaccount = userReq.profile.telephone
+            p.card = userReq.profile.card
+
+        if bank != "":
+            p.bank = bank
+        else:
+            p.bank = userReq.profile.bank
 
         if birthday != "":
             p.birthday = birthday
@@ -122,4 +139,4 @@ def edit_profile(request):
         p.save()
         return redirect('/userprofile/')
 
-    return render(request, 'userprofile/edit_profile.html', {'firstname':user.first_name, 'lastname':user.last_name, 'address':user.profile.address, 'telephone':user.profile.telephone, 'email':user.email, 'bankaccount':user.profile.bankaccount, 'birthday':user.profile.birthday})
+    return render(request, 'userprofile/edit_profile.html', {'firstname':user.first_name, 'lastname':user.last_name, 'address':user.profile.address, 'telephone':user.profile.telephone, 'email':user.email, 'card':user.profile.card, 'bank':user.profile.bank, 'birthday':user.profile.birthday})

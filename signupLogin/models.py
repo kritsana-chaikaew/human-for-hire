@@ -14,7 +14,8 @@ class Profile(models.Model):
         )
     gender = models.CharField(max_length=10, choices=GENDER)
     birthday = models.DateField()
-    bankaccount = models.CharField(max_length=200, blank=True)
+    card = models.CharField(max_length=16, blank=True)
+    bank = models.CharField(max_length=10, blank=True)
     image = models.ImageField(upload_to='userImage', blank=True)
     buy_rating = models.FloatField(default=0)
     buy_rating_count = models.FloatField(default=0)
@@ -27,6 +28,20 @@ class Profile(models.Model):
 
     def get_age(self):
         return timezone.now().year - self.birthday.year
+
+    def get_buy_rating(self):
+        star = [1]*int(self.buy_rating)
+        if self.buy_rating%1 >= 0.5:
+            star.append(0.5)
+        star.extend([0]*(5-len(star)))
+        return star
+
+    def get_sell_rating(self):
+        star = [1]*int(self.sell_rating)
+        if self.sell_rating%1 >= 0.5:
+            star.append(0.5)
+        star.extend([0]*(5-len(star)))
+        return star
 
 # @receiver(post_save, sender=User)
 # def update_user_profile(sender, instance, created, **kwargs):
