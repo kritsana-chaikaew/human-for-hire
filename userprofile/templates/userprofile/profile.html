@@ -66,8 +66,12 @@
             <div class="col-sm-9">{{ user.profile.birthday|date:'d M y'}}</div>
         </div>
         <div class="row" style="height:40px">
-            <div class="col-sm-3"><b>Payment:</b></div>
-            <div class="col-sm-9">{{ user.profile.payment }}</div>
+            <div class="col-sm-3"><b>Credit/Debit Card:</b></div>
+            <div class="col-sm-9">{{ user.profile.card }}</div>
+        </div>
+        <div class="row" style="height:40px">
+            <div class="col-sm-3"><b>Bank Account:</b></div>
+            <div class="col-sm-9">{{ user.profile.bank }}</div>
         </div><hr>
     </div>
 </div>

@@ -6,6 +6,14 @@
   <form method="post" action="" enctype="multipart/form-data" class="col col-lg-6" required>
     <h2>Hire</h3>
     
+    {% if not user.profile.card %}
+      <br>
+      <p class="error">You don't have any payment method.</p>
+      <p class="error">Please add your Credit or Debit Card first.
+      <a href="/userprofile/profile/edit"> Click! </a></p>
+      <br>
+    {% endif %}
+    
       {% for e in error %}
       <p class='error'>{{ e }}</p>
       {% endfor %}
@@ -46,7 +54,17 @@
       <textarea class="form-control" id="detail" rows="2" type="text" name="detail" value="{{detail}}"></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary hh-btn">Submit</button>
+    <div class="form-group">
+    {% if user.profile.card %}
+        <label class="form-control-label" for="detail">Payment</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="payment" checked>{{ user.profile.card }}
+            </label>
+          </div>
+    </div>
+      <button type="submit" class="btn btn-primary hh-btn">Submit</button>
+    {% endif %}
   </form>
 </div>
 
