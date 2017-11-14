@@ -105,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .star-icon.full:before {
-    text-shadow: 0 0 0.5px rgb(247, 183, 37);
+    -webkit-text-stroke: 1.25px rgb(255, 196, 86);
     color: rgb(255, 254, 43);
     content: '\2605';
     position: absolute;
@@ -113,7 +113,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .star-icon.half:before {
-    text-shadow: 0 0 0.5px rgb(247, 183, 37);
+    -webkit-text-stroke: 1.25px rgb(255, 196, 86);
     color: rgb(255, 254, 43);
     content: '\2605';
     position: absolute;

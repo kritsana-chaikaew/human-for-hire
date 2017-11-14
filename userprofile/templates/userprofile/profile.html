@@ -9,40 +9,41 @@
         <center><a class="btn btn-info hh-btn" role="button" href="/userprofile/profile/edit">Edit</a></center>
     </div>
     <div class="col-12 col-md-8">
-        <h2>{{ user.first_name }} {{ user.last_name }}, {{ age }}</h2>
+        <h2>{{ user.first_name }} {{ user.last_name }}, {{ age }} </h2>
         <div class="username">( {{ user }} )</div>
         {% if user.profile.sell_rating or user.profile.buy_rating %}
-        <hr>
-        {% if user.profile.sell_rating %}
-        <span class="rate-type"><b>Seller Rate:</b></span>
-        {% for i in sell_star %}
-            {% if i == 1 %}
-                <span class="star-icon full">★</span>
-            {% elif i == 0.5 %}
-                <span class="star-icon half">★</span>
-            {% else %}
-                <span class="star-icon">★</span>
+            <hr>
+            {% if user.profile.sell_rating %}
+                <span class="rate-type"><b>Seller Rate:</b></span>
+                {% for i in sell_star %}
+                    {% if i == 1 %}
+                        <span class="star-icon full">★</span>
+                    {% elif i == 0.5 %}
+                        <span class="star-icon half">★</span>
+                    {% else %}
+                        <span class="star-icon">★</span>
+                    {% endif %}
+                {% endfor %}
+                <span class="rate-type">({{ user.profile.sell_rating|floatformat:2 }})</span>
+                <br>
             {% endif %}
-        {% endfor %}
-        <span class="rate-type">({{ user.profile.sell_rating|floatformat:2 }})</span>
-        <br>
-        {% endif %}
-        {% if user.profile.buy_rating %}
-        <span class="rate-type"><b>Buyer Rate:</b></span>
-        {% for i in buy_star %}
-            {% if i == 1 %}
-                <span class="star-icon full">★</span>
-            {% elif i == 0.5 %}
-                <span class="star-icon half">★</span>
-            {% else %}
-                <span class="star-icon">★</span>
+            {% if user.profile.buy_rating %}
+                <span class="rate-type"><b>Buyer Rate:</b></span>
+                    {% for i in buy_star %}
+                        {% if i == 1 %}
+                            <span class="star-icon full">★</span>
+                        {% elif i == 0.5 %}
+                            <span class="star-icon half">★</span>
+                        {% else %}
+                            <span class="star-icon">★</span>
+                        {% endif %}
+                    {% endfor %}
+                    <span class="rate-type">({{ user.profile.buy_rating|floatformat:2 }})</span>
+                    <br>
             {% endif %}
-        {% endfor %}
-        <span class="rate-type">({{ user.profile.buy_rating|floatformat:2 }})</span>
-        <br><hr>
-        {% endif %}
+            <hr>
         {% else %}
-        <hr>
+            <hr>
         {% endif %}
         <div class="row" style="height:40px">
             <div class="col-sm-3"><b>Email:</b></div>
