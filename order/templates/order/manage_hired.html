@@ -4,74 +4,32 @@
 {% block content %}
 <h3>Manage Hired</h3>
 <!-- current work: the start date hasn't come yet -->
-<h4 class="manage__header">Pending</h4>
 
+<h4 class="manage__header">Pending</h4>
 {% if work_list %}
 	<div class="row">
 	{% for work in work_list %}
+		{% if work.status == 0 %}
 	    {% include "order/hired_card.html" %}
+		{% endif %}
 	{% endfor %}
 	</div>
 {% endif %}
 
 <h4 class="manage__header">Upcoming</h4>
+{% if work_list %}
+	<div class="row">
+	{% for work in work_list %}
+		{% if work.status == 1 or work.status == 2 or work.status == 3 %}
+	    {% include "order/hired_card.html" %}
+		{% endif %}
+	{% endfor %}
+	</div>
+{% endif %}
 
 <!-- past work: the start date has passed -->
 <h4 class="manage__header">History</h4>
-<table class="table table-hover table-responsive-sm" id="hh-managework">
-	<thead class="thead-dark">
-		<tr>
-		<th scope="row">Date</th>
-		<th scope="row">Employee</th>
-		<th scope="row">Descriptions</th>
-		<th scope="row">Price</th>
-		<th scope="row">Rate</th>
-		<th scope="row">Status</th>
-		</tr>
-	</thead>
-	<tbody>
-	    <tr>
-	      <td>20 Oct 2017</td>
-	      <td>Kritsana	</td>
-	      <td>สอนหนังสือภาษาอังกฤษ</td>
-	      <td>2800 THB</td>
-	      <td>★★★☆☆</td>
-	      <!-- Hover to show the button that can click to update status work done -->
-	      <td>
-	      	<span class="badge manage-status__WAITINGFORWORK"> WAITING FOR WORK DONE</span>
-	      </td>
-	    </tr>
-	    <tr>
-	      <td>20 Oct 2017</td>
-	      <td>Kritsana	</td>
-	      <td>สอนหนังสือภาษาอังกฤษ</td>
-	      <td>2800 THB</td>
-	      <td>★★★☆☆</td>
-	      <td>
-	      	<span class="badge manage-status__FAILED">FAILED</span>
-	      </td>
-	    </tr>
-	    <tr>
-	      <td>20 Oct 2017</td>
-	      <td>Kritsana	</td>
-	      <td>สอนหนังสือภาษาอังกฤษ</td>
-	      <td>2800 THB</td>
-	      <td>★★★☆☆</td>
-	      <td>
-	      	<span class="badge manage-status__CANCELLED">CANCELLED</span>
-	      </td>
-	    </tr>
-	    <tr>
-	      <td>20 Oct 2017</td>
-	      <td>Kritsana	</td>
-	      <td>สอนหนังสือภาษาอังกฤษ</td>
-	      <td>2800 THB</td>
-	      <td>★★★☆☆</td>
-	      <td>
-	      	<span class="badge manage-status__WORKDONE">WORK DONE</span>
-	      	</td>
-	    </tr>
-	</tbody>
-</table>
+{% include "order/work_history.html" %}
+
 <script type="text/javascript" src="{% static "order/js/manage_hired.js" %}"></script>
 {% endblock %}
