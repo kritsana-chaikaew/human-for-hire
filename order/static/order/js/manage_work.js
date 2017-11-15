@@ -7,6 +7,7 @@
 //   }
 // );
 
+
 $(".manage-status__WAITINGFORWORK").hover(
   function() {
     $(this).addClass('workdone-hover');
@@ -14,7 +15,7 @@ $(".manage-status__WAITINGFORWORK").hover(
     order_no = Number(order_no) * 9876 - 5555
     $(this).html('<a class="rate-work" href="/rate_employer/' + btoa(order_no) + '">CONFIRM WORK DONE</a>');
   }, function() {
-    $(this).text("WAITING FOR WORK");
+    $(this).text("WAITING FOR WORK DONE");
   }
 );
 

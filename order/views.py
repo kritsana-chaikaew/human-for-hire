@@ -161,19 +161,25 @@ def rate(request):
         user_type = None
 
     if order_no == None:
-        return render(request, 'order/fail.html', {'message':'Do not access link without clicking button...'})
+        return render(request, 'order/fail.html', {'message':"Don't try to hack my website, it never works..."})
 
     print('order_no: ' + order_no)
 
     try:
-        order_no = str(int((int(base64ToString(urllib.parse.unquote(order_no))) + 5555) / 9876))
-        print('order_no: ' + order_no)
-        od = Order.objects.get(order_no=order_no)
+        # order_no = str(int((int(base64ToString(urllib.parse.unquote(order_no))) + 5555) / 9876))
+        order_no = (int(base64ToString(urllib.parse.unquote(order_no))) + 5555) / 9876
+        if order_no.is_integer():
+            order_no = str(int(order_no))
+            print('order_no: ' + order_no)
+            od = Order.objects.get(order_no=order_no)
+        else:
+            request.session['order_no'] = None
+            request.session['user_type'] = None
+            return render(request, 'order/fail.html', {'message':"Don't try to hack my website, it never works..."})
     except:
         request.session['order_no'] = None
         request.session['user_type'] = None
-        return render(request, 'order/fail.html', {'message':"Don't try to hack url..."})
-
+        return render(request, 'order/fail.html', {'message':"Don't try to hack my website, it never works..."})
 
     if user_type == 'employee':
         who = od.seller_username
@@ -200,6 +206,7 @@ def rate(request):
             pf.save()
             try:
                 o = Order.objects.get(order_no=order_no)
+                o.seller_rating = score
                 if o.status == Order.WAITING_FOR_WORK:
                     o.status = Order.WAIT_SELLER_MARK_DONE
                 elif o.status == Order.WAIT_BUYER_MARK_DONE:
@@ -214,6 +221,7 @@ def rate(request):
             pf.save()
             try:
                 o = Order.objects.get(order_no=order_no)
+                o.buyer_rating = score
                 if o.status == Order.WAITING_FOR_WORK:
                     o.status = Order.WAIT_BUYER_MARK_DONE
                 elif o.status == Order.WAIT_SELLER_MARK_DONE:
@@ -237,4 +245,4 @@ def rate(request):
     return render(request, 'order/rate.html', args)
 
 def rate_wrong_url(request):
-    return render(request, 'order/fail.html', {'message':"Sorry, wrong url..."})
+    return render(request, 'order/fail.html', {'message':"Don't try to hack my website, it never works..."})

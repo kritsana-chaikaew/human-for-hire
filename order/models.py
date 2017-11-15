@@ -17,6 +17,8 @@ class Order(models.Model):
     detail = models.CharField(max_length=250, default='datail')
     start_date = models.DateTimeField(default=timezone.now)
     end_date = models.DateTimeField(default=timezone.now)
+    buyer_rating = models.IntegerField(default=0)
+    seller_rating = models.IntegerField(default=0)
 
     TO_BE_ACCEPTED = 0
     WAITING_FOR_WORK = 1
