@@ -3,9 +3,9 @@
 {% block content %}
 
 <div>
-  <p id="rate-username">{{ username }}</p>
+  <p id="rate-username">{{ name }}</p>
   {% if user_type == 'employee' %}
-    <p id="rate-product-name">Product name: {{ product_name }}</p>
+    <p id="rate-product-name">Product name: none</p>
   {% endif %}
   <img id="rate-image" src="{{ image.url }}">
   <p id="rate-detail">Detail: {{ detail }}</p>
