@@ -189,10 +189,28 @@ body {
   margin: 0px;
 }
 .managehired__detail {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 .card {
   margin-bottom: 25px;
+}
+.close-button {
+  opacity: 0;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+}
+.card:hover .close-button {
+  opacity: 1;
+  cursor: pointer;
+}
+.star {
+  color: #fcdc42;
+  font-size: 1.6em;
 }
 /*END MANAGE*/
 

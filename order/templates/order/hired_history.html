@@ -21,7 +21,7 @@
         <td>{{ work.price }} THB</td>
         <!-- <td>★★★☆☆</td> -->
         <!-- <td>{{ work.buyer_rating }}</td> -->
-        <td>
+        <td class="star">
           {% if work.get_status_display|cut:" " == 'WORKDONE' %}
             {% with work.seller_rating as filled_star %}
             {% with 5|sub:work.seller_rating as empty_star %}
