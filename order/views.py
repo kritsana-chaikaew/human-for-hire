@@ -98,10 +98,8 @@ def seller_confirm_workdone(request):
         o = Order.objects.get(order_no=request.GET.get('order_no'))
         print("status seller_confirm_workdone: " + str(o.status))
         if o.status == Order.WAITING_FOR_WORK:
-            print('aaaaaaaa')
             o.status = Order.WAIT_BUYER_MARK_DONE
         elif o.status == Order.WAIT_SELLER_MARK_DONE:
-            print('bbbbbbbb')
             o.status = Order.WORK_DONE
         else:
             raise ValueError('Can not be done.')
@@ -182,19 +180,15 @@ def rate(request):
         return render(request, 'order/fail.html', {'message':"Don't try to hack my website, it never works..."})
 
     if user_type == 'employee':
-        who = od.seller_username
-        who_pf = Profile.objects.get(user=od.seller_username)
-        product_name = od.product_no.product_name
-        image = od.product_no.product_image
-        detail = od.product_no.product_details
-        rating = who_pf.sell_rating
-    elif user_type == 'employer':
-        who = od.buyer_username
-        who_pf = Profile.objects.get(user=od.buyer_username)
-        product_name = ''
-        image = who_pf.image
+        name = od.seller_username.first_name + ' ' + od.seller_username.last_name
+        image = od.seller_username.profile.image
         detail = od.detail
-        rating = who_pf.buy_rating
+        rating = od.seller_username.profile.sell_rating
+    elif user_type == 'employer':
+        name = od.buyer_username.first_name + ' ' + od.buyer_username.last_name
+        image = od.buyer_username.profile.image
+        detail = od.detail
+        rating = od.buyer_username.profile.buy_rating
 
 
     if request.method == 'POST':
@@ -241,7 +235,7 @@ def rate(request):
             return redirect('/manage-work')
 
 
-    args = {'user_type': user_type, 'username': who, 'product_name': product_name, 'image': image, 'detail': detail, 'rating': rating}
+    args = {'user_type': user_type, 'name': name, 'image': image, 'detail': detail, 'rating': rating}
     return render(request, 'order/rate.html', args)
 
 def rate_wrong_url(request):
