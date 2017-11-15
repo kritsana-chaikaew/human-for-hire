@@ -44,16 +44,6 @@
     </div>
   </div>
 
-  <div class="form-group" id="{{ form.price.auto_id }}_container">
-    <label class="form-control-label" for="id_{{ form.price.name }}">
-      {{ form.price.label }}
-    </label>
-    {{ form.price|add_class:"form-control" }}
-    <div id="{{ form.price.auto_id }}_errors">
-      {{ form.price.errors }}
-    </div>
-  </div>
-
   <div class="form-group" id="{{ form.start_date.auto_id }}_container">
     <label class="form-control-label" for="id_{{ form.start_date.name }}">
       {{ form.start_date.label }}

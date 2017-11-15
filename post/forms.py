@@ -9,7 +9,6 @@ class EditPostForm(ModelForm):
             'product_name',
             'product_image',
             'product_details',
-            'price',
             'start_date',
             'end_date',
             'location',
@@ -18,7 +17,6 @@ class EditPostForm(ModelForm):
         labels = {
             'product_image': 'Picture',
             'product_details': 'Description',
-            'price': 'Price (per hour)',
             'start_date': 'Start date and time',
             'end_date': 'End date and time',
             'tags': 'Tag'
