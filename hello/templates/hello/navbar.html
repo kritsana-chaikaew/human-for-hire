@@ -26,15 +26,15 @@
                   <a class="dropdown-item" href="{% url 'order:manage_work' %}">My Work</a>
                   <a class="dropdown-item" href="{% url 'order:manage_hired' %}">Manage Hired</a>
                   <a class="dropdown-item" href="{% url 'report:create_report' %}">Report</a>
-                  <a class="dropdown-item" href="{% url 'signupLogin:logout' %}">Logout</a>
+                  <a class="dropdown-item" href="{% url 'signuplogin:logout' %}">Logout</a>
                 </div>
             </li>
             {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'signupLogin:signup' %}">Register</a>
+                <a class="nav-link" href="{% url 'signuplogin:signup' %}">Register</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'signupLogin:login' %}">Login</a>
+                <a class="nav-link" href="{% url 'signuplogin:login' %}">Login</a>
             </li>
             {% endif %}
         </ul>

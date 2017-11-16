@@ -8,7 +8,7 @@ import datetime
 
 from post.models import Product
 from taggit.models import Tag
-from signupLogin.models import Profile
+from signuplogin.models import Profile
 
 import json
 from functools import reduce

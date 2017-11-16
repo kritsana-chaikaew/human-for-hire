@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('hello.urls')),
     url(r'', include('post.urls')),
-    url(r'', include('signupLogin.urls')),
+    url(r'', include('signuplogin.urls')),
     url(r'^userprofile/', include('userprofile.urls')),
     url(r'', include('order.urls')),
     url(r'', include('report.urls'))

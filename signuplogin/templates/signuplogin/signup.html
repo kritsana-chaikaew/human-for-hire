@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="row justify-content-md-center">
-  <form method="post" action="{% url 'signupLogin:signup' %}" enctype="multipart/form-data" class="col col-lg-6">
+  <form method="post" action="{% url 'signuplogin:signup' %}" enctype="multipart/form-data" class="col col-lg-6">
     <h3>Register</h3>
     <br>
     {% for e in error %}
@@ -89,6 +89,6 @@
   </div>
 
 <script src="{% static "hello/js/datetime.js" %}"></script>
-<script src="{% static "signupLogin/js/form-validation.js" %}"></script>
+<script src="{% static "signuplogin/js/form-validation.js" %}"></script>
 
 {% endblock %}

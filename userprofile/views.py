@@ -7,10 +7,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, password_validation as pv
 
-from signupLogin.models import Profile
+from signuplogin.models import Profile
 from django.core.exceptions import ValidationError
 
-from signupLogin.models import Profile
+from signuplogin.models import Profile
 from django.contrib.auth.models import User
 from django.core.files.images import ImageFile
 

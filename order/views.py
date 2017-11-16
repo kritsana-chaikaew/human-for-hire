@@ -6,10 +6,10 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from post.models import Product
-from signupLogin.models import Profile
+from signuplogin.models import Profile
 from .models import Order
 
-from signupLogin.models import Profile
+from signuplogin.models import Profile
 
 import base64
 import urllib.parse
