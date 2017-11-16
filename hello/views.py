@@ -30,6 +30,7 @@ class IndexView(generic.ListView):
             end_date = request.POST['end_date']
             tag_list = request.POST['tag_list']
             tag_list = tag_list.split(',')
+            sort = request.POST['sort']
 
             if gender != "":
                 profile = Profile.objects.filter(gender=gender)
