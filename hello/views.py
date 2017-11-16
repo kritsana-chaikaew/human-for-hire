@@ -54,9 +54,9 @@ class IndexView(generic.ListView):
                 cards = cards.filter(end_date__lte=end_date)
             if tag_list != []:
                 cards = cards.filter(tags__name__in=tag_list)
-
-            cards = cards.distinct().order_by('-init_date')
-
+            if sort == "date":
+                cards = cards.distinct().order_by('-init_date')
+                
         args = {'product_list': cards}
         return render(request, 'hello/index.html', args)
 
