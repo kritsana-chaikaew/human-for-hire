@@ -140,6 +140,26 @@ def cancel_work(request):
         data['success'] = False
     return JsonResponse(data)
 
+def cancel_work_penalty(request):
+    data = {
+        'success': True
+    }
+    try:
+        o = Order.objects.get(order_no=request.GET.get('order_no'))
+        o.status = Order.CANCELLED;
+        o.save()
+        u = User.objects.get(username=request.GET.get('username'))
+        usertype = request.GET.get('usertype')
+        if usertype == "employee":
+            u.profile.sell_rating = 0.9 * u.profile.sell_rating
+        if usertype == "employer":
+            u.profile.buy_rating = 0.9 * u.profile.buy_rating
+        u.profile.save()
+        u.save()
+    except:
+        data['success'] = False
+    return JsonResponse(data)
+
 def rate_employee(request, order_no):
     request.session['order_no'] = order_no
     request.session['user_type'] = 'employee'

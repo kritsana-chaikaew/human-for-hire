@@ -7,7 +7,6 @@
 //   }
 // );
 
-
 $(".manage-status__WAITINGFORWORK").hover(
   function() {
     $(this).addClass('workdone-hover');
@@ -71,6 +70,34 @@ $(".manage-status__TOBEACCEPTED").click(function(){
     }
   });
 });
+
+$(".close-button").click(function() {
+  var element = $(this)
+  bootbox.confirm("Are you sure? your rating will be decrease by 10%", function(result) {
+    if(result) {
+      $.ajax({
+        url: '/ajax/cancel_work_penalty',
+        data: {
+          'order_no': element.attr('order'),
+          'username': element.attr('username'),
+          'usertype': element.attr('usertype')
+        },
+        dataType: 'json',
+        success: function(data) {
+          if(data.success) {
+            console.log("success!!")
+          }
+        }
+      });
+    }
+  })
+});
+
+// $(element).removeClass("manage-status__TOBEACCEPTED");
+// $(element).addClass("manage-status__ACCEPTED");
+// $(element).unbind();
+// $(element).text("ACCEPTED!")
+
 
 // function confirm_workdone(){
 //   element = this

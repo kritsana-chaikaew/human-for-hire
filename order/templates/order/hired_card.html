@@ -2,7 +2,9 @@
 	<div class="card border-dark">
 		<div class="card-body">
 			<h4 class="card-title">{{work.seller_username.first_name}}</h4>
-			<div class="close-button"><i class="fa fa-times" aria-hidden="true"></i></div>
+			{% if work.status == 1 or work.status == 2 or work.status == 3 %}
+				<div order="{{ work.order_no }}" username="{{ work.buyer_username }}" usertype="employer" class="close-button"><i class="fa fa-times" aria-hidden="true"></i></div>
+			{% endif %}
 			<div class="managehired__detail">
 				<p class="managehired__date">{{work.start_date|date:'d M y'}} </p>
 				<p class="managehired__tel">
