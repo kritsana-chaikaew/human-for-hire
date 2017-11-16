@@ -16,7 +16,7 @@
     {% if work.status == 4 or work.status == 5 or work.status == 6 %}
       <tr>
         <td>{{ work.start_date|date:'d M y' }}</td>
-        <td>{{ work.seller }}</td>
+        <td>{{ work.seller_username.first_name }}</td>
         <td>{{ work.detail }}</td>
         <td>{{ work.price }} THB</td>
         <!-- <td>★★★☆☆</td> -->
