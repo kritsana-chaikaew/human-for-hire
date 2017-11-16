@@ -146,16 +146,17 @@ def cancel_work_penalty(request):
     }
     try:
         o = Order.objects.get(order_no=request.GET.get('order_no'))
-        o.status = Order.CANCELLED;
-        o.save()
-        u = User.objects.get(username=request.GET.get('username'))
-        usertype = request.GET.get('usertype')
-        if usertype == "employee":
-            u.profile.sell_rating = 0.9 * u.profile.sell_rating
-        if usertype == "employer":
-            u.profile.buy_rating = 0.9 * u.profile.buy_rating
-        u.profile.save()
-        u.save()
+        if o.status != Order.CANCELLED:
+            o.status = Order.CANCELLED;
+            o.save()
+            u = User.objects.get(username=request.GET.get('username'))
+            usertype = request.GET.get('usertype')
+            if usertype == "employee":
+                u.profile.sell_rating = 0.9 * u.profile.sell_rating
+            if usertype == "employer":
+                u.profile.buy_rating = 0.9 * u.profile.buy_rating
+            u.profile.save()
+            u.save()
     except:
         data['success'] = False
     return JsonResponse(data)
