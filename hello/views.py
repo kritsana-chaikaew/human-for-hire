@@ -60,6 +60,7 @@ class IndexView(generic.ListView):
             if tag_list != ['']:
                 print(tag_list)
                 cards = cards.filter(tags__name__in=tag_list)
+<<<<<<< HEAD
 
         if sort == 'rating':
             cards = cards.distinct().order_by('seller_username__profile__sell_rating')    
@@ -67,6 +68,11 @@ class IndexView(generic.ListView):
             cards = cards.distinct().order_by('-init_date')
 
 
+=======
+            if sort == "date":
+                cards = cards.distinct().order_by('-init_date')
+                
+>>>>>>> 7cee693d07dd10a8a759dede56a68a3ccacfe67d
         args = {'product_list': cards}
         return render(request, 'hello/index.html', args)
 
