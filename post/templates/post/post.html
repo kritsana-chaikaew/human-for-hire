@@ -1,0 +1,62 @@
+{% extends 'hello/base.html' %}
+{% load static %}
+
+{% block content %}
+<h3>Present yourself</h3>
+<form action="{% url 'post:action' %}" method="post" enctype="multipart/form-data" class="col-lg-5">
+  {% csrf_token %}
+
+    <div class="form-group">
+      <label class="form-control-label" for="product_name">Product name</label>
+      <input class="form-control" type="text" id="product_name"  name="product_name" id="product_name" placeholder="Name your product">
+      <small id="NameHelp" class="form-text text-muted">maximum 15 character</small>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="product_image">Picture</label>
+      <div class="input-group">
+        <input type="file" class="custom-file-input" name="product_image" id="product_image" aria-describedby="fileHelp">
+        <span class="custom-file-control form-control-file"></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control" rows="3" name="product_details" id="product_details" placeholder="Enter description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="start_date">Start date and time</label>
+      <div class="form-datetime date input-group">
+        <input class="form-control" type="text" name="start_date" placeholder="Enter start date">
+        <span class="input-group-addon"><i class="fa fa-times"></i></span>
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="end_date">End date and time</label>
+      <div class="form-datetime date input-group">
+        <input class="form-control" type="text" name="end_date" placeholder="Enter end date">
+        <span class="input-group-addon"><i class="fa fa-times"></i></span>
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="location">Location</label>
+      <input class="form-control" type="text" name="location" id="location">
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="tags">Tag</label>
+      <input class="form-control" type="text" name="tags" id="tags" placeholder="comma separated list of tags">
+    </div>
+
+    <button type="submit" class="btn btn-primary hh-btn">Create Post</button>
+</form>
+
+<script src="{% static "post/js/post.js" %}"></script>
+<script src="{% static "hello/js/datetime.js" %}"></script>
+
+{% endblock %}
