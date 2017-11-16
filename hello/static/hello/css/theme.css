@@ -130,3 +130,49 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 15px;
     color: red;
 }
+
+.red-long-btn {
+    background-color: #e73d0c;
+    border: none;
+    color: white;
+    height: 30px;
+    width: 220px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.gray-short-btn {
+    background-color: #a3a3a3;
+    border: none;
+    color: white;
+    height: 30px;
+    width: 130px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.red-short-btn {
+    background-color: #ef390a;
+    border: none;
+    color: white;
+    height: 30px;
+    width: 130px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
