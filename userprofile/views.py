@@ -77,7 +77,7 @@ def edit_profile(request):
         error = ''
         if bd > datetime.datetime.now():
             error = 'Please check your birthday again'
-            return render(request, 'userprofile/edit_profile.html', {'firstname':user.first_name, 'lastname':user.last_name, 'address':user.profile.address, 'telephone':user.profile.telephone, 'email':user.email, 'payment':user.profile.payment, 'birthday':user.profile.birthday, "error":[error]})
+            return render(request, 'userprofile/edit_profile.html', {'firstname':user.first_name, 'lastname':user.last_name, 'address':user.profile.address, 'telephone':user.profile.telephone, 'email':user.email, 'birthday':user.profile.birthday, "error":[error]})
 
 
         if firstname != "":
