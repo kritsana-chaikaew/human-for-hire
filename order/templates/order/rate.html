@@ -3,13 +3,13 @@
 {% block content %}
 
 <div>
-  <p id="rate-username">{{ name }}</p>
   {% if user_type == 'employee' %}
-    <p id="rate-product-name">Product name: none</p>
+    <h3>Comfirm Work Done and Rate Employee ({{ name }})</h3>
+  {% else %}
+    <h3>Comfirm Work Done and Rate Employer ({{ name }})</h3>
   {% endif %}
   <img id="rate-image" src="{{ image.url }}">
   <p id="rate-detail">Detail: {{ detail }}</p>
-  <p id="rate-rating">Rating: {{ rating|floatformat:2 }}</p>
 
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
