@@ -215,8 +215,8 @@ body {
 /*END MANAGE*/
 
 /*START RATING*/
-
-#rate-image {
-  width: 500px
+.star-rating > .star-icon {
+  font-size: 6em;
+  cursor: default;
 }
 /*END RATING*/

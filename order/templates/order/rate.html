@@ -1,39 +1,27 @@
 {% extends 'hello/base.html' %}
+{% load static %}
 
 {% block content %}
-
 <div>
   {% if user_type == 'employee' %}
     <h3>Comfirm Work Done and Rate Employee ({{ name }})</h3>
   {% else %}
     <h3>Comfirm Work Done and Rate Employer ({{ name }})</h3>
   {% endif %}
-  <img id="rate-image" src="{{ image.url }}">
-  <p id="rate-detail">Detail: {{ detail }}</p>
 
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <label class="rating-radio" class="checkbox-inline">
-      <input type="radio" name="rating" value="0">0</input>
-    </label>
-    <label class="rating-radio" class="checkbox-inline">
-      <input type="radio" name="rating" value="1">1</input>
-    </label>
-    <label class="rating-radio" class="checkbox-inline">
-      <input type="radio" name="rating" value="2">2</input>
-    </label>
-    <label class="rating-radio" class="checkbox-inline">
-      <input type="radio" name="rating" value="3" checked>3</input>
-    </label>
-    <label class="rating-radio" class="checkbox-inline">
-      <input type="radio" name="rating" value="4">4</input>
-    </label>
-    <label class="rating-radio" class="checkbox-inline">
-      <input type="radio" name="rating" value="5">5</input>
-    </label>
-    <br>
-    <button>Submit</button>
+    <div class="star-rating">
+      <span class="star-icon" data-rating="1">★</span>
+      <span class="star-icon" data-rating="2">★</span>
+      <span class="star-icon" data-rating="3">★</span>
+      <span class="star-icon" data-rating="4">★</span>
+      <span class="star-icon" data-rating="5">★</span>
+      <input type="hidden" name="rating" class="rating-value" value="3">
+    </div>
+    <button class="btn btn-info hh-btn">Confirm</button> 
   </form>
 </div>
 
+<script type="text/javascript" src="{% static "order/js/star_rating.js" %}"></script>
 {% endblock %}
