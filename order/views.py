@@ -116,10 +116,8 @@ def buyer_confirm_workdone(request):
         o = Order.objects.get(order_no=request.GET.get('order_no'))
         print("status buyer_confirm_workdone: " + str(o.status))
         if o.status == Order.WAITING_FOR_WORK:
-            print('aaaaaaaa')
             o.status = Order.WAIT_SELLER_MARK_DONE
         elif o.status == Order.WAIT_BUYER_MARK_DONE:
-            print('bbbbbbbb')
             o.status = Order.WORK_DONE
         else:
             raise ValueError('Can not be done.')
@@ -184,7 +182,6 @@ def rate(request):
     print('order_no: ' + order_no)
 
     try:
-        # order_no = str(int((int(base64ToString(urllib.parse.unquote(order_no))) + 5555) / 9876))
         order_no = (int(base64ToString(urllib.parse.unquote(order_no))) + 5555) / 9876
         if order_no.is_integer():
             order_no = str(int(order_no))
