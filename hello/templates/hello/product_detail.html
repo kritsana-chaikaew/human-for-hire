@@ -1,7 +1,7 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
-<div class="row">
+<div class="row" style="line-height:100%;">
     <div class="col-12 col-md-4 product-img">
         <img src="{{ product.product_image.url }}" width="100%" \>
         {% if user.id != product.seller_username_id %}
@@ -12,30 +12,41 @@
         {% endif %}
     </div>
     <div class="col-12 col-md-8">
-        <h2>{{ product.product_name }}</h2> <div class="posted-by">posted by: {{ product.seller_username }} </div> </br>
-        <p>{{product.product_details }}</p>
+        <h2>{{ product.product_name }}</h2> 
+        <span class="username">{{ product.seller_username.first_name }} {{ product.seller_username.last_name }} &nbsp;</span>
+        {% if user.profile.sell_rating %}
+        {% for i in user.profile.get_sell_rating %}
+            {% if i == 1 %}
+                <span class="star-icon full">★</span>
+            {% elif i == 0.5 %}
+                <span class="star-icon half">★</span>
+            {% else %}
+                <span class="star-icon">★</span>
+            {% endif %}
+        {% endfor %}
+        <span class="rate-type">({{ user.profile.sell_rating|floatformat:2 }})</span>
+        {% endif %}
+        <br><br>
         <p>
-          <h6>Name</h6>
-          {{ product.seller_username.first_name }}  {{ product.seller_username.last_name }}
-        </p>
-        <p>
-          <h6>Avaliable Days</h6>
-          <b>from</b> {{ product.start_date|date:'d M y - H:i'}}
-          <br>
-          <b>to</b> {{ product.end_date|date:'d M y - H:i'}}
-        </p>
-        <p>
-          <h6>Location</h6>
-          {{ product.location }}
-        </p>
-        <p>
-          <h6>Tag</h6>
             {% for tag in product.tags.all %}
               <a class="btn btn-light btn-sm" role="button" href='/tags/{{ tag }}/'>
                 {{ tag }}
               </a>
             {% endfor %}
-        </p>
+        </p><hr>
+        <p>{{product.product_details }}</p><br>
+        <p>
+          <h6>Avaliable</h6>
+          <div class="row">
+            <div class="col-sm-4"><b>from &nbsp;</b> {{ product.start_date|date:'d M y - H:i'}}</div>
+            <div class="col-sm-8"><b>to &nbsp;</b> {{ product.end_date|date:'d M y - H:i'}}</div>
+          </div>
+        </p><br>
+        <p>
+          <h6>Location</h6>
+          {{ product.location }}
+        </p><hr>
+        
         {% if user.id == product.seller_username_id %}
         <p>
           <a href='/product/{{ product.product_no }}/delete'>
@@ -48,6 +59,6 @@
           </a>
         </p>
         {% endif %}
-    </div>
+    </div>  
 </div>
 {% endblock %}
