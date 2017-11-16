@@ -62,7 +62,7 @@ class IndexView(generic.ListView):
                 cards = cards.filter(tags__name__in=tag_list)
 
         if sort == 'rating':
-            cards = cards.distinct().order_by('seller_username__profile__sell_rating')    
+            cards = cards.distinct().order_by('-seller_username__profile__sell_rating')    
         else:
             cards = cards.distinct().order_by('-init_date')
 
