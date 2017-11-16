@@ -33,20 +33,6 @@ def view_profile(request):
             'buy_star': p.get_buy_rating(), 'sell_star': p.get_sell_rating()}
     return render(request, 'userprofile/profile.html', args)
 
-# @login_required(login_url='/login')
-# def edit_profile(request):
-#     if request.method == 'POST':
-#         form = EditProfileForm(request.POST, instance=request.user)
-#
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/userprofile/')
-#
-#     else:
-#         form = EditProfileForm(instance=request.user)
-#         args = {'form': form}
-#         return render(request, 'userprofile/edit_profile.html', args)
-
 @login_required(login_url='/login')
 def change_password(request):
     if request.method == 'POST':
@@ -60,7 +46,6 @@ def change_password(request):
             args = {'error': 'error'}
             messages.warning(request, 'Please check your password again.')
             return redirect('/userprofile/change-password')
-            #return render(request, 'userprofile/change_password.html', args)
 
     else:
         form = PasswordChangeForm(user=request.user)
@@ -70,7 +55,6 @@ def change_password(request):
 
 @login_required(login_url='/login')
 def edit_profile(request):
-    # return render(request, 'userprofile/edit_profile2.html')
     user = User.objects.get(username=request.user.username)
     p = user.profile
     userReq = request.user
