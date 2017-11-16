@@ -33,29 +33,39 @@ class IndexView(generic.ListView):
             sort = request.POST['sort']
 
             if gender != "":
+                print("gender")
                 profile = Profile.objects.filter(gender=gender)
                 user = User.objects.filter(profile__in=profile)
                 cards = cards.filter(seller_username__in=user)
             if first_age != "":
+                print("fage")
                 max_date = datetime.date.today()
                 max_date = max_date.replace(year=max_date.year - int(first_age))
                 profile = Profile.objects.filter(birthday__lte=max_date)
                 user = User.objects.filter(profile__in=profile)
                 cards = cards.filter(seller_username__in=user)
             if end_age != "":
+                print("lage")
                 min_date = datetime.date.today()
                 min_date = min_date.replace(year=min_date.year - int(end_age))
                 profile = Profile.objects.filter(birthday__gte=min_date)
                 user = User.objects.filter(profile__in=profile)
                 cards = cards.filter(seller_username__in=user)
             if first_date != "":
+                print("fdate")
                 cards = cards.filter(start_date__gte=first_date)
             if end_date != "":
+                print("ldate")
                 cards = cards.filter(end_date__lte=end_date)
-            if tag_list != []:
+            if tag_list != ['']:
+                print(tag_list)
                 cards = cards.filter(tags__name__in=tag_list)
 
+        if sort == 'rating':
+            cards = cards.distinct().order_by('seller_username__profile__sell_rating')    
+        else:
             cards = cards.distinct().order_by('-init_date')
+
 
         args = {'product_list': cards}
         return render(request, 'hello/index.html', args)
