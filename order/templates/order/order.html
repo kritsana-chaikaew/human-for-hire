@@ -1,23 +1,47 @@
 {% extends 'hello/base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="row justify-content-md-center">
   <form method="post" action="" enctype="multipart/form-data" class="col col-lg-6" required>
-    <h1>Hire</h1>
-    {% csrf_token %}
-    <div class="form-group">
-    <label class="form-control-label" for="start_date">Start date and time</label>
-        <input class="form-control" type="datetime-local" name="start_date" value="{{start_date}}" required>
-    </div>
+    <h2>Hire</h3>
     
+    {% if not user.profile.card %}
+      <br>
+      <p class="error">You don't have any payment method.</p>
+      <p class="error">Please add your Credit or Debit Card first.
+      <a href="/userprofile/profile/edit"> Click! </a></p>
+      <br>
+    {% endif %}
+    
+      {% for e in error %}
+      <p class='error'>{{ e }}</p>
+      {% endfor %}
+
+    <div>Make a call to {{ seller_user.first_name }} : <b>{{ seller_user.profile.telephone }}</b></div></br>
+    {% csrf_token %}
+
     <div class="form-group">
-    <label class="form-control-label" for="end_date">End date and time</label>
-        <input class="form-control" type="datetime-local" name="end_date" value="{{end_date}}" required>
+      <label class="form-control-label" for="start_date">Start date and time</label>
+      <div class="form-datetime date input-group">
+        <input class="form-control" type="text" name="start_date" value="{{start_date}}" required>
+        <span class="input-group-addon"><i class="fa fa-times"></i></span>
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-control-label" for="start_date">End date and time</label>
+      <div class="form-datetime date input-group">
+        <input class="form-control" type="text" name="end_date" value="{{end_date}}" required>
+        <span class="input-group-addon"><i class="fa fa-times"></i></span>
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+      </div>
     </div>
 
     <div class="form-group">
     <label class="form-control-label" for="location">Location</label>
-        <input class="form-control" type="text" name="location" value="{{location}}" required>
+      <input class="form-control" type="text" name="location" value="{{location}}" required>
     </div>
 
     <div class="form-group">
@@ -27,11 +51,24 @@
 
     <div class="form-group">
     <label class="form-control-label" for="detail">Detail</label>
-        <textarea class="form-control" id="detail" rows="2" type="text" name="detail" value="{{detail}}"></textarea>
+      <textarea class="form-control" id="detail" rows="2" type="text" name="detail" value="{{detail}}"></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary hh-btn">Submit</button>
+    <div class="form-group">
+    {% if user.profile.card %}
+        <label class="form-control-label" for="detail">Payment</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="payment" checked>{{ user.profile.card }}
+            </label>
+          </div>
+    </div>
+      <button type="submit" class="btn btn-primary hh-btn">Submit</button>
+    {% endif %}
   </form>
 </div>
+
 <script src="../static/js/form-validation.js"></script>
+<script src="{% static "hello/js/datetime.js" %}"></script>
+
 {% endblock %}

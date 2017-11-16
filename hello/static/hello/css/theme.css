@@ -33,24 +33,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
-.card {
-    width: 13.2rem !important;
-}
-
-.card-name {
-    font-size: 20px;
-    color: black;
-}
-
-.card-job {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.card-columns {
-    column-count: 4;
-}
-
 .product-img > img {
     border: solid #b2b2b2 1px;
 }
@@ -113,5 +95,38 @@ h1, h2, h3, h4, h5, h6 {
 
 .username {
     font-size: 15px;
-    color: #666;
+    color: #9a9a9a;
+}
+
+.star-icon {
+    font-size: 20px;
+    color: #dad3d3;
+    position: relative;
+}
+
+.star-icon.full:before {
+    -webkit-text-stroke: 1.25px rgb(255, 196, 86);
+    color: rgb(255, 254, 43);
+    content: '\2605';
+    position: absolute;
+    left: 0;
+}
+
+.star-icon.half:before {
+    -webkit-text-stroke: 1.25px rgb(255, 196, 86);
+    color: rgb(255, 254, 43);
+    content: '\2605';
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+}
+
+.rate-type {
+    font-size: 15px;
+}
+
+.error {
+    font-size: 15px;
+    color: red;
 }

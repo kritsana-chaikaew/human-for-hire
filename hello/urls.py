@@ -11,5 +11,8 @@ urlpatterns = [
         name='product-detail'),
     url(r'^tags/(?P<tags>.+)/$',
         views.TagResultView.as_view(),
-        name='tag-result')
+        name='tag-result'),
+    url(r'^get_tags/',
+        views.get_tags,
+        name='get_tags'),
 ]

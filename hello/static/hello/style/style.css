@@ -18,7 +18,7 @@ body {
 .product:before {
   content: "";
   display: block;
-  padding-top: 133.33%; 
+  padding-top: 133.33%;
 }
 
 .product-container {
@@ -74,6 +74,7 @@ body {
 
 /*START MANAGE*/
 .manage-status__WAITINGFORWORK {
+  background-color: #eee;
 }
 
 .workdone-hover:hover {
@@ -103,6 +104,16 @@ body {
   color: #FFF;
 }
 
+.manage-status__WORKDONERATED {
+  background-color: #2db035;
+  color: #FFF;
+}
+
+.manage-status__WORKDONENOTRATED {
+  background-color: #2db035;
+  color: #FFF;
+}
+
 .manage-status__FAILED {
   background-color: #333;
   color: #FFF;
@@ -113,12 +124,24 @@ body {
   color: #FFF;
 }
 
-#hh-managework td, #hh-managehired td,#hh-managework th, #hh-managehired th {
-  border: 1px solid black;
+#hh-managework {
+  background-color: white;
 }
 
-#hh-managework thead {
-  margin-bottom: 30px;
+.rate-link {
+  height: 100%;
+  width: 100%;
+}
+
+.status-block {
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: 600;
+    padding: 8px;
+}
+
+.rate-work {
+  color: white;
 }
 
 #block_container{
@@ -129,5 +152,71 @@ body {
   color: #666;
   display:inline;
 }
-
+.managework__buyerdetail {
+  line-height: 0.4em;
+  margin-top: 30px;
+}
+.managework__buyerdetail > div {
+  margin-bottom: -0.5em;
+}
+.managework__buyerdetail > div > .name {
+  font-weight: bold;
+}
+.managework__price, .managehired__price {
+  position: absolute;
+  right: 15px;
+  bottom: 0px;
+}
+.managework__price > .price, .managehired__price > .price {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.managework__price > .thb, .managehired__price > .thb {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+.manage__header {
+  margin-bottom: 30px;
+  padding-top: 50px;
+}
+.managehired__pricerow {
+  margin-top: 45px;
+}
+.card-body__managehired > small {
+  vertical-align: -0.4em;
+}
+.managehired__detail > p {
+  margin: 0px;
+}
+.managehired__detail {
+  margin-bottom: 20px;
+}
+.card {
+  margin-bottom: 25px;
+}
+.close-button {
+  opacity: 0;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+}
+.card:hover .close-button {
+  opacity: 1;
+  cursor: pointer;
+}
+.star {
+  color: #fcdc42;
+  font-size: 1.6em;
+}
 /*END MANAGE*/
+
+/*START RATING*/
+.star-rating > .star-icon {
+  font-size: 6em;
+  cursor: default;
+}
+/*END RATING*/
