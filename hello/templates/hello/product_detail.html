@@ -9,7 +9,7 @@
     </div>
     <div class="col-12 col-md-8">
         <h2>{{ product.product_name }}</h2> 
-        <span class="username">{{ product.seller_username.first_name }} {{ product.seller_username.last_name }}</span>
+        <span class="username">{{ product.seller_username.first_name }} {{ product.seller_username.last_name }}, {{ product.seller_username.profile.get_age }}</span>
         {% if product.seller_username.profile.sell_rating %}
           <span class="username">:&nbsp;</span>
         {% for i in product.seller_username.profile.get_sell_rating %}
@@ -21,7 +21,7 @@
                 <span class="star-icon">★</span>
             {% endif %}
         {% endfor %}
-        <span class="rate-type">&nbsp;({{ product.seller_username.profile.sell_rating|floatformat:2 }})</span>
+        <span class="username">&nbsp;({{ product.seller_username.profile.sell_rating|floatformat:2 }})</span>
         {% endif %}
         <br><br>
         <p>
@@ -51,10 +51,10 @@
           </a>
         {% elif user.id == product.seller_username_id %}
         <p>
-          <a href="/product/{{ product.product_no }}/delete">
+          <a href="/product/{{ product.product_no }}/delete" aria-pressed="true">
             <button class="red-short-btn" role="button">DELETE</button>
           </a>
-          <a href="/product/{{ product.product_no }}/edit/">
+          <a href="/product/{{ product.product_no }}/edit/" aria-pressed="true">
             <button class="gray-short-btn" role="button">EDIT</button>
           </a>
         </p>

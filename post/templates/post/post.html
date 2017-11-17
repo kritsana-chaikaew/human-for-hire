@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block content %}
-<h3>Present yourself</h3>
+<div class="row justify-content-md-center">
 <form action="{% url 'post:action' %}" method="post" enctype="multipart/form-data" class="col-lg-5">
+  <h3>Present yourself</h3><br>
   {% csrf_token %}
 
     <div class="form-group">
@@ -52,9 +53,10 @@
       <label class="form-control-label" for="tags">Tag</label>
       <input class="form-control" type="text" name="tags" id="tags" placeholder="comma separated list of tags">
     </div>
-
-    <button type="submit" class="btn btn-primary hh-btn">Create Post</button>
+    <br>
+    <center><button type="submit" class="red-long-btn">CREATE</button></center>
 </form>
+</div>
 
 <script src="{% static "post/js/post.js" %}"></script>
 <script src="{% static "hello/js/datetime.js" %}"></script>
