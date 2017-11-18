@@ -3,6 +3,7 @@ from django.views import generic
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.utils import timezone
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import datetime
 
@@ -15,6 +16,8 @@ from functools import reduce
 import operator
 from django.db.models import Q
 
+CARDS_PER_PAGE = 8
+
 class IndexView(generic.ListView):
     template_name = 'hello/index.html'
     context_object_name = 'product_list'
@@ -23,14 +26,14 @@ class IndexView(generic.ListView):
         cards = Product.objects
 
         if(request.method == 'POST'):
-            gender = request.POST['gender']
-            first_age = request.POST['first_age']
-            end_age = request.POST['end_age']
-            first_date = request.POST['first_date']
-            end_date = request.POST['end_date']
+            gender = request.session['gender'] = request.POST['gender']
+            first_age = request.session['first_age'] = request.POST['first_age']
+            end_age = request.session['end_age'] = request.POST['end_age']
+            first_date = request.session['first_date'] = request.POST['first_date']
+            end_date = request.session['end_date'] = request.POST['end_date']
             tag_list = request.POST['tag_list']
-            tag_list = tag_list.split(',')
-            sort = request.POST['sort']
+            tag_list = request.session['tag_list'] = tag_list.split(',')
+            sort = request.session['sort'] = request.POST['sort']
 
             if gender != "":
                 print("gender")
@@ -62,16 +65,84 @@ class IndexView(generic.ListView):
                 cards = cards.filter(tags__name__in=tag_list)
 
         if sort == 'rating':
-            cards = cards.distinct().order_by('-seller_username__profile__sell_rating')    
+            cards = cards.distinct().order_by('-seller_username__profile__sell_rating')
         else:
             cards = cards.distinct().order_by('-init_date')
 
-        args = {'product_list': cards}
-        return render(request, 'hello/index.html', args)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(cards, CARDS_PER_PAGE)
+        try:
+            product_list = paginator.page(page)
+        except PageNotAnInteger:
+            product_list = paginator.page(1)
+        except EmptyPage:
+            product_list = paginator.page(paginator.num_pages)
+
+        return render(request, 'hello/index.html', {'product_list': product_list})
 
     def get_queryset(self):
         cards = Product.objects.order_by('-init_date')
-        return cards
+        page = self.request.GET.get('page', 1)
+        if int(page) == 1:
+            self.request.session['gender'] = ""
+            self.request.session['first_age'] = ""
+            self.request.session['end_age'] = ""
+            self.request.session['first_date'] = ""
+            self.request.session['end_date'] = ""
+            self.request.session['tag_list'] = ['']
+            self.request.session['sort'] = ""
+        elif int(page) >= 2:
+            gender = self.request.session['gender']
+            first_age = self.request.session['first_age']
+            end_age = self.request.session['end_age']
+            first_date = self.request.session['first_date']
+            end_date = self.request.session['end_date']
+            tag_list = self.request.session['tag_list']
+            sort = self.request.session['sort']
+
+            if gender != "":
+                print("gender")
+                profile = Profile.objects.filter(gender=gender)
+                user = User.objects.filter(profile__in=profile)
+                cards = cards.filter(seller_username__in=user)
+            if first_age != "":
+                print("fage")
+                max_date = datetime.date.today()
+                max_date = max_date.replace(year=max_date.year - int(first_age))
+                profile = Profile.objects.filter(birthday__lte=max_date)
+                user = User.objects.filter(profile__in=profile)
+                cards = cards.filter(seller_username__in=user)
+            if end_age != "":
+                print("lage")
+                min_date = datetime.date.today()
+                min_date = min_date.replace(year=min_date.year - int(end_age))
+                profile = Profile.objects.filter(birthday__gte=min_date)
+                user = User.objects.filter(profile__in=profile)
+                cards = cards.filter(seller_username__in=user)
+            if first_date != "":
+                print("fdate")
+                cards = cards.filter(start_date__gte=first_date)
+            if end_date != "":
+                print("ldate")
+                cards = cards.filter(end_date__lte=end_date)
+            if tag_list != ['']:
+                print(tag_list)
+                cards = cards.filter(tags__name__in=tag_list)
+
+            if sort == 'rating':
+                cards = cards.distinct().order_by('-seller_username__profile__sell_rating')
+            else:
+                cards = cards.distinct().order_by('-init_date')
+
+        paginator = Paginator(cards, CARDS_PER_PAGE)
+        try:
+            product_list = paginator.page(page)
+        except PageNotAnInteger:
+            product_list = paginator.page(1)
+        except EmptyPage:
+            product_list = paginator.page(paginator.num_pages)
+
+        return product_list
 
 
 class ProductDetailView(generic.DetailView):
