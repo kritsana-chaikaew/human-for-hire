@@ -1,0 +1,11 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+    <form method="post" class="col col-lg-5 form-center">
+      <h3>Registration Successful!!</h3>
+      <p>{{ error }}</p>
+      <center><a href="{% url 'signuplogin:login' %}" class="btn btn-lg btn-outline-success hh-btn">Click Here To Login</center></a>
+    </form>
+  </div>
+{% endblock %}

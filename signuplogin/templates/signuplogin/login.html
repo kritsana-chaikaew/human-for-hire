@@ -1,0 +1,21 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+  <form method="post" class="col col-lg-5 form-center">
+    <h3>Login</h3>
+    <p>{{ error }}</p>
+    {% csrf_token %}
+    <div class="form-group">
+      <label class="form-control-label" for="username">Username</label>
+      <input class="form-control form-control-lg" id="username" type="text" name="username"/>
+    </div>
+    <div class="form-group">
+      <label class="form-control-label" for="password">Password</label>
+      <input class="form-control form-control-lg" id="password" type="password" name="password"/>
+    </div>
+    <center><button type="submit" class="btn btn-lg btn-outline-success hh-btn">Login</button></center>
+  </form>
+</div>
+{% endblock %}
