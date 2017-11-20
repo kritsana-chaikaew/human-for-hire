@@ -39,7 +39,9 @@ $(".manage-status__TOBEACCEPTED").click(function(){
     dataType: 'json',
     success: function(data) {
       if(data.success) {
-        $(element).attr("class", "manage-status__CANCELLED");
+        $(element).removeClass("manage-status__TOBEACCEPTED");
+        $(element).removeClass("cancel-hover");
+        $(element).addClass("manage-status__CANCELLED");
         $(element).unbind();
         $(element).text("CANCELLED")
       }
