@@ -63,7 +63,7 @@ $(".close-button").click(function() {
         dataType: 'json',
         success: function(data) {
           if(data.success) {
-            console.log("success!!")
+            location.reload();
           }
         }
       });

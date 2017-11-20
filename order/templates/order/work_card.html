@@ -3,7 +3,7 @@
 		<div class="card-body">
 			<h4 class="card-title">{{work.start_date|date:'d M y'}}</h4>
 			<p class="card-text">{{work.detail}}</p>
-			{% if work.status <= 3 %}
+			{% if work.status == 0 or work.status == 1 %}
 				<div order="{{ work.order_no }}" username="{{ work.seller_username }}" usertype="employee" class="close-button"><i class="fa fa-times" aria-hidden="true"></i></div>
 			{% endif %}
 			<div class="row">
