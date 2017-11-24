@@ -117,6 +117,9 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
+.top-margin {
+    margin-top: 30px;
+}
 .star-icon.full:before {
     -webkit-text-stroke: 1.25px rgb(255, 196, 86);
     color: rgb(255, 254, 43);
