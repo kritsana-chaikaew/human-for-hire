@@ -3,8 +3,9 @@
 {% load widget_tweaks %}
 
 {% block content %}
-<h3>Edit Post</h3>
+<div class="row justify-content-md-center">
 <form method="post" class="col col-lg-5" enctype="multipart/form-data">
+  <h3>Edit Post</h3><br>
   {% csrf_token %}
   {% if form.non_field_errors %}
   <ul>
@@ -90,10 +91,10 @@
     <div id="{{ form.tags.auto_id }}_errors">
       {{ form.tags.errors }}
     </div>
-  </div>
-
-  <button class="btn btn-info hh-btn" type="submit">Submit</button>
+  </div><br>
+  <center><button class="red-long-btn" type="submit">SUBMIT</button></center>
 </form>
+</div>
 
 <script src="{% static "hello/js/datetime.js" %}"></script>
 
