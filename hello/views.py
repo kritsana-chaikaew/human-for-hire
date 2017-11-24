@@ -24,8 +24,10 @@ class IndexView(generic.ListView):
 
         if(request.method == 'POST'):
             gender = request.POST['gender']
-            first_age = request.POST['first_age']
-            end_age = request.POST['end_age']
+            age = request.POST['age']
+            age = age.split(',')
+            first_age = age[0]
+            end_age = age[1]
             first_date = request.POST['first_date']
             end_date = request.POST['end_date']
             tag_list = request.POST['tag_list']

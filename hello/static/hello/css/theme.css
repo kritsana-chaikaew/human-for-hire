@@ -83,6 +83,19 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+.slider-handle.custom {
+	background: transparent none;
+	/* You can customize the handle and set a background image */
+}
+
+/* Or display content like unicode characters or fontawesome icons */
+.slider-handle.custom::before {
+	line-height: 20px;
+	font-size: 20px;
+	content: '\0041'; /*unicode star character*/
+	color: #726204;
+}
+
 #navbar-hh {
     padding-left: 0;
     padding-right: 0;
