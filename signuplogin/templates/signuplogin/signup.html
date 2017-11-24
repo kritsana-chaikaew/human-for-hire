@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="row justify-content-md-center">
-  <form method="post" action="{% url 'signupLogin:signup' %}" enctype="multipart/form-data" class="col col-lg-6">
+  <form method="post" action="{% url 'signuplogin:signup' %}" enctype="multipart/form-data" class="col col-lg-6">
     <h3>Register</h3>
     <br>
     {% for e in error %}
@@ -83,12 +83,12 @@
     <div class="form-group">
       <label class="form-control-label" for="password2">Confirm Password</label>
       <input class="form-control" id="password2" type="password" name="password2" required/>
-    </div>
-    <center><button class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Register">Register</button></center>
+    </div><br>
+    <center><button class="red-long-btn" type="submit" value="Register">REGISTER</button></center>
   </form>
   </div>
 
 <script src="{% static "hello/js/datetime.js" %}"></script>
-<script src="../static/js/form-validation.js"></script>
+<script src="{% static "signuplogin/js/form-validation.js" %}"></script>
 
 {% endblock %}

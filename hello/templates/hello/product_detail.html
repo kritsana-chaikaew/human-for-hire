@@ -1,53 +1,65 @@
 {% extends 'hello/base.html' %}
 
 {% block content %}
-<div class="row">
+<div class="row" style="line-height:100%;">
     <div class="col-12 col-md-4 product-img">
-        <img src="{{ product.product_image.url }}" width="100%" \>
-        {% if user.id != product.seller_username_id %}
         <center>
-          <br>
-          <a href="{% url 'order:buy' pk=product.product_no %}" class="btn btn-lg btn-outline-success hh-btn" role="button" aria-pressed="true">Hire</a>
+          <img src="{{ product.product_image.url }}" width="100%" \>
         </center>
-        {% endif %}
     </div>
     <div class="col-12 col-md-8">
-        <h2>{{ product.product_name }}</h2> <div class="posted-by">posted by: {{ product.seller_username }} </div> </br>
-        <p>{{product.product_details }}</p>
+        <h2>{{ product.product_name }}</h2> 
+        <span class="username">{{ product.seller_username.first_name }} {{ product.seller_username.last_name }}, {{ product.seller_username.profile.get_age }}</span>
+        {% if product.seller_username.profile.sell_rating %}
+          <span class="username">:&nbsp;</span>
+        {% for i in product.seller_username.profile.get_sell_rating %}
+            {% if i == 1 %}
+                <span class="star-icon full">★</span>
+            {% elif i == 0.5 %}
+                <span class="star-icon half">★</span>
+            {% else %}
+                <span class="star-icon">★</span>
+            {% endif %}
+        {% endfor %}
+        <span class="username">&nbsp;({{ product.seller_username.profile.sell_rating|floatformat:2 }})</span>
+        {% endif %}
+        <br><br>
         <p>
-          <h6>Name</h6>
-          {{ product.seller_username.first_name }}  {{ product.seller_username.last_name }}
-        </p>
-        <p>
-          <h6>Avaliable Days</h6>
-          <b>from</b> {{ product.start_date|date:'d M y - H:i'}}
-          <br>
-          <b>to</b> {{ product.end_date|date:'d M y - H:i'}}
-        </p>
-        <p>
-          <h6>Location</h6>
-          {{ product.location }}
-        </p>
-        <p>
-          <h6>Tag</h6>
             {% for tag in product.tags.all %}
               <a class="btn btn-light btn-sm" role="button" href='/tags/{{ tag }}/'>
                 {{ tag }}
               </a>
             {% endfor %}
-        </p>
-        {% if user.id == product.seller_username_id %}
+        </p><hr>
+        <p>{{product.product_details }}</p><br>
         <p>
-          <a href='/product/{{ product.product_no }}/delete'>
-            Delete
+          <h6>Avaliable</h6>
+          <div class="row">
+            <div class="col-sm-4"><b>from &nbsp;</b> {{ product.start_date|date:'d M y - H:i'}}</div>
+            <div class="col-sm-8"><b>to &nbsp;</b> {{ product.end_date|date:'d M y - H:i'}}</div>
+          </div>
+        </p><br>
+        <p>
+          <h6>Location</h6>
+          {{ product.location }}
+        </p><hr>
+        <br>
+        <center>
+        {% if user.id != product.seller_username_id %}
+          <a href="{% url 'order:buy' pk=product.product_no %}" aria-pressed="true">
+            <button class="red-long-btn" role="button">HIRE</button>
           </a>
-        </p>
+        {% elif user.id == product.seller_username_id %}
         <p>
-          <a href="/product/{{  product.product_no }}/edit/">
-            Edit
+          <a href="/product/{{ product.product_no }}/delete" aria-pressed="true">
+            <button class="red-short-btn" role="button">DELETE</button>
+          </a>
+          <a href="/product/{{ product.product_no }}/edit/" aria-pressed="true">
+            <button class="gray-short-btn" role="button">EDIT</button>
           </a>
         </p>
         {% endif %}
-    </div>
+        </center>
+    </div>  
 </div>
 {% endblock %}

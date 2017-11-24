@@ -1,13 +1,3 @@
-// $(".manage-status__WAITINGFORWORK").hover(
-//   function() {
-//     $(this).addClass('workdone-hover');
-//       $(this).text("MARK AS DONE");
-//   }, function() {
-//     $(this).text("WAITING FOR WORK");
-//   }
-// );
-
-
 $(".manage-status__WAITINGFORWORK").hover(
   function() {
     $(this).addClass('workdone-hover');
@@ -30,11 +20,6 @@ $(".manage-status__WAITSELLERMARKDONE").hover(
   }
 );
 
-// $(".manage-status__WAITINGFORWORK").click(confirm_workdone);
-// $(".manage-status__WAITSELLERMARKDONE").click(confirm_workdone);
-
-
-
 $(".manage-status__TOBEACCEPTED").hover(
   function() {
     $(this).addClass('accept-hover');
@@ -43,15 +28,6 @@ $(".manage-status__TOBEACCEPTED").hover(
     $(this).text("TO BE ACCEPTED");
   }
 );
-
-// $(".manage-status__WAITSELLERMARKDONE").hover(
-//   function() {
-//     $(this).addClass('workdone-hover');
-//       $(this).text("MARK AS DONE");
-//   }, function() {
-//     $(this).text("WAIT SELLER MARK DONE");
-//   }
-// );
 
 $(".manage-status__TOBEACCEPTED").click(function(){
   var element = this
@@ -72,20 +48,24 @@ $(".manage-status__TOBEACCEPTED").click(function(){
   });
 });
 
-// function confirm_workdone(){
-//   element = this
-//   $.ajax({
-//     url: '/ajax/seller_confirm_workdone',
-//     data: {
-//       'order_no': $(this).attr('order')
-//     },
-//     dataType: 'json',
-//     success: function(data) {
-//       if(data.success) {
-//         $(element).attr("class", "manage-status__WORKDONE");
-//         $(element).unbind();
-//         $(element).text("WORK DONE")
-//       }
-//     }
-//   });
-// }
+$(".close-button").click(function() {
+  var element = $(this)
+  bootbox.confirm("Are you sure? your rating will be decrease by 10%", function(result) {
+    if(result) {
+      $.ajax({
+        url: '/ajax/cancel_work_penalty',
+        data: {
+          'order_no': element.attr('order'),
+          'username': element.attr('username'),
+          'usertype': element.attr('usertype')
+        },
+        dataType: 'json',
+        success: function(data) {
+          if(data.success) {
+            location.reload();
+          }
+        }
+      });
+    }
+  })
+});

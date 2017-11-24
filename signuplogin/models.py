@@ -42,9 +42,3 @@ class Profile(models.Model):
             star.append(0.5)
         star.extend([0]*(5-len(star)))
         return star
-
-# @receiver(post_save, sender=User)
-# def update_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Profile.objects.create(user=instance)
-#     instance.profile.save()

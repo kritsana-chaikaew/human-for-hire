@@ -6,10 +6,10 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from post.models import Product
-from signupLogin.models import Profile
+from signuplogin.models import Profile
 from .models import Order
 
-from signupLogin.models import Profile
+from signuplogin.models import Profile
 
 import base64
 import urllib.parse
@@ -116,10 +116,8 @@ def buyer_confirm_workdone(request):
         o = Order.objects.get(order_no=request.GET.get('order_no'))
         print("status buyer_confirm_workdone: " + str(o.status))
         if o.status == Order.WAITING_FOR_WORK:
-            print('aaaaaaaa')
             o.status = Order.WAIT_SELLER_MARK_DONE
         elif o.status == Order.WAIT_BUYER_MARK_DONE:
-            print('bbbbbbbb')
             o.status = Order.WORK_DONE
         else:
             raise ValueError('Can not be done.')
@@ -136,6 +134,27 @@ def cancel_work(request):
         o = Order.objects.get(order_no=request.GET.get('order_no'))
         o.status = Order.CANCELLED;
         o.save()
+    except:
+        data['success'] = False
+    return JsonResponse(data)
+
+def cancel_work_penalty(request):
+    data = {
+        'success': True
+    }
+    try:
+        o = Order.objects.get(order_no=request.GET.get('order_no'))
+        if o.status != Order.CANCELLED:
+            o.status = Order.CANCELLED;
+            o.save()
+            u = User.objects.get(username=request.GET.get('username'))
+            usertype = request.GET.get('usertype')
+            if usertype == "employee":
+                u.profile.sell_rating = 0.9 * u.profile.sell_rating
+            if usertype == "employer":
+                u.profile.buy_rating = 0.9 * u.profile.buy_rating
+            u.profile.save()
+            u.save()
     except:
         data['success'] = False
     return JsonResponse(data)
@@ -164,7 +183,6 @@ def rate(request):
     print('order_no: ' + order_no)
 
     try:
-        # order_no = str(int((int(base64ToString(urllib.parse.unquote(order_no))) + 5555) / 9876))
         order_no = (int(base64ToString(urllib.parse.unquote(order_no))) + 5555) / 9876
         if order_no.is_integer():
             order_no = str(int(order_no))

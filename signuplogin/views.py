@@ -18,10 +18,6 @@ import datetime
 import dateutil
 import pytz
 
-# @login_required(login_url='/login')
-# def main(request):
-#     return render(request,'main.html',{})
-
 def signup(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -42,18 +38,18 @@ def signup(request):
         error = ''
         if User.objects.filter(username=username).exists():
             error = 'This username ( ' + username + ' ) has been taken.'
-            return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'card':card, 'bank':bank, 'profile_image':profile_image, "error":[error]})
+            return render(request,'signuplogin/signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'card':card, 'bank':bank, 'profile_image':profile_image, "error":[error]})
 
         # Check passwords matching
         error = ''
         if password != password2:
-            return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'card':card, 'bank':bank, 'profile_image':profile_image, "error":["Passwords dont't match."]})
+            return render(request,'signuplogin/signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'card':card, 'bank':bank, 'profile_image':profile_image, "error":["Passwords dont't match."]})
         else:
             try:
                 pv.validate_password(password, request.user)
             except ValidationError as e:
                 error = e
-                return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'card':card, 'bank':bank, 'profile_image':profile_image, "error":error})
+                return render(request,'signuplogin/signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'card':card, 'bank':bank, 'profile_image':profile_image, "error":error})
             # if (username in password or password in username) or (lastname in password or password in lastname) or (address in password or password in address) or (telephone in password or password in telephone) or (email in password or password in email) or (payment in password or password in payment) or (birthday in password or password in birthday):
             #     error = 'Your password is relating to your personal informations.'
             #     return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'payment':payment, 'profile_image':profile_image, "error":[error]})
@@ -63,7 +59,7 @@ def signup(request):
         error = ''
         if bd > datetime.datetime.now():
             error = 'Please check your birthday again'
-            return render(request,'signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'card':card, 'bank':bank, 'profile_image':profile_image, "error":[error]})
+            return render(request,'signuplogin/signup.html',{'username':username, 'email':email, 'firstname':firstname, 'lastname':lastname, 'address':address, 'telephone':telephone, 'birthday':birthday, 'card':card, 'bank':bank, 'profile_image':profile_image, "error":[error]})
 
         # If username is unique and passwords are match, then save that username to database.
         user = User.objects.create_user(username, email, password)
@@ -84,23 +80,11 @@ def signup(request):
         p.image = profile_image
         p.save()
         return redirect('/signup_success')
-    return render(request,'signup.html',{})
-
-# def login(request):
-#     if request.method == 'POST':
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         user = authenticate(request, username=username, password=password)
-#         if user is not None:
-#             auth_login(request, user)
-#             return redirect('/main')
-#         else:
-#             return render(request,'login.html',{'error': 'invalid login'})
-#     return render(request,'login.html',{})
+    return render(request,'signuplogin/signup.html',{})
 
 def logout(request):
     auth_logout(request)
     return redirect('/login')
 
 def signup_success(request):
-    return render(request,'signup_success.html',{})
+    return render(request,'signuplogin/signup_success.html',{})

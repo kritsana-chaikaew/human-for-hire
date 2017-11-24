@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hello',
     'post',
-    'signupLogin',
+    'signuplogin',
     'userprofile',
     'mathfilters',
     'widget_tweaks',

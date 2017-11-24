@@ -14,7 +14,7 @@ import taggit
 
 @login_required(login_url='/login')
 def post(request):
-    return render(request,'post.html',{})
+    return render(request,'post/post.html',{})
 
 def action(request):
     product = Product()
@@ -37,7 +37,7 @@ def action(request):
     tag_list = clean_tags(tag_list)
     product.tags.add(*tag_list)
 
-    return render(request, 'post_respond.html', {})
+    return render(request, 'post/post_respond.html', {})
 
 def clean_tags(tag_list):
     if tag_list:
@@ -50,7 +50,7 @@ def delete(request, pk):
     if product:
         product.delete()
 
-    return render(request, 'delete_respond.html', {})
+    return render(request, 'post/delete_respond.html', {})
 
 def edit(request, pk):
     product = Product.objects.get(product_no=pk)
@@ -59,9 +59,9 @@ def edit(request, pk):
 
         if form.is_valid():
             form.save()
-            return render(request, 'edit_response.html', {})
+            return render(request, 'post/edit_response.html', {})
 
     else:
         form = EditPostForm(instance=product)
         args = {'form': form}
-        return render(request, 'edit.html', args)
+        return render(request, 'post/edit.html', args)

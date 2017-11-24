@@ -1,5 +1,6 @@
 {% extends 'hello/base.html' %}
 {% load mathfilters %}
+{% load static %}
 
 {% block content %}
 
@@ -11,35 +12,45 @@
 
 <dt class="recent"><strong>recent posts</strong></dt>
 
-<div class="row">
-{% if product_list %}
-  {% for product in product_list %}
-		<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 product">
-			<div class="product-container">
+<div class="row infinite-container">
+	{% if product_list %}
+		{% for product in product_list %}
+		 <div class="infinite-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 product">
+			 <div class="product-container">
 
-			<a href='/product/{{ product.product_no }}/'>
-				<div class="product-img-block">
-					{% if product.product_image.width|div:product.product_image.height > 0.75  %}
-						<img src="{{ product.product_image.url }}" style="height:100%;margin-left:-{{product.product_image.width|div:product.product_image.height|mul:360|div:2|sub:135}}px">
-					{% else %}
-						<img src="{{ product.product_image.url }}" style="width:100%;margin-top:-{{product.product_image.height|div:product.product_image.width|mul:270|div:2|sub:180}}px">
-					{% endif %}
-				</div>
-			</a>
+					<a href='/product/{{ product.product_no }}/'>
+						<div class="product-img-block">
+							{% if product.product_image.width|div:product.product_image.height > 0.75  %}
+								<img src="{{ product.product_image.url }}" style="height:100%;margin-left:-{{product.product_image.width|div:product.product_image.height|mul:360|div:2|sub:135}}px">
+							{% else %}
+								<img src="{{ product.product_image.url }}" style="width:100%;margin-top:-{{product.product_image.height|div:product.product_image.width|mul:270|div:2|sub:180}}px">
+							{% endif %}
+						</div>
+					</a>
 
-			<div class="product-detail">
-				<a href='/product/{{ product.product_no }}/'>
-					<p class="product-detail-name">{{ product.product_name }}</p>
-					<p class="product-detail-detail">{{ product.product_details }}</p>
-				</a>
+					<div class="product-detail">
+						<a href='/product/{{ product.product_no }}/'>
+							<p class="product-detail-name">{{ product.product_name }}</p>
+							<p class="product-detail-detail">{{ product.product_details }}</p>
+						</a>
+					</div>
+
+				 </div>
 			</div>
-
-		</div>
-		</div>
-  {% endfor %}
-{% else %}
-  <p>No product available at this time.</p>
-{% endif %}
+		{% endfor %}
+	{% else %}
+		<p>No product available at this time.</p>
+	{% endif %}
 </div>
+
+{% if product_list.has_next %}
+	<a class="infinite-more-link" href="?page={{ product_list.next_page_number }}">More</a>
+{% endif %}
+
+<div class="loading" style="display: none;">
+	Loading...
+</div>
+
+<script src="{% static 'hello/js/load_more.js' %}"></script>
 
 {% endblock %}
