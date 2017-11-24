@@ -147,11 +147,6 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
-.red-long-btn:hover {
-    background-color: #fcdc42;
-    color: black;
-}
-
 .gray-short-btn {
     background-color: #a3a3a3;
     border: none;
@@ -168,11 +163,6 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
-.gray-short-btn:hover {
-    background-color: #fcdc42;
-    color: black;
-}
-
 .red-short-btn {
     background-color: #ef390a;
     border: none;
@@ -184,12 +174,12 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     font-size: 14px;
     font-weight: bold;
-    /*-webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
 }
 
-.red-short-btn:hover {
+.red-long-btn:hover, .gray-short-btn:hover, .red-short-btn:hover {
     background-color: #fcdc42;
     color: black;
 }
@@ -197,5 +187,19 @@ h1, h2, h3, h4, h5, h6 {
 a:hover {
     color: white;
     text-decoration: none;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
     cursor: pointer;
+}
+
+a:active {
+    background-color: transparent;
+    outline:0;
+    -webkit-transition-duration: 0.3s; /* Safari */
+    transition-duration: 0.3s;
+}
+
+.red-long-btn:focus, .gray-short-btn:focus, .red-short-btn:focus{
+    background-color: transparent;
+    outline:0;
 }
