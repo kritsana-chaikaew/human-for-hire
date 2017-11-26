@@ -23,9 +23,18 @@
 				<div class="col-lg-2">
 					<label class="form-control-label">Age</label>
 						<div class="d-flex flex-row">
-							<b>20</b> <input id="age" name="age" type="text" data-slider-handle="custom"/> <b>100</b>
+							<span id="ageCurrentSliderValLabel1"><span id="ageSliderVal1">20</span></span>
+							<input id="age" name="age" type="text" data-slider-handle="custom"/>							
+							<!-- <div class="side-margin">
+								<input id="age" name="age" type="text" data-slider-handle="custom"/>
+							</div> -->
+							<span id="ageCurrentSliderValLabel2"><span id="ageSliderVal2">35</span></span>
 							<script>
-								var slider = new Slider("#age", { min: 25, max: 100, value: [30, 40]});
+								var slider = new Slider("#age", { min: 20, max: 70, value: [20, 35]});
+								slider.on("slide", function(sliderValue) {
+									document.getElementById("ageSliderVal1").textContent = sliderValue[0];
+									document.getElementById("ageSliderVal2").textContent = sliderValue[1];
+								});
 							</script>
 						</div>
 					</div>
