@@ -18,19 +18,19 @@
 						<label class="form-control-label">Age</label>
 						<input class="form-control" type="text" name="first_age" id="first_age" placeholder="Enter first age">
 						<input class="form-control" type="text" name="end_age" id="end_age" placeholder="Enter end age">
-					</div>	
+					</div>
 				</div> -->
 				<div class="col-lg-2">
 					<label class="form-control-label">Age</label>
 						<div class="d-flex flex-row">
-							<span id="ageCurrentSliderValLabel1"><span id="ageSliderVal1">20</span></span>
-							<input id="age" name="age" type="text" data-slider-handle="custom"/>							
+							<span id="ageCurrentSliderValLabel1"><span id="ageSliderVal1">0</span></span>
+							<input id="age" name="age" type="text" data-slider-handle="custom"/>
 							<!-- <div class="side-margin">
 								<input id="age" name="age" type="text" data-slider-handle="custom"/>
 							</div> -->
-							<span id="ageCurrentSliderValLabel2"><span id="ageSliderVal2">35</span></span>
+							<span id="ageCurrentSliderValLabel2"><span id="ageSliderVal2">100</span></span>
 							<script>
-								var slider = new Slider("#age", { min: 20, max: 70, value: [20, 35]});
+								var slider = new Slider("#age", { min: 0, max: 100, value: [0, 100]});
 								slider.on("slide", function(sliderValue) {
 									document.getElementById("ageSliderVal1").textContent = sliderValue[0];
 									document.getElementById("ageSliderVal2").textContent = sliderValue[1];

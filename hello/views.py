@@ -63,13 +63,14 @@ class IndexView(generic.ListView):
         cards = Product.objects
 
         if(request.method == 'POST'):
-            gender = request.POST['gender']
             age = request.POST['age']
             age = age.split(',')
-            first_age = age[0]
-            end_age = age[1]
-            first_date = request.POST['first_date']
-            end_date = request.POST['end_date']
+
+            gender = request.session['gender'] = request.POST['gender']
+            first_age = request.session['first_age'] = age[0]
+            end_age = request.session['end_age'] = age[1]
+            first_date = request.session['first_date'] = request.POST['first_date']
+            end_date = request.session['end_date'] = request.POST['end_date']
             tag_list = request.POST['tag_list']
             tag_list = request.session['tag_list'] = tag_list.split(',')
             sort = request.session['sort'] = request.POST['sort']
