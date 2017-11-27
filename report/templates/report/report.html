@@ -1,0 +1,23 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+
+<div>
+    <h2>Report Problem</h2><br>
+    <form action="{% url 'report:create_report' %}" method="post" enctype="multipart/form-data" class="col-lg-5">
+        {% csrf_token %}
+      
+          <div class="form-group">
+            <label class="form-control-label" for="report_subject">Subject</label>
+            <input class="form-control" type="text" id="report_subject"  name="report_subject" placeholder="Enter subject" required/>
+          </div>
+      
+          <div class="form-group">
+          <label>Description</label>
+            <textarea class="form-control" rows="3" name="report_description" id="report_description" placeholder="Enter description" required/></textarea>
+          </div>
+      
+          <button type="submit" class="red-short-btn">SUBMIT</button>
+      </form>
+</div>
+{% endblock %}

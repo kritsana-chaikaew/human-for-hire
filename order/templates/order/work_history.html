@@ -3,7 +3,7 @@
 	<thead class="thead-dark">
 		<tr>
   		<th scope="row">Date</th>
-  		<th scope="row">Employee</th>
+  		<th scope="row">Employer</th>
   		<th scope="row">Descriptions</th>
   		<th scope="row">Price</th>
   		<th scope="row">Rate</th>
@@ -16,11 +16,9 @@
       {% if work.status == 4 or work.status == 5 or work.status == 6 %}
       <tr>
         <td>{{ work.start_date|date:'d M y' }}</td>
-        <td>{{ work.buyer_username }}</td>
+        <td>{{ work.buyer_username.first_name }}</td>
         <td>{{ work.detail }}</td>
         <td>{{ work.price }} THB</td>
-        <!-- <td>★★★☆☆</td> -->
-        <!-- <td>{{ work.buyer_rating }}</td> -->
         <td class="star">
           {% if work.get_status_display|cut:" " == 'WORKDONE' %}
             {% with work.buyer_rating as filled_star %}

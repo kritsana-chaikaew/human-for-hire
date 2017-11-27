@@ -13,10 +13,10 @@ def create_report(request):
         r.subject = request.POST['report_subject']
         r.description = request.POST['report_description']
         r.save()
-        return render(request, 'report_success.html',{})
-    return render(request, 'report.html',{})
+        return render(request, 'report/report_success.html',{})
+    return render(request, 'report/report.html',{})
 
 def report_success(request):
-    return render(request,'report_success.html',{})
+    return render(request,'report/report_success.html',{})
 
         

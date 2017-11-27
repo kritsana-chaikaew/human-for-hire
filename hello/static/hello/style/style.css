@@ -144,6 +144,10 @@ body {
   color: white;
 }
 
+.slider.slider-horizontal {
+  margin: 0 15px !important
+}
+
 #block_container{
   text-align:center;
 }
@@ -219,4 +223,6 @@ body {
   font-size: 6em;
   cursor: default;
 }
+
+
 /*END RATING*/

@@ -12,12 +12,32 @@
 		      <option>male</option>
 		      <option>female</option>
 		    </select>
-		  </div>
-			<div class="form-group col-lg-2">
-				<label class="form-control-label">Age</label>
-				<input class="form-control" type="text" name="first_age" id="first_age" placeholder="Enter first age">
-				<input class="form-control" type="text" name="end_age" id="end_age" placeholder="Enter end age">
 			</div>
+				<!-- <div class="col-lg-2">
+					<div class="d-flex flex-row">
+						<label class="form-control-label">Age</label>
+						<input class="form-control" type="text" name="first_age" id="first_age" placeholder="Enter first age">
+						<input class="form-control" type="text" name="end_age" id="end_age" placeholder="Enter end age">
+					</div>	
+				</div> -->
+				<div class="col-lg-2">
+					<label class="form-control-label">Age</label>
+						<div class="d-flex flex-row">
+							<span id="ageCurrentSliderValLabel1"><span id="ageSliderVal1">20</span></span>
+							<input id="age" name="age" type="text" data-slider-handle="custom"/>							
+							<!-- <div class="side-margin">
+								<input id="age" name="age" type="text" data-slider-handle="custom"/>
+							</div> -->
+							<span id="ageCurrentSliderValLabel2"><span id="ageSliderVal2">35</span></span>
+							<script>
+								var slider = new Slider("#age", { min: 20, max: 70, value: [20, 35]});
+								slider.on("slide", function(sliderValue) {
+									document.getElementById("ageSliderVal1").textContent = sliderValue[0];
+									document.getElementById("ageSliderVal2").textContent = sliderValue[1];
+								});
+							</script>
+						</div>
+					</div>
 
 			<div class="form-group col-lg-3">
 				<label class="form-control-label">Date</label>
@@ -42,8 +62,16 @@
 				<input type="hidden" id="tag_list" name="tag_list" value="" />
 			</div>
 
+			<div class="form-group col-lg-1">
+					<label for="Sort">Sort by</label>
+					<select class="form-control" type="text" name="sort" id="sort">
+					  <option>date</option>
+					  <option>rating</option>
+					</select>
+			</div>
+
 			<div class="form-group col-lg-2">
-				<button class="btn btn-lg btn-outline-success hh-btn" type="submit" value="Search">Search</button>
+				<button class="red-short-btn" type="submit" value="Search">SEARCH</button>
 			</div>
 		</div>
 	</form>

@@ -83,6 +83,19 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+.slider-handle.custom {
+	background: transparent none;
+	/* You can customize the handle and set a background image */
+}
+
+/* Or display content like unicode characters or fontawesome icons */
+.slider-handle.custom::before {
+	line-height: 20px;
+	font-size: 20px;
+	content: '\0041'; /*unicode star character*/
+	color: #726204;
+}
+
 #navbar-hh {
     padding-left: 0;
     padding-right: 0;
@@ -91,6 +104,11 @@ h1, h2, h3, h4, h5, h6 {
 .posted-by  {
     font-size: 13px;
     color: #666;
+}
+
+.side-margin {
+    margin-right: 15px;
+    margin-left: 15px;
 }
 
 .username {
@@ -104,6 +122,9 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
+.top-margin {
+    margin-top: 30px;
+}
 .star-icon.full:before {
     -webkit-text-stroke: 1.25px rgb(255, 196, 86);
     color: rgb(255, 254, 43);
@@ -129,4 +150,77 @@ h1, h2, h3, h4, h5, h6 {
 .error {
     font-size: 15px;
     color: red;
+}
+
+.red-long-btn {
+    background-color: #e73d0c;
+    border: none;
+    color: white;
+    line-height: 28px;
+    width: 220px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.gray-short-btn {
+    background-color: #a3a3a3;
+    border: none;
+    color: white;
+    line-height: 28px;
+    width: 130px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.red-short-btn {
+    background-color: #ef390a;
+    border: none;
+    color: white;
+    line-height: 28px;
+    width: 130px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.red-long-btn:hover, .gray-short-btn:hover, .red-short-btn:hover {
+    background-color: #fcdc42;
+    color: black;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+a:active {
+    background-color: transparent;
+    outline:0;
+    -webkit-transition-duration: 0.3s; /* Safari */
+    transition-duration: 0.3s;
+}
+
+.red-long-btn:focus, .gray-short-btn:focus, .red-short-btn:focus{
+    background-color: transparent;
+    outline:0;
 }
